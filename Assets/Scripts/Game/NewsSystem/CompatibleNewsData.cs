@@ -22,7 +22,7 @@ public class CompatibleNewsData : ScriptableObject
     // VARIABLES
     // ---------
 #if UNITY_EDITOR
-    [SerializeField] private List<CompatibleNewsElementData> compatibleNewsList = new List<CompatibleNewsElementData>();
+    [SerializeField] private CompatibleNewsElementData[] compatibleNewsList;
 #endif
     public Dictionary<Tuple<string, string>, float> compatibleNewsDictionary = new Dictionary<Tuple<string, string>, float>();
 
@@ -35,7 +35,7 @@ public class CompatibleNewsData : ScriptableObject
         compatibleNewsDictionary.Clear();
 
         // Loop on compatible News List
-        for (int i = 0; i < compatibleNewsList.Count; i++) {
+        for (int i = 0; i < compatibleNewsList.Length; i++) {
 
             // Variables
             var tuple = Tuple.Create(compatibleNewsList[i].newsDataA.guid, compatibleNewsList[i].newsDataB.guid);

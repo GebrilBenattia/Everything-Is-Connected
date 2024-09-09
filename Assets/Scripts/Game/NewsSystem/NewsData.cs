@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "new NewsData", menuName = "ScriptableObjects/NewsData")]
 public class NewsData : ScriptableObject
@@ -11,7 +10,7 @@ public class NewsData : ScriptableObject
     // ---------
     private string m_Guid;
     public string name;
-    public Image sprite;
+    public Sprite sprite;
 
     // GETTER / SETTER
     // ---------------
