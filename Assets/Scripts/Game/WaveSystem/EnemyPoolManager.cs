@@ -14,6 +14,12 @@ public class EnemyPoolManager : MonoBehaviour
 
     [SerializeField] private uint m_MaxEnemyCount;
     private List<GameObject> m_ActivePool = new List<GameObject>();
+
+    public int activePoolSize
+    {
+        get { return m_ActivePool.Count; }
+    }
+
     private List<GameObject> m_InactivePool = new List<GameObject>();
 
     public List<GameObject> activePool

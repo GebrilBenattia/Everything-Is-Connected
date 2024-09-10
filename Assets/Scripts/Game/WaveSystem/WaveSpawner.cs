@@ -1,47 +1,81 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
+    private static WaveSpawner m_Instance;
+    public static WaveSpawner Instance
+    {
+        get { return m_Instance; }
+    }
+
     public Vector2 minCoords;
     public Vector2 maxCoords;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    [SerializeField] private List<Vector2> m_Left;
+    [SerializeField] private List<Vector2> m_Bottom;
+    [SerializeField] private List<Vector2> m_Right;
+    [SerializeField] private List<Vector2> m_Top;
 
+    // Start is called before the first frame update
+    void Awake()
+    {
+        m_Instance = this;
     }
 
-    private Vector2 GetRandomPosition()
+    private Tuple<int, Vector2> GetRandomPosition()
     {
-        int side = Random.Range(0, 4);
-
-        Debug.Log(side);
+        int side = UnityEngine.Random.Range(0, 4);
 
         switch (side)
         {
             case 0:
-                return new Vector2(minCoords.x, Random.Range(minCoords.y, maxCoords.y));
+                return Tuple.Create(0, new Vector2(minCoords.x, UnityEngine.Random.Range(minCoords.y, maxCoords.y)));
             case 1:
-                return new Vector2(Random.Range(minCoords.x, maxCoords.x), minCoords.y);
+                return Tuple.Create(1, new Vector2(UnityEngine.Random.Range(minCoords.x, maxCoords.x), minCoords.y));
             case 2:
-                return new Vector2(maxCoords.x, Random.Range(minCoords.y, maxCoords.y));
+                return Tuple.Create(2, new Vector2(maxCoords.x, UnityEngine.Random.Range(minCoords.y, maxCoords.y)));
             case 3:
-                return new Vector2(Random.Range(minCoords.x, maxCoords.x), maxCoords.y);
+                return Tuple.Create(3, new Vector2(UnityEngine.Random.Range(minCoords.x, maxCoords.x), maxCoords.y));
             default:
-                return new Vector2();
+                return Tuple.Create(0, new Vector2());
         }
     }
 
     private Vector3 GetSpawnPosition()
     {
-        Vector2 randomPos = GetRandomPosition();
-        return new Vector3(randomPos.x, 3f, randomPos.y);
+        Tuple<int, Vector2> randomPos = GetRandomPosition();
+
+        FillSide(randomPos.Item1, randomPos.Item2);
+
+        return new Vector3(randomPos.Item2.x, 3f, randomPos.Item2.y);
     }
 
-    private void SpawnEnemy()
+    private void FillSide(int _Side, Vector2 _Position)
+    {
+        GetSideArray(_Side).Add(_Position);
+    }
+
+    private List<Vector2> GetSideArray(int _Side)
+    {
+        switch (_Side)
+        {
+            case 0:
+                return m_Left;
+            case 1:
+                return m_Bottom;
+            case 2:
+                return m_Right;
+            case 3:
+                return m_Top;
+            default:
+                return new List<Vector2>();
+        }
+    }
+
+    public void SpawnEnemy()
     {
         EnemyPoolManager.Instance.SpawnEnemy(GetSpawnPosition());
     }
@@ -51,6 +85,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
+            Debug.Log("SPAWN");
             SpawnEnemy();
         }
     }

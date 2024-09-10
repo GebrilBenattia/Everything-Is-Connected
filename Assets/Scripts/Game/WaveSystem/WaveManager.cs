@@ -4,26 +4,75 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    [Tooltip("Current Wave Number")]
-    [SerializeField] private uint currentWave;
+    [SerializeField] private uint m_CurrentWaveIndex;
+    [SerializeField] private uint m_MaxSpawnToken;
+    [SerializeField] private uint m_DifficultyIncrement;
+    [SerializeField] private uint m_TimeBetweenWaves;
+    [SerializeField] private uint m_MaxActiveEnemies;
 
-    [Tooltip("Maximum number of tokens for the currentWave")]
-    [SerializeField] private uint spawnToken;
+    private uint m_SpawnToken;
 
-    [Tooltip("Increment that will be applied to the spawn token after each waves")]
-    [SerializeField] private uint tokenIncrement;
+    [SerializeField] private float m_MinSpawnTime;
+    [SerializeField] private float m_MaxSpawnTime;
 
-    [Tooltip("")]
-    [SerializeField] private uint timeBetweenWaves;
+    private float m_CurrentCooldown;
 
-    void Awake()
+    private void Awake()
     {
-        
+        InitWave();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+
+    }
+
+    private void InitWave()
+    {
+        m_SpawnToken = m_MaxSpawnToken;
+        m_CurrentCooldown = Random.Range(m_MinSpawnTime, m_MaxSpawnTime);
+    }
+
+    private void ChangeWave()
+    {
+        m_CurrentWaveIndex++;
+        m_MaxSpawnToken += m_DifficultyIncrement;
+        m_MaxActiveEnemies += m_DifficultyIncrement;
+    }
+
+    private void Update()
+    {
+        Debug.Log(m_CurrentCooldown);
+        Debug.Log(m_SpawnToken);
+
+        Debug.Log(EnemyPoolManager.Instance.activePoolSize);
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            EnemyPoolManager.Instance.activePool.Clear();
+            m_SpawnToken = 0;
+        }
+
+        if (m_SpawnToken == 0 && EnemyPoolManager.Instance.activePoolSize == 0)
+        {
+            ChangeWave();
+            InitWave();
+        }
+
+        if (m_SpawnToken <= 0 || EnemyPoolManager.Instance.activePoolSize >= m_MaxActiveEnemies)
+            return;
+
+        if (m_CurrentCooldown > 0)
+        {
+            m_CurrentCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            m_CurrentCooldown += Random.Range(m_MinSpawnTime, m_MaxSpawnTime);
+            WaveSpawner.Instance.SpawnEnemy();
+            m_SpawnToken--;
+        }
+
+
     }
 }
