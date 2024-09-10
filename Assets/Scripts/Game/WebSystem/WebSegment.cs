@@ -5,14 +5,14 @@ using UnityEngine;
 public class WebSegment : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] public Transform m_StartPoint;
-    [SerializeField] public Transform m_EndPoint;
+    [SerializeField] public Transform startPoint;
+    [SerializeField] public Transform endPoint;
 
     public float length;
 
     void Awake()
     {
-        length = Mathf.Abs(m_EndPoint.localPosition.z - m_StartPoint.localPosition.z);
+        length = Mathf.Abs(endPoint.localPosition.z - startPoint.localPosition.z);
     }
 
     // Update is called once per frame

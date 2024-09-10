@@ -14,15 +14,35 @@ public class NewsObject : MonoBehaviour
     private NewsData m_NewsData;
 
     // ######################################### FUNCTIONS ########################################
-
-    private void UpdateSprite()
+    
+    private IEnumerator SpawnScaleEffect()
     {
-        m_SpriteRenderer.sprite = m_NewsData.sprite;
+        // Variables
+        float speed = 4f;
+        float t = 0f;
+
+        // Update scale
+        while (t < 1) {
+
+            transform.localScale = Vector3.one * t;
+            t += Time.deltaTime * speed;
+
+            yield return null;
+        }
+
+        // Set scale to Vector3 One
+        transform.localScale = Vector3.one;
     }
 
     public void Init(NewsData _NewsData)
     {
         m_NewsData = _NewsData;
         UpdateSprite();
+        StartCoroutine(SpawnScaleEffect());
+    }
+
+    private void UpdateSprite()
+    {
+        m_SpriteRenderer.sprite = m_NewsData.sprite;
     }
 }
