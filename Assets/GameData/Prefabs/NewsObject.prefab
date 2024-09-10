@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1426360326265146901}
-  - component: {fileID: 1303543992563421443}
   - component: {fileID: 7231548073715378485}
   - component: {fileID: 621559510190971421}
+  - component: {fileID: 1303543992563421443}
   m_Layer: 3
   m_Name: NewsObject
   m_TagString: NewsObject
@@ -36,19 +36,6 @@ Transform:
   - {fileID: 7878375754110912775}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1303543992563421443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2371653394246591339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1364f88f4d2d554590501e1d9904383, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SpriteRenderer: {fileID: 5657386157260384419}
 --- !u!54 &7231548073715378485
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97,6 +84,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1303543992563421443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371653394246591339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1364f88f4d2d554590501e1d9904383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpriteRenderer: {fileID: 5657386157260384419}
+  m_MoveSpeed: 10
 --- !u!1 &3911468011220930423
 GameObject:
   m_ObjectHideFlags: 0

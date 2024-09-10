@@ -7,6 +7,7 @@ public class WebSegment : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] public Transform startPoint;
     [SerializeField] public Transform endPoint;
+    public float damage;
 
     public float length;
 
