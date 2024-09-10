@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3879455076801862214}
   m_Layer: 0
   m_Name: WebSegment
-  m_TagString: Untagged
+  m_TagString: WebSegment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 1115217872335592342}
   endPoint: {fileID: 3348833852968334648}
+  damage: 0
   length: 0
 --- !u!95 &3879455076801862214
 Animator:
