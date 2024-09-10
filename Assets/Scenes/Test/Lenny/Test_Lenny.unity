@@ -815,8 +815,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpawnAreaSize: {x: 10, y: 2, z: 10}
   m_MaxNewsCount: 100
-  m_MinSpawnTime: 0.5
-  m_MaxSpawnTime: 2
+  m_MinSpawnTime: 0
+  m_MaxSpawnTime: 0.5
   m_NewsObjectPrefab: {fileID: 2371653394246591339, guid: f47c900b7097c484baad8d6cc7a09013,
     type: 3}
   m_NewsDataList:

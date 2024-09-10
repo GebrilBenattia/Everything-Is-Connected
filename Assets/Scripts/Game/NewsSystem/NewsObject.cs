@@ -15,14 +15,19 @@ public class NewsObject : MonoBehaviour
 
     // ######################################### FUNCTIONS ########################################
 
+    
+    public void Init(NewsData _NewsData)
+    {
+        m_NewsData = _NewsData;
+        UpdateSprite();
+    }
+
     private void UpdateSprite()
     {
         m_SpriteRenderer.sprite = m_NewsData.sprite;
     }
 
-    public void Init(NewsData _NewsData)
+    private void OnCollisionEnter(Collision _Collision)
     {
-        m_NewsData = _NewsData;
-        UpdateSprite();
     }
 }
