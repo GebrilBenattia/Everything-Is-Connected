@@ -151,10 +151,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1328301525}
-  - {fileID: 1978062620}
-  - {fileID: 425572871}
   - {fileID: 292894570}
+  - {fileID: 1328301525}
+  - {fileID: 425572871}
+  - {fileID: 1978062620}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &88039802
@@ -336,7 +336,7 @@ PrefabInstance:
     - target: {fileID: 2371653394246591339, guid: f47c900b7097c484baad8d6cc7a09013,
         type: 3}
       propertyPath: m_Name
-      value: NewsObjectL (1)
+      value: N1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -547,7 +547,7 @@ PrefabInstance:
     - target: {fileID: 2371653394246591339, guid: f47c900b7097c484baad8d6cc7a09013,
         type: 3}
       propertyPath: m_Name
-      value: NewsObjectL
+      value: N3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -609,6 +609,7 @@ MonoBehaviour:
   m_StringSegmentToSpawn: {fileID: 1708542337685951658, guid: 3cdef3ad513132e478239e10c55e2452,
     type: 3}
   m_segmentLength: 1
+  m_SegmentSpawnDelay: 0.1
 --- !u!1 &584133343
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +777,7 @@ PrefabInstance:
     - target: {fileID: 2371653394246591339, guid: f47c900b7097c484baad8d6cc7a09013,
         type: 3}
       propertyPath: m_Name
-      value: NewsObjectR
+      value: N2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -850,7 +851,7 @@ PrefabInstance:
     - target: {fileID: 2371653394246591339, guid: f47c900b7097c484baad8d6cc7a09013,
         type: 3}
       propertyPath: m_Name
-      value: NewsObjectR (1)
+      value: N4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

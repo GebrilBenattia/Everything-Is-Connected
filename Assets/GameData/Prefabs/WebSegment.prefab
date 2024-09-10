@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881688120650746789}
   - component: {fileID: 2463524689408944788}
+  - component: {fileID: 3879455076801862214}
   m_Layer: 0
   m_Name: WebSegment
   m_TagString: Untagged
@@ -48,6 +49,27 @@ MonoBehaviour:
   startPoint: {fileID: 1115217872335592342}
   endPoint: {fileID: 3348833852968334648}
   length: 0
+--- !u!95 &3879455076801862214
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708542337685951658}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 77ff404faf5bb654d9f52f4c023d18c5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2513400078606885276
 GameObject:
   m_ObjectHideFlags: 0
