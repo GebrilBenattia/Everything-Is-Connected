@@ -6,20 +6,25 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new NewsData", menuName = "ScriptableObjects/NewsData")]
 public class NewsData : ScriptableObject
 {
-    // VARIABLES
-    // ---------
+    // ######################################### VARIABLES ########################################
+
+    // Private Variables
     private string m_Guid;
+
+    // Public Variables
     public string name;
     public Sprite sprite;
 
-    // GETTER / SETTER
-    // ---------------
+    // ###################################### GETTER / SETTER #####################################
+
     public string guid
     { get { return m_Guid; } }
 
-    // FUNCTIONS
-    // ---------
+    // ######################################### FUNCTIONS ########################################
+
+    // Editor Functions
 #if UNITY_EDITOR
+
     private void OnValidate()
     {
         // Check if current guid is empty / null
@@ -30,5 +35,6 @@ public class NewsData : ScriptableObject
             UnityEditor.EditorUtility.SetDirty(this);
         }
     }
+
 #endif
 }
