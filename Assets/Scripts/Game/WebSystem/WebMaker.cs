@@ -17,6 +17,7 @@ public class WebMaker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("start");
         m_Camera = Camera.main;
         SetModeDefault();
     }
@@ -54,10 +55,11 @@ public class WebMaker : MonoBehaviour
             {
                 m_EndPoint = m_SelectedNode;
                 Debug.Log(m_EndPoint.transform.position);
+                Debug.Log(m_EndPoint.name);
                 m_CurrentStringStartPoint = m_StartPoint.transform.position;
-                for (int i = 0; i < 5; i++)
+                for (int i = 1; i < 4; i++)
                 {
-                    AddSegment();
+                    AddSegment(i);
                 }
 
                 //m_Direction = m_EndPoint - m_StartPoint;
@@ -90,11 +92,20 @@ public class WebMaker : MonoBehaviour
         return lRaycast;
     }
 
-    private void AddSegment()
+    private void AddSegment(float pIndex)
     {
-        Quaternion lRotation = Quaternion.LookRotation(m_EndPoint.transform.position);
+        Quaternion lRotation = Quaternion.LookRotation(m_EndPoint.transform.position - m_StartPoint.transform.position);
         GameObject segment = Instantiate(m_StringSegmentToSpawn, m_CurrentStringStartPoint, lRotation);
-        segment.transform.position += segment.GetComponent<WebSegment>().m_StartPoint.position;
+        //Vector3 lStartPosDelay = segment.GetComponent<WebSegment>().m_StartPoint.localPosition;
+        //float lDistance = Mathf.Sqrt(Mathf.Pow(m_EndPoint.transform.position.x, 2) + Mathf.Pow(m_EndPoint.transform.position.z, 2));
+        float lDistance = Vector3.Distance(m_StartPoint.transform.position, m_EndPoint.transform.position);
+        float lRatio = (segment.GetComponent<WebSegment>().length / lDistance) * pIndex;
+        Debug.Log(lDistance);
+        Debug.Log(lRatio);
+        Vector3 truc = Vector3.Lerp(m_StartPoint.transform.position, m_EndPoint.transform.position, lRatio);
+        segment.transform.position = truc;
+        //Debug.Log(lStartPosDelay);
+        //segment.transform.position += new Vector3(lStartPosDelay.x, 0, lStartPosDelay.z);
         m_CurrentStringStartPoint = segment.GetComponent<WebSegment>().m_EndPoint.position;
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 621559510190971421}
   m_Layer: 0
   m_Name: NewsObject
-  m_TagString: Untagged
+  m_TagString: NewsObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
