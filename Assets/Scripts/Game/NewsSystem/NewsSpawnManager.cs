@@ -57,8 +57,6 @@ public class NewsSpawnManager : MonoBehaviour
         for (int i = 0; i < spawnRates.Length; ++i) totalSpawnRate += spawnRates[i];
         for (int i = 0; i < spawnRates.Length; ++i) spawnRates[i] /= totalSpawnRate;
 
-        Debug.Log("RATES: (1): " + spawnRates[0].ToString() + "(2): " + spawnRates[1].ToString() + "(3): " + spawnRates[2].ToString() + "(4): " + spawnRates[3].ToString());
-
         return spawnRates;
     }
 
@@ -82,8 +80,6 @@ public class NewsSpawnManager : MonoBehaviour
     {
         // Get zone Index
         int zoneIndex = ChooseZone(CalculateSpawnRates());
-
-        Debug.Log("ZONE " + zoneIndex.ToString());
 
         Vector2 minSpawnPoint = Vector2.zero;
         Vector2 maxSpawnPoint = Vector2.zero;
