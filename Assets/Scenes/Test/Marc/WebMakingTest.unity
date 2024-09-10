@@ -610,6 +610,7 @@ MonoBehaviour:
     type: 3}
   m_segmentLength: 1
   m_SegmentSpawnDelay: 0.1
+  m_NewsMoveRange: 1
 --- !u!1 &584133343
 GameObject:
   m_ObjectHideFlags: 0

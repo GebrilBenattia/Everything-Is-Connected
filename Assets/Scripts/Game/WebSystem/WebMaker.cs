@@ -9,6 +9,7 @@ public class WebMaker : MonoBehaviour
     [SerializeField] private GameObject m_StringSegmentToSpawn;
     [SerializeField] private float m_segmentLength;
     [SerializeField] private float m_SegmentSpawnDelay;
+    [SerializeField] private float m_NewsMoveRange;
     private Camera m_Camera;
     private System.Action m_DoAction;
     private GameObject m_SelectedNode;
@@ -17,6 +18,7 @@ public class WebMaker : MonoBehaviour
     private Vector3 m_CurrentStringStartPoint;
     private int m_SegmentsToSpawn;
     private int m_SegmentSpawned;
+    private Vector3 m_LastNewsPos;
     void Start()
     {
         m_Camera = Camera.main;
@@ -36,9 +38,11 @@ public class WebMaker : MonoBehaviour
 
     private void DoActionDefault()
     {
-        if (CheckForNode() && Input.GetMouseButton(0))
+        if (CheckForNode())
         {
-            SetModeSowing();
+            
+            /*if (Input.GetMouseButtonUp(0)) SetModeSowing();
+            else*/ if (Input.GetMouseButtonDown(0)) SetModeNewsMove();
         }
     }
 
@@ -60,15 +64,37 @@ public class WebMaker : MonoBehaviour
                 m_CurrentStringStartPoint = m_StartPoint.transform.position;
                 m_SegmentsToSpawn = (int)(Vector3.Distance(m_StartPoint.transform.position, m_EndPoint.transform.position) / m_segmentLength);
 
-                AddSegment();    
-               /* for (int i = 1; i < maxSegments+1; i++)
-                {
-                    AddSegment(i);
-                }*/
+                AddSegment();
             }
-            SetModeDefault();           
+            SetModeDefault();
         }
+    }
 
+    private void SetModeNewsMove()
+    {
+        m_LastNewsPos = m_SelectedNode.transform.position;
+        m_DoAction = DoActionNewsMove;
+    }
+
+    private void DoActionNewsMove()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            m_LastNewsPos = Vector3.zero;
+            SetModeSowing();
+            return;
+        }
+        Ray lRay = m_Camera.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(lRay, out RaycastHit hitInfo, m_RayDistance);        
+        Vector3 mousePos = hitInfo.point;
+        float ClampedX = Mathf.Clamp(mousePos.x, m_LastNewsPos.x - m_NewsMoveRange, m_LastNewsPos.x + m_NewsMoveRange);
+        float ClampedZ = Mathf.Clamp(mousePos.z, m_LastNewsPos.z - m_NewsMoveRange, m_LastNewsPos.z + m_NewsMoveRange);
+        Debug.Log(ClampedX);
+        Debug.Log(ClampedZ);
+        Vector3 velocity = new Vector3(ClampedX, m_SelectedNode.transform.position.y, ClampedZ);
+
+        Debug.Log(velocity.x);
+        m_SelectedNode.transform.position = velocity;
     }
 
     //Check for NewsObject with raycast
