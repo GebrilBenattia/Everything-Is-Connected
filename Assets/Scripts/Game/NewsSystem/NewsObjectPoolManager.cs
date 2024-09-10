@@ -80,9 +80,9 @@ public class NewsObjectPoolManager : MonoBehaviour
             m_ActivePool.Add(newsObject);
 
             // Init newsObject
-            newsObject.Init(_NewsData);
-            newsObject.transform.position = _Pos;
             newsObject.gameObject.SetActive(true);
+            newsObject.transform.position = _Pos;
+            newsObject.Init(_NewsData);
             return newsObject;
         }
 
