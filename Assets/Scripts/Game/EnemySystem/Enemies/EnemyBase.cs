@@ -33,7 +33,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider _Other)
     {
-        if (_Other.tag == "Web") EventOnWebCollision();
+        if (_Other.CompareTag("Web")) EventOnWebCollision();
     }
     
     private void UpdateMovements()

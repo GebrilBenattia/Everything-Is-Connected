@@ -7,14 +7,14 @@ public class NewsSpawnManager : MonoBehaviour
     // ######################################### SINGLETON ########################################
 
     private static NewsSpawnManager m_Instance;
-    public static NewsSpawnManager instance 
+    public static NewsSpawnManager instance
     { get { return m_Instance; } }
 
     // ######################################### VARIABLES ########################################
 
     // Spawn Settings
     [Header("Spawn Settings")]
-    [SerializeField] private Vector3 m_SpawnAreaSize;
+    [SerializeField] private NewsSpawnZone[] m_SpawnZoneList;
     [SerializeField] private int m_MaxNewsCount;
     [SerializeField] private float m_MinSpawnTime;
     [SerializeField] private float m_MaxSpawnTime;
@@ -26,7 +26,6 @@ public class NewsSpawnManager : MonoBehaviour
 
     // Private Variables
     private float m_CurrentSpawnCooldown;
-    private int[] m_NewsObjectCount = new int[4];
     private int m_TotalNewsObjectCount = 0;
 
     // ###################################### GETTER / SETTER #####################################
@@ -45,17 +44,19 @@ public class NewsSpawnManager : MonoBehaviour
     private float[] CalculateSpawnRates()
     {
         // Variables
-        float[] spawnRates = new float[4];
+        float[] spawnRates = new float[m_SpawnZoneList.Length];
 
         // Calculate Spawn Rates
         for (int i = 0; i < spawnRates.Length; ++i) {
-            spawnRates[i] = m_TotalNewsObjectCount == 0 ? 1f : 1f / (1 + m_NewsObjectCount[i]);
+            spawnRates[i] = m_TotalNewsObjectCount == 0 ? 1f : 1f / (1 + m_SpawnZoneList[i].newsCount);
         }
 
         // Normalize Spawn Rates
         float totalSpawnRate = 0f;
         for (int i = 0; i < spawnRates.Length; ++i) totalSpawnRate += spawnRates[i];
         for (int i = 0; i < spawnRates.Length; ++i) spawnRates[i] /= totalSpawnRate;
+
+        Debug.Log("RATES: (1): " + spawnRates[0].ToString() + "(2): " + spawnRates[1].ToString() + "(3): " + spawnRates[2].ToString() + "(4): " + spawnRates[3].ToString());
 
         return spawnRates;
     }
@@ -70,7 +71,7 @@ public class NewsSpawnManager : MonoBehaviour
         for (int i = 0; i < _SpawnRates.Length; ++i) {
 
             cumulativeRate += _SpawnRates[i];
-            if (randFloat <= cumulativeRate) return i + 1;
+            if (randFloat <= cumulativeRate) return i;
         }
 
         return 0;
@@ -81,39 +82,17 @@ public class NewsSpawnManager : MonoBehaviour
         // Get zone Index
         int zoneIndex = ChooseZone(CalculateSpawnRates());
 
-        Vector2 minSpawnPoint = Vector2.zero;
-        Vector2 maxSpawnPoint = Vector2.zero;
-        switch (zoneIndex) {
+        Debug.Log("ZONE " + (zoneIndex + 1).ToString());
 
-            case 1: 
-                minSpawnPoint = new Vector2(-m_SpawnAreaSize.x / 2f, m_SpawnAreaSize.z / 2f);
-                maxSpawnPoint = Vector2.zero;
-                break;
+        // Random position
+        float posX = Random.Range(-m_SpawnZoneList[zoneIndex].areaSize.x / 2f, m_SpawnZoneList[zoneIndex].areaSize.x / 2f) + m_SpawnZoneList[zoneIndex].transform.position.x;
+        float posZ = Random.Range(-m_SpawnZoneList[zoneIndex].areaSize.z / 2f, m_SpawnZoneList[zoneIndex].areaSize.z / 2f) + m_SpawnZoneList[zoneIndex].transform.position.z;
 
-            case 2:
-                minSpawnPoint = new Vector2(m_SpawnAreaSize.x / 2f, m_SpawnAreaSize.z / 2f);
-                maxSpawnPoint = Vector2.zero;
-                break;
-
-            case 3:
-                minSpawnPoint = new Vector2(-m_SpawnAreaSize.x / 2f, -m_SpawnAreaSize.z / 2f);
-                maxSpawnPoint = Vector2.zero;
-                break;
-
-            case 4:
-                minSpawnPoint = new Vector2(m_SpawnAreaSize.x / 2f, -m_SpawnAreaSize.z / 2f);
-                maxSpawnPoint = Vector2.zero;
-                break;
-        }
-
-        float posX = Random.Range(minSpawnPoint.x, maxSpawnPoint.x) + transform.position.x;
-        float posZ = Random.Range(minSpawnPoint.y, maxSpawnPoint.y) + transform.position.z;
-
+        // Instantiate random newsObject
         int randNewsDataIndex = Random.Range(0, m_NewsDataList.Length);
         NewsObjectPoolManager.Instance.SpawnNewsObject(m_NewsDataList[randNewsDataIndex], new Vector3(posX, 0, posZ));
 
         m_TotalNewsObjectCount++;
-        m_NewsObjectCount[zoneIndex - 1]++;
     }
 
     private void Update()
@@ -126,16 +105,4 @@ public class NewsSpawnManager : MonoBehaviour
             SpawnNewsObject();
         }
     }
-
-    // Editor Functions
-#if UNITY_EDITOR
-
-    private void OnDrawGizmosSelected()
-    {
-        // Draw debug spawn area
-        Gizmos.color = new Color(0, 0.8f, 1f, 0.5f);
-        Gizmos.DrawCube(transform.position, m_SpawnAreaSize);
-    }
-
-#endif
 }
