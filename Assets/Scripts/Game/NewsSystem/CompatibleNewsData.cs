@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "new CompatibleNewsData", menuName = "ScriptableObjects/CompatibleNewsData")]
