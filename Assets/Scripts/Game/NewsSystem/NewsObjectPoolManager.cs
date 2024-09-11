@@ -7,7 +7,7 @@ public class NewsObjectPoolManager : MonoBehaviour
     // ######################################### SINGLETON ########################################
 
     private static NewsObjectPoolManager m_Instance;
-    public static NewsObjectPoolManager Instance
+    public static NewsObjectPoolManager instance
     {  get { return m_Instance; } }
 
     // ######################################### VARIABLES ########################################

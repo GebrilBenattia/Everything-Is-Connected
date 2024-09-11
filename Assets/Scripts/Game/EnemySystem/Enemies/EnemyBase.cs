@@ -8,7 +8,6 @@ public abstract class EnemyBase : MonoBehaviour
 
     // Enemy Settings
     [Header("Enemy Settings")]
-    [SerializeField] protected int _tokenCost;
     [SerializeField] protected float _life;
     [SerializeField] protected float _speed;
     [SerializeField] protected float _damage;
@@ -20,12 +19,18 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void Awake()
     {
-        Init();
+        _initialPos = transform.position;
     }
 
-    private void Init()
+    public void Init()
     {
         _initialPos = transform.position;
+    }
+
+    public void TakeDamage(float _DamageAmount)
+    {
+        _life -= _DamageAmount;
+        if (_life <= 0) Death();
     }
 
     protected abstract void EventOnWebCollision(WebSegment _WebSegment);
@@ -34,19 +39,13 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void EventOnBorderReach()
     {
         DealPlayerDamage();
-        gameObject.SetActive(false);
+        EnemyPoolManager.instance.DespawnEnemy(this);
     }
 
     protected void Death()
     {
         EventOnDeath();
-        gameObject.SetActive(false);
-    }
-
-    protected void TakeDamage(float _DamageAmount)
-    {
-        _life -= _DamageAmount;
-        if (_life <= 0 ) Death();
+        EnemyPoolManager.instance.DespawnEnemy(this);
     }
 
     protected void DealPlayerDamage()

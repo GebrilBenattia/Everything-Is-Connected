@@ -5,87 +5,105 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    // ######################################### SINGLETON ########################################
+
     private static WaveManager m_Instance;
     public static WaveManager instance
-    {
-        get { return m_Instance; }
-    }
+    { get { return m_Instance; } }
 
-    [SerializeField] private uint m_CurrentWaveIndex;
-    [SerializeField] private uint m_MaxSpawnToken;
-    [SerializeField] private uint m_DifficultyIncrement;
-    [SerializeField] private uint m_DifficultyIndex;
+    // ######################################### VARIABLES ########################################
 
-    public uint difficultyIndex
+#if UNITY_EDITOR
+
+    // Debug Settings
+    [Header("Debug Settings")]
+    [SerializeField] private bool m_ShowDebugLog;
+
+#endif
+
+    // Wave Settings
+    [Header("Wave Settings")]
+    [SerializeField] private float m_TimeBetweenWaves;
+    [SerializeField] private int m_MaxTokenCount;
+    [SerializeField] private int m_MaxActiveEnemies;
+    [SerializeField] private int m_DifficultyIncrement;
+
+    // Wave Spawn Settings
+    [Header("Wave Spawn Settings")]
+    [SerializeField] private float m_MinSpawnInterval;
+    [SerializeField] private float m_MaxSpawnInterval;
+    [SerializeField] private EnemyWaveData[] m_EnemyWaveDataList;
+
+    // Private Variables
+    private bool m_WaveIsInitialized = false;
+    private int m_CurrentTokenCount;
+    private float m_SpawnCooldown;
+    private float m_WaveIntervalCooldown;
+    private int m_CurrentWaveIndex;
+    private int m_DifficultyIndex;
+
+    // ###################################### GETTER / SETTER #####################################
+
+    public int difficultyIndex
     {
         get { return difficultyIndex; }
     }
 
-    [SerializeField] private uint m_TimeBetweenWaves;
-    [SerializeField] private uint m_MaxActiveEnemies;
-
-    private uint m_SpawnToken;
-
-    [SerializeField] private Vector2 m_SpawnTimeInterval;
-
-    private float m_CurrentSpawnCooldown;
-    private float m_CurrentWaveInterval;
-
-    private bool m_IsWaveActive;
+    // ######################################### FUNCTIONS ########################################
 
     private void Awake()
     {
         m_Instance = this;
+        Init();
     }
 
-    private void Start()
+    private void Init()
     {
-        RetieveWaveInfo();
+        m_WaveIntervalCooldown = m_TimeBetweenWaves;
     }
+
+#if UNITY_EDITOR
 
     private void LogManagerInfo()
     {
-        Debug.Log("IsWaveActive : " + m_IsWaveActive);
-        Debug.Log("Time before next wave : " + m_CurrentWaveInterval);
-        Debug.Log("Time before next enemy spawn : " + m_CurrentSpawnCooldown);
+        if (m_ShowDebugLog) {
+            Debug.Log("IsWaveActive : " + m_WaveIsInitialized);
+            Debug.Log("Time before next wave : " + m_WaveIntervalCooldown);
+            Debug.Log("Time before next enemy spawn : " + m_SpawnCooldown);
 
-        Debug.Log("Remaining spawn token : " + m_SpawnToken);
-        Debug.Log("Remaining active enemy : " + EnemyPoolManager.Instance.activePoolSize);
+            Debug.Log("Remaining spawn token : " + m_CurrentTokenCount);
+            Debug.Log("Remaining active enemy : " + EnemyPoolManager.instance.activePoolSize);
+        }
     }
 
-    private void RetieveWaveInfo()
-    {
-        m_IsWaveActive = false;
-        m_CurrentWaveInterval = m_TimeBetweenWaves;
+#endif
 
-    }
-
-    private bool WaitBetweenWaves()
+    private bool IsWaitingNextWave()
     {
-        if (m_CurrentWaveInterval > 0)
-        {
-            m_CurrentWaveInterval -= Time.deltaTime;
+        // Update Wave Interval Cooldown
+        if (m_WaveIntervalCooldown > 0) {
+            m_WaveIntervalCooldown -= Time.deltaTime;
             return true;
         }
 
-        if (!m_IsWaveActive)
-        {
-            BeginWave();
-            m_IsWaveActive = true;
-        }
+        // Else Init Wave
+        if (!m_WaveIsInitialized) InitWave();
+
         return false;
     }
 
-    private void BeginWave()
+    private void InitWave()
     {
-        m_SpawnToken = m_MaxSpawnToken;
-        m_CurrentSpawnCooldown = Random.Range(m_SpawnTimeInterval.x, m_SpawnTimeInterval.y);
+        m_WaveIsInitialized = true;
+        m_CurrentTokenCount = m_MaxTokenCount;
+        m_SpawnCooldown = Random.Range(m_MinSpawnInterval, m_MaxSpawnInterval);
     }
 
     private void FinishWave()
     {
-        m_CurrentWaveInterval = m_TimeBetweenWaves;
-        m_MaxSpawnToken += m_DifficultyIncrement;
+        m_WaveIsInitialized = false;
+        m_WaveIntervalCooldown = m_TimeBetweenWaves;
+        m_MaxTokenCount += m_DifficultyIncrement;
         m_MaxActiveEnemies += m_DifficultyIncrement;
         m_DifficultyIndex += m_DifficultyIncrement;
         m_CurrentWaveIndex++;
@@ -93,12 +111,38 @@ public class WaveManager : MonoBehaviour
 
     private void ClearActiveEnemy()
     {
-        EnemyPoolManager.Instance.activePool.Clear();
+        EnemyPoolManager.instance.DespawnAllEnemies();
     }
 
     private bool IsWaveFinished()
     {
-        return m_SpawnToken == 0 && EnemyPoolManager.Instance.activePoolSize == 0;
+        return m_CurrentTokenCount <= 0 && EnemyPoolManager.instance.activePoolSize == 0;
+    }
+
+    private bool HasReachMaxActiveEnemies()
+    {
+        return EnemyPoolManager.instance.activePoolSize >= m_MaxActiveEnemies;
+    }
+
+    private void SpawnEnemy()
+    {
+        // Create temporary Enemy Wave Data list
+        List<EnemyWaveData> allowedEnemiesWaveData = new List<EnemyWaveData>();
+
+        // Loop on each Enemy Wave Data
+        for (int i = 0; i < m_EnemyWaveDataList.Length; ++i) { 
+
+            // Add to allowed list if tokenCost <= currentTokenCount
+            if (m_EnemyWaveDataList[i].tokenCost <= m_CurrentTokenCount)
+                allowedEnemiesWaveData.Add(m_EnemyWaveDataList[i]);
+        }
+
+        // Get Random index
+        int enemyTypeIndex = Random.Range(0, allowedEnemiesWaveData.Count);
+
+        // Spawn Enemy
+        m_CurrentTokenCount -= allowedEnemiesWaveData[enemyTypeIndex].tokenCost;
+        WaveSpawnerManager.instance.SpawnEnemy(allowedEnemiesWaveData[enemyTypeIndex].prefab);
     }
 
     private void UpdateWave()
@@ -108,38 +152,34 @@ public class WaveManager : MonoBehaviour
             ClearActiveEnemy();
         }
 
-        if (IsWaveFinished())
-        {
-            m_IsWaveActive = false;
+        // Called when wave is finished
+        if (IsWaveFinished()) {
             FinishWave();
-        }
-
-        if (m_SpawnToken <= 0 || EnemyPoolManager.Instance.activePoolSize >= m_MaxActiveEnemies)
             return;
-
-        if (m_CurrentSpawnCooldown > 0)
-        {
-            m_CurrentSpawnCooldown -= Time.deltaTime;
         }
-        else
-        {
-            m_CurrentSpawnCooldown = Random.Range(m_SpawnTimeInterval.x, m_SpawnTimeInterval.y);
-            WaveSpawner.Instance.SpawnEnemy();
-            m_SpawnToken--;
+
+        // Return if the max active enemies is reach
+        if (HasReachMaxActiveEnemies()) return;
+
+        // Return if token is null
+        if (m_CurrentTokenCount == 0) return;
+
+        // Update Spawn Cooldown
+        if (m_SpawnCooldown > 0) m_SpawnCooldown -= Time.deltaTime;
+        // Else Spawn Enemy
+        else {
+            m_SpawnCooldown += Random.Range(m_MinSpawnInterval, m_MaxSpawnInterval);
+            SpawnEnemy();
         }
     }
 
     private void Update()
     {
+#if UNITY_EDITOR
         LogManagerInfo();
+#endif
 
-        if (!m_IsWaveActive && WaitBetweenWaves())
-        {
-            return;
-        }
-        else
-        {
-            UpdateWave();
-        }
+        if (IsWaitingNextWave()) return;
+        else UpdateWave();
     }
 }
