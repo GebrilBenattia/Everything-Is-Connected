@@ -33,13 +33,13 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void EventOnBorderReach()
     {
         DealPlayerDamage();
-        gameObject.SetActive(false);
+        EnemyPoolManager.instance.DespawnEnemy(this);
     }
 
     protected void Death()
     {
         EventOnDeath();
-        gameObject.SetActive(false);
+        EnemyPoolManager.instance.DespawnEnemy(this);
     }
 
     protected void TakeDamage(float _DamageAmount)

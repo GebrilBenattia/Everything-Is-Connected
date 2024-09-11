@@ -44,7 +44,6 @@ public class WaveSpawnerManager : MonoBehaviour
     // Spawner Settings
     [Header("Spawner Settings")]
     [SerializeField] private SpawnData[] m_SpawnDataList;
-    [SerializeField] private EnemyWaveData[] m_EnemyWaveDataList;
 
     // Start is called before the first frame update
     void Awake()
@@ -52,27 +51,17 @@ public class WaveSpawnerManager : MonoBehaviour
         m_Instance = this;
     }
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(GameObject _Prefab)
     {
         // Init Variables
-        int enemyTypeIndex = Random.Range(0, m_EnemyWaveDataList.Length);
         int spawnDataIndex = Random.Range(0, m_SpawnDataList.Length);
         Vector3 position = m_SpawnDataList[spawnDataIndex].GetRandomPos();
         Quaternion rotation = m_SpawnDataList[spawnDataIndex].baseRotation;
 
         // Spawn enemy
-        EnemyPoolManager.instance.SpawnEnemy(m_EnemyWaveDataList[enemyTypeIndex].prefab, position, rotation);
+        EnemyPoolManager.instance.SpawnEnemy(_Prefab, position, rotation);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Debug.Log("SPAWN");
-            SpawnEnemy();
-        }
-    }
 
 #if UNITY_EDITOR
 
