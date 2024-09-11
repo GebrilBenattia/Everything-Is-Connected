@@ -10,6 +10,7 @@ public class WebMaker : MonoBehaviour
     [SerializeField] private float m_segmentLength;
     [SerializeField] private float m_SegmentSpawnDelay;
     [SerializeField] private float m_NewsMoveRange;
+    [SerializeField] private float m_ClickCheckDelay;
     private Camera m_Camera;
     private System.Action m_DoAction;
     private GameObject m_SelectedNode;
@@ -19,6 +20,9 @@ public class WebMaker : MonoBehaviour
     private int m_SegmentsToSpawn;
     private int m_SegmentSpawned;
     private Vector3 m_LastNewsPos;
+    private List<GameObject> m_CurrentNodes = new List<GameObject>();
+    private float m_ElapsedTime;
+
     void Start()
     {
         m_Camera = Camera.main;
@@ -40,15 +44,26 @@ public class WebMaker : MonoBehaviour
     {
         if (CheckForNode())
         {
-            
-            /*if (Input.GetMouseButtonUp(0)) SetModeSowing();
-            else*/ if (Input.GetMouseButtonDown(0)) SetModeNewsMove();
+            if (Input.GetMouseButton(0) && !m_SelectedNode.GetComponent<NewsObject>().connected) 
+            {
+                m_ElapsedTime += Time.deltaTime;
+                if (m_ElapsedTime >= m_ClickCheckDelay)
+                {
+                    m_ElapsedTime = 0f;
+                    SetModeNewsMove();
+                }
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                SetModeSowing();
+            }
         }
     }
 
     private void SetModeSowing()
     {
         m_StartPoint = m_SelectedNode;
+        m_CurrentNodes.Add(m_StartPoint);
         m_DoAction = DoActionSowing;
     }
 
@@ -56,15 +71,18 @@ public class WebMaker : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            if (CheckForNode())
+            if (CheckForNode() && m_SelectedNode != m_StartPoint)
             {
                 m_EndPoint = m_SelectedNode;
-                Debug.Log(m_EndPoint.transform.position);
-                Debug.Log(m_EndPoint.name);
+                m_CurrentNodes.Add(m_EndPoint);
                 m_CurrentStringStartPoint = m_StartPoint.transform.position;
                 m_SegmentsToSpawn = (int)(Vector3.Distance(m_StartPoint.transform.position, m_EndPoint.transform.position) / m_segmentLength);
 
                 AddSegment();
+                foreach (GameObject news in m_CurrentNodes)
+                {
+                    news.GetComponent<NewsObject>().OnConneCtion();
+                }
             }
             SetModeDefault();
         }
@@ -72,7 +90,7 @@ public class WebMaker : MonoBehaviour
 
     private void SetModeNewsMove()
     {
-        m_LastNewsPos = m_SelectedNode.transform.position;
+        m_LastNewsPos = m_SelectedNode.GetComponent<NewsObject>().initialPos;
         m_DoAction = DoActionNewsMove;
     }
 
@@ -81,7 +99,7 @@ public class WebMaker : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             m_LastNewsPos = Vector3.zero;
-            SetModeSowing();
+            SetModeDefault();
             return;
         }
         Ray lRay = m_Camera.ScreenPointToRay(Input.mousePosition);
@@ -137,6 +155,7 @@ public class WebMaker : MonoBehaviour
     private void ClearValues()
     {
         Debug.Log("cleared");
+        m_CurrentNodes.Clear();
         m_SegmentSpawned = 0;
         m_SelectedNode = null;
         m_StartPoint = null;

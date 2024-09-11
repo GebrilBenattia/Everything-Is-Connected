@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 5657386157260384419}
+  connected: 0
+  m_ConnectedTime: 4
 --- !u!54 &7231548073715378485
 Rigidbody:
   m_ObjectHideFlags: 0

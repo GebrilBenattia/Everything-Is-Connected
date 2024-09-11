@@ -608,9 +608,10 @@ MonoBehaviour:
   m_TagToLink: NewsObject
   m_StringSegmentToSpawn: {fileID: 1708542337685951658, guid: 3cdef3ad513132e478239e10c55e2452,
     type: 3}
-  m_segmentLength: 1
+  m_segmentLength: 0.95
   m_SegmentSpawnDelay: 0.1
   m_NewsMoveRange: 1
+  m_ClickCheckDelay: 0.3
 --- !u!1 &584133343
 GameObject:
   m_ObjectHideFlags: 0

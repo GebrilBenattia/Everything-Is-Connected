@@ -12,9 +12,17 @@ public class NewsObject : MonoBehaviour
 
     // Private Variables
     private NewsData m_NewsData;
+    public Vector3 initialPos; //ML
+    public bool connected;//ML
+    [SerializeField] private float m_ConnectedTime;
 
     // ######################################### FUNCTIONS ########################################
-    
+
+    private void Start()
+    {
+        initialPos = transform.position;
+    }
+
     private IEnumerator SpawnScaleEffect()
     {
         // Variables
@@ -44,5 +52,16 @@ public class NewsObject : MonoBehaviour
     private void UpdateSprite()
     {
         m_SpriteRenderer.sprite = m_NewsData.sprite;
+    }
+
+    public void OnConneCtion()
+    {
+        connected = true;
+        Invoke(nameof(Disconnect), m_ConnectedTime);
+    }
+
+    private void Disconnect()
+    {
+        connected = false;
     }
 }

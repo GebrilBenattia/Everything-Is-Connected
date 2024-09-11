@@ -7,11 +7,13 @@ public class WebSegment : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] public Transform startPoint;
     [SerializeField] public Transform endPoint;
+    [SerializeField] private float m_LifeTime;
 
     public float length;
 
     void Awake()
     {
+        Destroy(gameObject, m_LifeTime);
         length = Mathf.Abs(endPoint.localPosition.z - startPoint.localPosition.z);
     }
 
