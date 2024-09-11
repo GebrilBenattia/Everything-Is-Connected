@@ -34,7 +34,7 @@ public class WaveSpawnerManager : MonoBehaviour
     // ######################################### SINGLETON ########################################
 
     private static WaveSpawnerManager m_Instance;
-    public static WaveSpawnerManager Instance
+    public static WaveSpawnerManager instance
     {
         get { return m_Instance; }
     }
