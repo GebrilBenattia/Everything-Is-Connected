@@ -27,6 +27,12 @@ public abstract class EnemyBase : MonoBehaviour
         _initialPos = transform.position;
     }
 
+    public void TakeDamage(float _DamageAmount)
+    {
+        _life -= _DamageAmount;
+        if (_life <= 0) Death();
+    }
+
     protected abstract void EventOnWebCollision(WebSegment _WebSegment);
     protected abstract void EventOnDeath();
 
@@ -40,12 +46,6 @@ public abstract class EnemyBase : MonoBehaviour
     {
         EventOnDeath();
         EnemyPoolManager.instance.DespawnEnemy(this);
-    }
-
-    protected void TakeDamage(float _DamageAmount)
-    {
-        _life -= _DamageAmount;
-        if (_life <= 0 ) Death();
     }
 
     protected void DealPlayerDamage()

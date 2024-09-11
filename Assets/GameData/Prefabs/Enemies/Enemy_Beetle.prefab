@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3869279285070777582}
   - component: {fileID: 6356426366420733728}
   - component: {fileID: 2122060938387038418}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,9 +117,9 @@ GameObject:
   - component: {fileID: 3673275890235351102}
   - component: {fileID: 4717131391319678982}
   - component: {fileID: 7542311176535809270}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_Beetle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5dc93502955cbf408c757c7a539dc4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tokenCost: 0
   _life: 1
   _speed: 3
   _damage: 0
