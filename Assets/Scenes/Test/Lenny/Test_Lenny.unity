@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AreaSize: {x: 10, y: 1, z: 10}
+  m_ShowArea: 0
   m_AreaColor: {r: 0.6180439, g: 0, b: 1, a: 0.39215687}
 --- !u!65 &26938395
 BoxCollider:
@@ -576,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fb105f1f274204fa75bba4afc1baaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ShowDebugLog: 0
   m_TimeBetweenWaves: 5
   m_MaxTokenCount: 10
   m_MaxActiveEnemies: 4
@@ -817,7 +819,10 @@ MonoBehaviour:
   startPoint: {fileID: 530452700}
   endPoint: {fileID: 530452700}
   damage: 2
+  m_LifeTime: 0
+  webIndex: 0
   length: 0
+  m_ClicksToDelete: 0
 --- !u!1 &717207286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AreaSize: {x: 10, y: 1, z: 10}
+  m_ShowArea: 0
   m_AreaColor: {r: 0, g: 1, b: 0.3106079, a: 0.39215687}
 --- !u!65 &813371389
 BoxCollider:
@@ -1103,6 +1109,61 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &848986217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 848986218}
+  - component: {fileID: 848986219}
+  m_Layer: 0
+  m_Name: WebMaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &848986218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848986217}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0234487, y: 2.316088, z: -1.6075712}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1058627953}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &848986219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848986217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e2698207b1c464892db6654fd740a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RayDistance: 500
+  m_TagToLink: NewsObject
+  m_StringSegmentToSpawn: {fileID: 1708542337685951658, guid: 3cdef3ad513132e478239e10c55e2452,
+    type: 3}
+  m_segmentLength: 0.95
+  m_SegmentSpawnDelay: 0.1
+  m_NewsMoveRange: 0.95
+  m_ClickCheckDelay: 0.3
+  m_NewsObjectLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &873283748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,7 +1450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1029102498
 Transform:
   m_ObjectHideFlags: 0
@@ -1439,6 +1500,7 @@ Transform:
   m_Children:
   - {fileID: 349398176}
   - {fileID: 355568010}
+  - {fileID: 848986218}
   - {fileID: 950689552}
   - {fileID: 1082963932}
   m_Father: {fileID: 0}
@@ -1472,9 +1534,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1849648010}
   - {fileID: 475132891}
   - {fileID: 1147841860}
+  - {fileID: 1849648010}
   m_Father: {fileID: 1058627953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1107408781
@@ -1604,6 +1666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad16bd287f619f49af244f00def21c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ShowSpawnDataGizmos: 0
   m_SpawnDataList:
   - gizmosColor: {r: 0.023159027, g: 1, b: 0, a: 0.5882353}
     minPos: {x: -9.5, y: 0.2, z: -10}
@@ -1872,7 +1935,10 @@ MonoBehaviour:
   startPoint: {fileID: 1355260924}
   endPoint: {fileID: 1355260924}
   damage: 1
+  m_LifeTime: 0
+  webIndex: 0
   length: 0
+  m_ClicksToDelete: 0
 --- !u!1 &1357503426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,6 +1987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba4974f267337549b3dd6addaf8ca6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ShowDebugLog: 0
   m_SpawnZoneList:
   - {fileID: 1609619943}
   - {fileID: 813371388}
@@ -2348,6 +2415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AreaSize: {x: 10, y: 1, z: 10}
+  m_ShowArea: 0
   m_AreaColor: {r: 1, g: 0, b: 0.20347548, a: 0.39215687}
 --- !u!65 &1539925861
 BoxCollider:
@@ -2545,6 +2613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AreaSize: {x: 10, y: 1, z: 10}
+  m_ShowArea: 0
   m_AreaColor: {r: 0, g: 1, b: 0.9630194, a: 0.39215687}
 --- !u!65 &1609619944
 BoxCollider:
@@ -2618,7 +2687,10 @@ MonoBehaviour:
   startPoint: {fileID: 1690265915}
   endPoint: {fileID: 1690265915}
   damage: 4
+  m_LifeTime: 0
+  webIndex: 0
   length: 0
+  m_ClicksToDelete: 0
 --- !u!65 &1690265917
 BoxCollider:
   m_ObjectHideFlags: 0

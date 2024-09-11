@@ -12,6 +12,14 @@ public class NewsSpawnManager : MonoBehaviour
 
     // ######################################### VARIABLES ########################################
 
+#if UNITY_EDITOR
+
+    // Debug Settings
+    [Header("Debug Settings")]
+    [SerializeField] private bool m_ShowDebugLog;
+
+#endif
+
     // Spawn Settings
     [Header("Spawn Settings")]
     [SerializeField] private NewsSpawnZone[] m_SpawnZoneList;
@@ -56,7 +64,10 @@ public class NewsSpawnManager : MonoBehaviour
         for (int i = 0; i < spawnRates.Length; ++i) totalSpawnRate += spawnRates[i];
         for (int i = 0; i < spawnRates.Length; ++i) spawnRates[i] /= totalSpawnRate;
 
-        Debug.Log("RATES: (1): " + spawnRates[0].ToString() + "(2): " + spawnRates[1].ToString() + "(3): " + spawnRates[2].ToString() + "(4): " + spawnRates[3].ToString());
+#if UNITY_EDITOR
+        if (m_ShowDebugLog)
+            Debug.Log("RATES: (1): " + spawnRates[0].ToString() + "(2): " + spawnRates[1].ToString() + "(3): " + spawnRates[2].ToString() + "(4): " + spawnRates[3].ToString());
+#endif
 
         return spawnRates;
     }
@@ -82,7 +93,9 @@ public class NewsSpawnManager : MonoBehaviour
         // Get zone Index
         int zoneIndex = ChooseZone(CalculateSpawnRates());
 
-        Debug.Log("ZONE " + (zoneIndex + 1).ToString());
+#if UNITY_EDITOR
+        if (m_ShowDebugLog) Debug.Log("ZONE " + (zoneIndex + 1).ToString());
+#endif
 
         // Random position
         float posX = Random.Range(-m_SpawnZoneList[zoneIndex].areaSize.x / 2f, m_SpawnZoneList[zoneIndex].areaSize.x / 2f) + m_SpawnZoneList[zoneIndex].transform.position.x;
