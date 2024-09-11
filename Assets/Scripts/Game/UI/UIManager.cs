@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] m_LifeBar;
-    private int testCounter = 8;
+    [SerializeField] private GameObject m_LifeBar;
+    [SerializeField] private GameObject m_TextContainer;
+    private int testCounter = 4;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +17,11 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1)) UpdateLife(testCounter--);
+        if (Input.GetMouseButtonDown(1)) UpdateContainers(m_TextContainer, testCounter--);
     }
 
-    public void UpdateLife(int _Life)
+    public void UpdateContainers(GameObject _Container, int _Life)
     {
-        m_LifeBar[_Life].GetComponent<Image>().enabled = false;
+         _Container.transform.GetChild(_Life).GetComponent<Image>().enabled = false;
     }
 }
