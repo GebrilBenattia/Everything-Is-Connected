@@ -17,7 +17,7 @@ public class WebSegment : MonoBehaviour, IClickableObject
 
     void Awake()
     {
-        Destroy(gameObject, m_LifeTime);
+        Invoke(nameof(OnDeath), m_LifeTime);
         length = Mathf.Abs(endPoint.localPosition.z - startPoint.localPosition.z);
     }
 
@@ -36,9 +36,14 @@ public class WebSegment : MonoBehaviour, IClickableObject
     {
         if (m_Count == m_ClicksToDelete-1)
         {
-            WebMaker.instance.OnWebSelected(webIndex);
+            OnDeath();
             m_Count = 0;
         }
         else m_Count++;
+    }
+
+    private void OnDeath()
+    {
+        WebMaker.instance.OnWebSelected(webIndex);
     }
 }

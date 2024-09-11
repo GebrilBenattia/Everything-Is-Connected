@@ -656,8 +656,11 @@ MonoBehaviour:
     type: 3}
   m_segmentLength: 0.95
   m_SegmentSpawnDelay: 0.1
-  m_NewsMoveRange: 1
+  m_NewsMoveRange: 0.95
   m_ClickCheckDelay: 0.3
+  m_NewsObjectLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &584133343
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +799,7 @@ MonoBehaviour:
   m_MaxDistance: 500
   m_AllowedLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
 --- !u!4 &1167141334
 Transform:
   m_ObjectHideFlags: 0
