@@ -6,15 +6,28 @@ public class NewsObject : MonoBehaviour, IClickableObject
 {
     // ######################################### VARIABLES ########################################
 
+#if UNITY_EDITOR
+
+    // Debug Settings
+    [Header("Debug Settings")]
+    [SerializeField] private bool m_ShowMoveRadius;
+
+#endif
+
     // Object Settings
     [Header("Object Settings")]
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private float m_MoveSpeed;
+    [SerializeField] private float m_AttractiveSpeed;
+    [SerializeField] private float m_MoveRadius;
+    [SerializeField] private float m_NormalResistDampFactor;
+    [SerializeField] private float m_DragResistDampFactor;
     [SerializeField] private float m_ConnectionTime;
 
     // Private Variables
     private NewsData m_NewsData;
     private Rigidbody m_Rigidbody;
+    private Vector3 m_InitPos;
     private bool m_IsSelected = false;
 
     // Public variables
@@ -38,9 +51,21 @@ public class NewsObject : MonoBehaviour, IClickableObject
         m_IsSelected = false;
     }
 
+    public void OnConneCtion()
+    {
+        connected = true;
+        Invoke(nameof(Disconnect), m_ConnectionTime);
+    }
+
+    private void Disconnect()
+    {
+        connected = false;
+    }
+
     public void Init(NewsData _NewsData)
     {
         m_NewsData = _NewsData;
+        m_InitPos = transform.position;
         SetSprite();
         StartCoroutine(SpawnScaleEffect());
     }
@@ -77,24 +102,43 @@ public class NewsObject : MonoBehaviour, IClickableObject
         Vector2 direction =  mousePos - screenPos;
         direction /= direction.magnitude;
 
-        // Update Rigidbody Velocity
+        // Update velocity
         Vector2 velocity = direction * Time.fixedDeltaTime * m_MoveSpeed;
         m_Rigidbody.velocity += new Vector3(velocity.x, 0, velocity.y);
     }
 
-    public void OnConneCtion()
+    private void MovementsLimit()
     {
-        connected = true;
-        Invoke(nameof(Disconnect), m_ConnectionTime);
-    }
+        // Check if the distance between current pos and init pos is >= moveRadius
+        if (Vector3.Distance(transform.position, m_InitPos) >= m_MoveRadius) {
 
-    private void Disconnect()
-    {
-        connected = false;
+            // Change resist damping factor
+            if (!m_IsSelected) m_Rigidbody.drag = m_DragResistDampFactor;
+
+            // Update velocity to recenter the newsObject
+            Vector3 direction = m_InitPos - transform.position;
+            direction /= direction.magnitude;
+            m_Rigidbody.velocity += direction * Time.fixedDeltaTime * m_AttractiveSpeed;
+        }
+        // Change resist damping factor
+        else m_Rigidbody.drag = m_NormalResistDampFactor;
     }
 
     private void FixedUpdate()
     {
         if (m_IsSelected) MoveToCursor();
+        MovementsLimit();
     }
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmos()
+    {
+        if (m_ShowMoveRadius) {
+            Gizmos.color = new Color(0, 1, 0, 0.3f);
+            Gizmos.DrawSphere(m_InitPos, m_MoveRadius);
+        }
+    }
+
+#endif
 }

@@ -7,6 +7,7 @@ TagManager:
   - NewsObject
   - WebSegment
   - MapBorder
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,11 @@ TagManager:
   - NewsObject
   - Water
   - UI
+<<<<<<< HEAD
+  - Enemy
+=======
   - WebSegment
+>>>>>>> origin/Marc
   - 
   - 
   - 

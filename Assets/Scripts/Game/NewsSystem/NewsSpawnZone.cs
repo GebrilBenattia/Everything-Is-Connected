@@ -18,6 +18,7 @@ public class NewsSpawnZone : MonoBehaviour
 #if UNITY_EDITOR
 
     [Header("Debug Settings")]
+    [SerializeField] private bool m_ShowArea;
     [SerializeField] private Color m_AreaColor;
 
 #endif
@@ -59,8 +60,10 @@ public class NewsSpawnZone : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         // Draw debug spawn area
-        Gizmos.color = m_AreaColor;
-        Gizmos.DrawCube(transform.position, m_AreaSize);
+        if (m_ShowArea) {
+            Gizmos.color = m_AreaColor;
+            Gizmos.DrawCube(transform.position, m_AreaSize);
+        }
     }
 
 #endif

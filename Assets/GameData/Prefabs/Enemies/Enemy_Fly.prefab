@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4310841046414823027}
   - component: {fileID: 4794690857357415510}
   - component: {fileID: 5950142162385036274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_Fly
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6f6e4ec73501346bc6c11e457aae7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tokenCost: 0
   _life: 1
   _speed: 1
   _damage: 1
@@ -81,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8658254320023123946}
   - component: {fileID: 6862460118155399485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
