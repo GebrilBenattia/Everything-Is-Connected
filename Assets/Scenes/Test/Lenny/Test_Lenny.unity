@@ -576,6 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fb105f1f274204fa75bba4afc1baaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ShowDebugLog: 0
   m_TimeBetweenWaves: 5
   m_MaxTokenCount: 10
   m_MaxActiveEnemies: 4
@@ -1472,9 +1473,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1849648010}
   - {fileID: 475132891}
   - {fileID: 1147841860}
+  - {fileID: 1849648010}
   m_Father: {fileID: 1058627953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1107408781
@@ -1921,6 +1922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba4974f267337549b3dd6addaf8ca6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ShowDebugLog: 0
   m_SpawnZoneList:
   - {fileID: 1609619943}
   - {fileID: 813371388}

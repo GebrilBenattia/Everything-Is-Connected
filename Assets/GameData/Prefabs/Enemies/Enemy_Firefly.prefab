@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8981275156644138138}
   - component: {fileID: 8544407373140035808}
   - component: {fileID: 3984752127924850909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_Firefly
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,10 +67,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 324e38186e83e5f4f967c81493ee8ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tokenCost: 0
   _life: 2
   _speed: 1.5
   _damage: 1
+  m_DamageZonePrefab: {fileID: 1490854374515425568, guid: 0d84e4725a1788f499f15fde335b3095,
+    type: 3}
 --- !u!1 &6206883923241316518
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +82,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4325892941866033234}
   - component: {fileID: 4928092795901834979}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

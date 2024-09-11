@@ -13,6 +13,14 @@ public class WaveManager : MonoBehaviour
 
     // ######################################### VARIABLES ########################################
 
+#if UNITY_EDITOR
+
+    // Debug Settings
+    [Header("Debug Settings")]
+    [SerializeField] private bool m_ShowDebugLog;
+
+#endif
+
     // Wave Settings
     [Header("Wave Settings")]
     [SerializeField] private float m_TimeBetweenWaves;
@@ -20,6 +28,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private int m_MaxActiveEnemies;
     [SerializeField] private int m_DifficultyIncrement;
 
+    // Wave Spawn Settings
     [Header("Wave Spawn Settings")]
     [SerializeField] private float m_MinSpawnInterval;
     [SerializeField] private float m_MaxSpawnInterval;
@@ -53,15 +62,21 @@ public class WaveManager : MonoBehaviour
         m_WaveIntervalCooldown = m_TimeBetweenWaves;
     }
 
+#if UNITY_EDITOR
+
     private void LogManagerInfo()
     {
-        Debug.Log("IsWaveActive : " + m_WaveIsInitialized);
-        Debug.Log("Time before next wave : " + m_WaveIntervalCooldown);
-        Debug.Log("Time before next enemy spawn : " + m_SpawnCooldown);
+        if (m_ShowDebugLog) {
+            Debug.Log("IsWaveActive : " + m_WaveIsInitialized);
+            Debug.Log("Time before next wave : " + m_WaveIntervalCooldown);
+            Debug.Log("Time before next enemy spawn : " + m_SpawnCooldown);
 
-        Debug.Log("Remaining spawn token : " + m_CurrentTokenCount);
-        Debug.Log("Remaining active enemy : " + EnemyPoolManager.instance.activePoolSize);
+            Debug.Log("Remaining spawn token : " + m_CurrentTokenCount);
+            Debug.Log("Remaining active enemy : " + EnemyPoolManager.instance.activePoolSize);
+        }
     }
+
+#endif
 
     private bool IsWaitingNextWave()
     {
@@ -160,7 +175,9 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         LogManagerInfo();
+#endif
 
         if (IsWaitingNextWave()) return;
         else UpdateWave();

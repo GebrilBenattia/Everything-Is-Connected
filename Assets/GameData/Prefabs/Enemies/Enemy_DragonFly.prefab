@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4523161978180527282}
   - component: {fileID: 4687350389472184003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 1387120482677460191}
   - component: {fileID: 7209407690779511751}
   - component: {fileID: 1362062478630173804}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_DragonFly
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c2f21b55b45184b9dba0d77a091d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tokenCost: 0
   _life: 1
   _speed: 2
   _damage: 1
