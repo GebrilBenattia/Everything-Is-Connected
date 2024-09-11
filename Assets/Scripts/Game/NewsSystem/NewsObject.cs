@@ -10,11 +10,16 @@ public class NewsObject : MonoBehaviour, IClickableObject
     [Header("Object Settings")]
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private float m_MoveSpeed;
+    [SerializeField] private float m_ConnectionTime;
 
     // Private Variables
     private NewsData m_NewsData;
     private Rigidbody m_Rigidbody;
     private bool m_IsSelected = false;
+
+    // Public variables
+    public bool connected;
+    public Vector3 initialPos;
 
     // ######################################### FUNCTIONS ########################################
 
@@ -75,6 +80,17 @@ public class NewsObject : MonoBehaviour, IClickableObject
         // Update Rigidbody Velocity
         Vector2 velocity = direction * Time.fixedDeltaTime * m_MoveSpeed;
         m_Rigidbody.velocity += new Vector3(velocity.x, 0, velocity.y);
+    }
+
+    public void OnConneCtion()
+    {
+        connected = true;
+        Invoke(nameof(Disconnect), m_ConnectionTime);
+    }
+
+    private void Disconnect()
+    {
+        connected = false;
     }
 
     private void FixedUpdate()
