@@ -13,24 +13,7 @@
 		<relationship name="timeline">
 			<destination>{52c29e69-37d1-4af3-bf58-fa38def647c9}</destination>
 		</relationship>
-		<relationship name="emitters">
-			<destination>{f260f14c-8e1a-4941-8846-762546e63a34}</destination>
-		</relationship>
 	</object>
 	<object class="MarkerTrack" id="{f520bb7b-88e8-45b5-8f2b-623f8b412664}" />
 	<object class="Timeline" id="{52c29e69-37d1-4af3-bf58-fa38def647c9}" />
-	<object class="SandboxEmitter" id="{f260f14c-8e1a-4941-8846-762546e63a34}">
-		<property name="positionX">
-			<value>1.52499938</value>
-		</property>
-		<property name="positionZ">
-			<value>0.80000037</value>
-		</property>
-		<property name="rotationY">
-			<value>35.4137611</value>
-		</property>
-		<relationship name="event">
-			<destination>{02d7d862-f431-49fe-92b0-b8942998ec5f}</destination>
-		</relationship>
-	</object>
 </objects>
