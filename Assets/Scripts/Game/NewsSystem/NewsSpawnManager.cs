@@ -90,7 +90,7 @@ public class NewsSpawnManager : MonoBehaviour
 
         // Instantiate random newsObject
         int randNewsDataIndex = Random.Range(0, m_NewsDataList.Length);
-        NewsObjectPoolManager.Instance.SpawnNewsObject(m_NewsDataList[randNewsDataIndex], new Vector3(posX, 0, posZ));
+        NewsObjectPoolManager.instance.SpawnNewsObject(m_NewsDataList[randNewsDataIndex], new Vector3(posX, 0, posZ));
 
         m_TotalNewsObjectCount++;
     }

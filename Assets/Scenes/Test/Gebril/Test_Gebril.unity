@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 316331983}
   - component: {fileID: 316331984}
   m_Layer: 0
-  m_Name: WaveSpawner
+  m_Name: WaveSpawnerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,12 +147,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316331982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22, y: 1.45, z: -0.01838158}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.645467, y: 1.9243937, z: 0.01838158}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1725467805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &316331984
 MonoBehaviour:
@@ -166,12 +166,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad16bd287f619f49af244f00def21c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCoords: {x: -4.71, y: -4.74}
-  maxCoords: {x: 4.54, y: 4.47}
-  m_Left: []
-  m_Bottom: []
-  m_Right: []
-  m_Top: []
+  m_SpawnDataList:
+  - gizmosColor: {r: 0.023159027, g: 1, b: 0, a: 0.5882353}
+    minPos: {x: -4.5, y: 0.2, z: -5}
+    maxPos: {x: 4.5, y: 0.2, z: -5}
+    baseRotation: {x: 0, y: 0, z: 0, w: 0}
+  - gizmosColor: {r: 1, g: 0.009825051, b: 0, a: 0.5882353}
+    minPos: {x: -5, y: 0.2, z: -4.5}
+    maxPos: {x: -5, y: 0.2, z: 4.5}
+    baseRotation: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+  - gizmosColor: {r: 1, g: 0, b: 0.9070463, a: 0.5882353}
+    minPos: {x: -4.5, y: 0.2, z: 5}
+    maxPos: {x: 4.5, y: 0.2, z: 5}
+    baseRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  - gizmosColor: {r: 0, g: 0.07328248, b: 1, a: 0.5882353}
+    minPos: {x: 5, y: 0.2, z: 4.5}
+    maxPos: {x: 5, y: 0.2, z: -4.5}
+    baseRotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
 --- !u!1 &406683332
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,13 +348,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fb105f1f274204fa75bba4afc1baaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CurrentWaveIndex: 1
-  m_MaxSpawnToken: 15
+  m_TimeBetweenWaves: 5
+  m_MaxTokenCount: 10
+  m_MaxActiveEnemies: 4
   m_DifficultyIncrement: 1
-  m_TimeBetweenWaves: 2
-  m_MaxActiveEnemies: 15
-  m_MinSpawnTime: 0
-  m_MaxSpawnTime: 21
+  m_MinSpawnInterval: 0.2
+  m_MaxSpawnInterval: 3
+  m_EnemyWaveDataList:
+  - {fileID: 11400000, guid: 83a99b9a1053dac44b4d34d68bf342ae, type: 2}
+  - {fileID: 11400000, guid: 8d05a411ed1e7654b98299c5b28b0a11, type: 2}
+  - {fileID: 11400000, guid: 64a297b3b2130224dbf9578c3c40cc92, type: 2}
+  - {fileID: 11400000, guid: cdd97ad895f03e644af6ea4f54568b7b, type: 2}
 --- !u!4 &1458161884
 Transform:
   m_ObjectHideFlags: 0
@@ -352,12 +367,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458161882}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08889939, y: -3.1413348, z: -0.035559464}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.734366, y: -1.2169411, z: -0.017177884}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1725467805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473540591
 GameObject:
@@ -632,6 +647,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1830151590}
+  - {fileID: 316331983}
+  - {fileID: 1458161884}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1742289776
@@ -763,7 +780,7 @@ GameObject:
   - component: {fileID: 1830151590}
   - component: {fileID: 1830151591}
   m_Layer: 0
-  m_Name: EnemyPool
+  m_Name: EnemyPoolManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -796,8 +813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d822a2487767d418c198e99262cea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxEnemyCount: 10
-  enemyPrefab: {fileID: 406683332}
   m_PoolParentList: {fileID: 492164178}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -809,5 +824,3 @@ SceneRoots:
   - {fileID: 1725467805}
   - {fileID: 406683336}
   - {fileID: 492164178}
-  - {fileID: 316331983}
-  - {fileID: 1458161884}
