@@ -338,12 +338,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CurrentWaveIndex: 1
-  m_MaxSpawnToken: 15
+  m_MaxSpawnToken: 1
   m_DifficultyIncrement: 1
-  m_TimeBetweenWaves: 2
-  m_MaxActiveEnemies: 15
-  m_MinSpawnTime: 0
-  m_MaxSpawnTime: 21
+  m_DifficultyIndex: 0
+  m_TimeBetweenWaves: 10
+  m_MaxActiveEnemies: 1
+  m_SpawnTimeInterval: {x: 0, y: 21}
 --- !u!4 &1458161884
 Transform:
   m_ObjectHideFlags: 0
