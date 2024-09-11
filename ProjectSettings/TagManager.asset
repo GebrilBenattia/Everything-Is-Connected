@@ -15,7 +15,11 @@ TagManager:
   - NewsObject
   - Water
   - UI
+<<<<<<< HEAD
   - Enemy
+=======
+  - WebSegment
+>>>>>>> origin/Marc
   - 
   - 
   - 

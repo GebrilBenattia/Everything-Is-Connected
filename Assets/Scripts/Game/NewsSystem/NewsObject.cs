@@ -22,12 +22,17 @@ public class NewsObject : MonoBehaviour, IClickableObject
     [SerializeField] private float m_MoveRadius;
     [SerializeField] private float m_NormalResistDampFactor;
     [SerializeField] private float m_DragResistDampFactor;
+    [SerializeField] private float m_ConnectionTime;
 
     // Private Variables
     private NewsData m_NewsData;
     private Rigidbody m_Rigidbody;
     private Vector3 m_InitPos;
     private bool m_IsSelected = false;
+
+    // Public variables
+    public bool connected;
+    public Vector3 initialPos;
 
     // ######################################### FUNCTIONS ########################################
 
@@ -44,6 +49,17 @@ public class NewsObject : MonoBehaviour, IClickableObject
     public void EventOnClickRelease()
     {
         m_IsSelected = false;
+    }
+
+    public void OnConneCtion()
+    {
+        connected = true;
+        Invoke(nameof(Disconnect), m_ConnectionTime);
+    }
+
+    private void Disconnect()
+    {
+        connected = false;
     }
 
     public void Init(NewsData _NewsData)
