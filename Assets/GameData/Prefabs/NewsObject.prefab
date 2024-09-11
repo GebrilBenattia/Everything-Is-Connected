@@ -96,8 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1364f88f4d2d554590501e1d9904383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ShowMoveRadius: 0
   m_SpriteRenderer: {fileID: 5657386157260384419}
   m_MoveSpeed: 10
+  m_AttractiveSpeed: 20
+  m_MoveRadius: 2
+  m_NormalResistDampFactor: 2
+  m_DragResistDampFactor: 15
 --- !u!1 &3911468011220930423
 GameObject:
   m_ObjectHideFlags: 0

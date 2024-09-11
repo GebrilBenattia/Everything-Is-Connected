@@ -41,6 +41,10 @@ public class WaveSpawnerManager : MonoBehaviour
 
     // ######################################### VARIABLES ########################################
 
+    // Debug Settings
+    [Header("Debug Settings")]
+    [SerializeField] private bool m_ShowSpawnDataGizmos;
+
     // Spawner Settings
     [Header("Spawner Settings")]
     [SerializeField] private SpawnData[] m_SpawnDataList;
@@ -67,23 +71,27 @@ public class WaveSpawnerManager : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+
         // Loop on each spawn data 
-        for (int i = 0; i < m_SpawnDataList.Length; ++i) {
+        if (m_ShowSpawnDataGizmos) {
 
-            // Set Color
-            Gizmos.color = m_SpawnDataList[i].gizmosColor;
+            for (int i = 0; i < m_SpawnDataList.Length; ++i) {
 
-            // Draw Spheres
-            Gizmos.DrawSphere(m_SpawnDataList[i].minPos, 0.15f);
-            Gizmos.DrawSphere(m_SpawnDataList[i].maxPos, 0.15f);
+                // Set Color
+                Gizmos.color = m_SpawnDataList[i].gizmosColor;
 
-            // Set Color
-            Gizmos.color = Color.yellow;
+                // Draw Spheres
+                Gizmos.DrawSphere(m_SpawnDataList[i].minPos, 0.15f);
+                Gizmos.DrawSphere(m_SpawnDataList[i].maxPos, 0.15f);
 
-            // Draw rotation lines
-            float length = 0.3f;
-            Gizmos.DrawLine(m_SpawnDataList[i].minPos, m_SpawnDataList[i].minPos + m_SpawnDataList[i].baseRotation * Vector3.forward * length);
-            Gizmos.DrawLine(m_SpawnDataList[i].maxPos, m_SpawnDataList[i].maxPos + m_SpawnDataList[i].baseRotation * Vector3.forward * length);
+                // Set Color
+                Gizmos.color = Color.yellow;
+
+                // Draw rotation lines
+                float length = 0.3f;
+                Gizmos.DrawLine(m_SpawnDataList[i].minPos, m_SpawnDataList[i].minPos + m_SpawnDataList[i].baseRotation * Vector3.forward * length);
+                Gizmos.DrawLine(m_SpawnDataList[i].maxPos, m_SpawnDataList[i].maxPos + m_SpawnDataList[i].baseRotation * Vector3.forward * length);
+            }
         }
     }
 
