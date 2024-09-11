@@ -26,6 +26,7 @@ public class NewsSpawnManager : MonoBehaviour
     [SerializeField] private int m_MaxNewsCount;
     [SerializeField] private float m_MinSpawnTime;
     [SerializeField] private float m_MaxSpawnTime;
+    [SerializeField] private float m_PosY;
 
     // News Data Settings
     [Header("News Data Settings")]
@@ -103,7 +104,7 @@ public class NewsSpawnManager : MonoBehaviour
 
         // Instantiate random newsObject
         int randNewsDataIndex = Random.Range(0, m_NewsDataList.Length);
-        NewsObjectPoolManager.instance.SpawnNewsObject(m_NewsDataList[randNewsDataIndex], new Vector3(posX, 0, posZ));
+        NewsObjectPoolManager.instance.SpawnNewsObject(m_NewsDataList[randNewsDataIndex], new Vector3(posX, m_PosY, posZ));
 
         m_TotalNewsObjectCount++;
     }

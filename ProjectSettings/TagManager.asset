@@ -4,26 +4,23 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - NewsObject
-  - WebSegment
   - MapBorder
+  - WebSegment
+  - NewsObject
   - Enemy
+  - WebLine
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - NewsObject
+  - 
   - Water
   - UI
-<<<<<<< HEAD
+  - NewsObject
+  - WalkableGround
+  - BorderMap
   - Enemy
-=======
-  - WebSegment
->>>>>>> origin/Marc
-  - 
-  - 
-  - 
-  - 
+  - WebLine
   - 
   - 
   - 

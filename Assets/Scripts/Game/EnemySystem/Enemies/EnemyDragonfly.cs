@@ -13,9 +13,9 @@ public class EnemyDragonfly : EnemyBase
 
     // ######################################### FUNCTIONS ########################################
 
-    protected override void EventOnWebCollision(WebSegment _WebSegment)
+    protected override void EventOnWebCollision(WebLine _WebLine)
     {
-        if (_WebSegment.damage > m_MaxDmgImmunityAmount) TakeDamage(_WebSegment.damage);
+        if (_WebLine.damage > m_MaxDmgImmunityAmount) TakeDamage(_WebLine.damage);
     }
 
     protected override void EventOnDeath()

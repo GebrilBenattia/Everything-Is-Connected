@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7a4c05c662601f744bd51142852bd0c7
+guid: 89767f7c2edfac04f94094a67f439a4f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,18 +108,106 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Spritesheet_Dragonfly_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1417.5
+        height: 1386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa18e199c1743794a9e001d40ea81f17
+      internalID: -1525374667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Dragonfly_1
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 0
+        width: 1417.5
+        height: 1386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b267b327d59f454a853152fe13ba1ba
+      internalID: 52333148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Dragonfly_2
+      rect:
+        serializedVersion: 2
+        x: 2834
+        y: 0
+        width: 1417.5
+        height: 1386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b2641c66031de6449c40ca9b35d7fb3
+      internalID: -1334404121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Dragonfly_3
+      rect:
+        serializedVersion: 2
+        x: 4251
+        y: 0
+        width: 1417.5
+        height: 1386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04b84d17268456541acc43755cf67b2d
+      internalID: -40246246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 04e88007133efbd408d935f4341a8dff
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spritesheet_Dragonfly_0: -1525374667
+      Spritesheet_Dragonfly_1: 52333148
+      Spritesheet_Dragonfly_2: -1334404121
+      Spritesheet_Dragonfly_3: -40246246
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

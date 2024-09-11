@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new CompatibleNewsData", menuName = "ScriptableObjects/CompatibleNewsData")]
-public class CompatibleNewsData : ScriptableObject
+[CreateAssetMenu(fileName = "new NewsLinkData", menuName = "ScriptableObjects/NewsLinkData")]
+public class NewsLinkData : ScriptableObject
 {
     // ########################################## STRUCTS #########################################
 
@@ -12,7 +12,7 @@ public class CompatibleNewsData : ScriptableObject
 #if UNITY_EDITOR
 
     [System.Serializable]
-    struct CompatibleNewsElementData
+    private struct NewsLinkElementData
     {
         public NewsData newsDataA;
         public NewsData newsDataB;
@@ -26,7 +26,7 @@ public class CompatibleNewsData : ScriptableObject
     // Editor Variables
 #if UNITY_EDITOR
 
-    [SerializeField] private CompatibleNewsElementData[] compatibleNewsList;
+    [SerializeField] private NewsLinkElementData[] compatibleNewsList;
 
 #endif
 
