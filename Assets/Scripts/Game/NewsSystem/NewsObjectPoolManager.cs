@@ -21,8 +21,6 @@ public class NewsObjectPoolManager : MonoBehaviour
     private List<NewsObject> m_ActivePool = new List<NewsObject>();
     private List<NewsObject> m_InactivePool = new List<NewsObject>();
 
-    // ###################################### GETTER / SETTER #####################################
-
     // ######################################### FUNCTIONS ########################################
 
     private void Awake()

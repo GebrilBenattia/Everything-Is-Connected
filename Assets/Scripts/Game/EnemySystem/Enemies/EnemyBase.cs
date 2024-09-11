@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public abstract class EnemyBase : MonoBehaviour
 {
@@ -9,15 +8,34 @@ public abstract class EnemyBase : MonoBehaviour
 
     // Enemy Settings
     [Header("Enemy Settings")]
-    [SerializeField] protected int m_TokenCost;
-    [SerializeField] protected float m_Life;
-    [SerializeField] protected float m_Speed;
-    [SerializeField] protected float m_Damage;
+    [SerializeField] protected int _tokenCost;
+    [SerializeField] protected float _life;
+    [SerializeField] protected float _speed;
+    [SerializeField] protected float _damage;
+
+    // Protected Variables
+    protected Vector3 _initialPos;
 
     // ######################################### FUNCTIONS ########################################
 
-    protected abstract void EventOnWebCollision();
+    private void Awake()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        _initialPos = transform.position;
+    }
+
+    protected abstract void EventOnWebCollision(WebSegment _WebSegment);
     protected abstract void EventOnDeath();
+
+    protected virtual void EventOnBorderReach()
+    {
+        DealPlayerDamage();
+        gameObject.SetActive(false);
+    }
 
     protected void Death()
     {
@@ -25,20 +43,28 @@ public abstract class EnemyBase : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    protected void TakeDamage(int _DmageCount)
+    protected void TakeDamage(float _DamageAmount)
     {
-        m_Life -= _DmageCount;
-        if (m_Life <= 0 ) Death();
+        _life -= _DamageAmount;
+        if (_life <= 0 ) Death();
+    }
+
+    protected void DealPlayerDamage()
+    {
+        GameplayManager.Instance.life -= _damage;
     }
 
     private void OnTriggerEnter(Collider _Other)
     {
-        if (_Other.CompareTag("Web")) EventOnWebCollision();
+        if (_Other.CompareTag("WebSegment") && _Other.TryGetComponent(out WebSegment webSegment))
+            EventOnWebCollision(webSegment);
+        else if (_Other.CompareTag("MapBorder") && Vector3.Distance(transform.position, _initialPos) >= 0.1f)
+            EventOnBorderReach();
     }
     
     private void UpdateMovements()
     {
-        transform.position += transform.forward * m_Speed * Time.deltaTime;
+        transform.position += transform.forward * _speed * Time.deltaTime;
     }
 
     private void Update()

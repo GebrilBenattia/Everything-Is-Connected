@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFly : EnemyBase
+public class EnemyBeetle : EnemyBase
 {
     // ######################################### FUNCTIONS ########################################
 
     protected override void EventOnWebCollision(WebSegment _WebSegment)
     {
-        TakeDamage(_WebSegment.damage);
+        // TODO: Destroy web segment
     }
 
     protected override void EventOnDeath()
