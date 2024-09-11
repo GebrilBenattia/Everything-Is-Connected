@@ -21,12 +21,6 @@ public class WaveManager : MonoBehaviour
     {
         InitWave();
     }
-
-    private void Start()
-    {
-
-    }
-
     private void InitWave()
     {
         m_SpawnToken = m_MaxSpawnToken;
@@ -45,21 +39,21 @@ public class WaveManager : MonoBehaviour
         Debug.Log(m_CurrentCooldown);
         Debug.Log(m_SpawnToken);
 
-        Debug.Log(EnemyPoolManager.Instance.activePoolSize);
+        Debug.Log(EnemyPoolManager.instance.activePoolSize);
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            EnemyPoolManager.Instance.activePool.Clear();
+            EnemyPoolManager.instance.DespawnAllEnemies();
             m_SpawnToken = 0;
         }
 
-        if (m_SpawnToken == 0 && EnemyPoolManager.Instance.activePoolSize == 0)
+        if (m_SpawnToken == 0 && EnemyPoolManager.instance.activePoolSize == 0)
         {
             ChangeWave();
             InitWave();
         }
 
-        if (m_SpawnToken <= 0 || EnemyPoolManager.Instance.activePoolSize >= m_MaxActiveEnemies)
+        if (m_SpawnToken <= 0 || EnemyPoolManager.instance.activePoolSize >= m_MaxActiveEnemies)
             return;
 
         if (m_CurrentCooldown > 0)
@@ -69,7 +63,7 @@ public class WaveManager : MonoBehaviour
         else
         {
             m_CurrentCooldown += Random.Range(m_MinSpawnTime, m_MaxSpawnTime);
-            WaveSpawner.Instance.SpawnEnemy();
+            WaveSpawnerManager.Instance.SpawnEnemy();
             m_SpawnToken--;
         }
 
