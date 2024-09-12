@@ -98,15 +98,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowMoveRadius: 0
   m_SpriteRenderer: {fileID: 5657386157260384419}
+  m_LifeTime: 20
+  m_StartLifeScale: {x: 1, y: 1, z: 1}
+  m_EndLifeScale: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveSpeed: 10
   m_AttractiveSpeed: 20
   m_MoveRadius: 2
   m_NormalResistDampFactor: 2
   m_DragResistDampFactor: 15
-  m_ConnectionTime: 0
-  m_PressTimeToMove: 0.5
+  m_PressTimeToMove: 0.2
   connected: 0
-  newsType: 
 --- !u!1 &3911468011220930423
 GameObject:
   m_ObjectHideFlags: 0
