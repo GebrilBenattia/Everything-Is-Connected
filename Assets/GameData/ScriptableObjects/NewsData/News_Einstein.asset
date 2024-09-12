@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08749aa253fcd26499f6747b7d546cac, type: 3}
   m_Name: News_Einstein
   m_EditorClassIdentifier: 
+  m_GenerateNewGUUID: 0
   name: EINSTEIN
   sprite: {fileID: 21300000, guid: c2e9fd30249dd3d4bbca621a5f7c2ab5, type: 3}
   theme: 3

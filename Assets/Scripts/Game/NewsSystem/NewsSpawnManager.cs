@@ -48,7 +48,19 @@ public class NewsSpawnManager : MonoBehaviour
         m_Instance = this;
         m_CurrentSpawnCooldown = Random.Range(m_MinSpawnTime, m_MaxSpawnTime);
     }
-    
+
+    private void Start()
+    {
+        float offsetX = GameBorderManager.instance.upBorderSize / 4f;
+        float offsetZ = GameBorderManager.instance.leftBorderSize / 4f;
+        float halfSizeX = GameBorderManager.instance.upBorderSize / 2f;
+        float halfSizeZ = GameBorderManager.instance.leftBorderSize / 2f;
+        m_SpawnZoneList[0].Init(GameBorderManager.instance.worldLeftDown + new Vector3(offsetX, 0, offsetZ), new Vector3(halfSizeX, 1, halfSizeZ));
+        m_SpawnZoneList[1].Init(GameBorderManager.instance.worldRightDown + new Vector3(-offsetX, 0, offsetZ), new Vector3(halfSizeX, 1, halfSizeZ));
+        m_SpawnZoneList[2].Init(GameBorderManager.instance.worldLeftUp + new Vector3(offsetX, 0, -offsetZ), new Vector3(halfSizeX, 1, halfSizeZ));
+        m_SpawnZoneList[3].Init(GameBorderManager.instance.worldRightUp + new Vector3(-offsetX, 0, -offsetZ), new Vector3(halfSizeX, 1, halfSizeZ));
+    }
+
     private float[] CalculateSpawnRates()
     {
         // Variables

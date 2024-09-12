@@ -66,15 +66,27 @@ public class GameBorderManager : MonoBehaviour
     public Vector3 worldRightUp
     { get { return m_WorldRightUp;} }
 
+    public float leftBorderSize
+    { get { return m_LeftBorderSize; } }
+
+    public float rightBorderSize 
+    { get {  return m_RightBorderSize; } }
+
+    public float upBorderSize
+    { get { return m_UpBorderSize; } }
+
+    public float downBorderSize
+    { get { return m_DownBorderSize; } }
+
     // ######################################### FUNCTIONS ########################################
 
     private void Awake()
     {
         m_Instance = this;
-        m_WorldLeftDown = m_Camera.ScreenToWorldPoint(m_LeftDown.position) + m_Camera.transform.position / 10f;
-        m_WorldRightDown = m_Camera.ScreenToWorldPoint(m_RightDown.position) + m_Camera.transform.position / 10f;
-        m_WorldLeftUp = m_Camera.ScreenToWorldPoint(m_LeftUp.position) + m_Camera.transform.position / 10f;
-        m_WorldRightUp = m_Camera.ScreenToWorldPoint(m_RightUp.position) + m_Camera.transform.position / 10f;
+        //m_WorldLeftDown = m_Camera.ScreenToWorldPoint(m_LeftDown.position) + m_Camera.transform.position / 10f;
+        //m_WorldRightDown = m_Camera.ScreenToWorldPoint(m_RightDown.position) + m_Camera.transform.position / 10f;
+        //m_WorldLeftUp = m_Camera.ScreenToWorldPoint(m_LeftUp.position) + m_Camera.transform.position / 10f;
+        //m_WorldRightUp = m_Camera.ScreenToWorldPoint(m_RightUp.position) + m_Camera.transform.position / 10f;
 
         m_WorldLeftDown = m_LeftDownSocket.position;
         m_WorldLeftUp = m_LeftUpSocket.position;
@@ -93,29 +105,29 @@ public class GameBorderManager : MonoBehaviour
         m_DownBorderSize = Vector3.Distance(m_WorldLeftDown, m_WorldRightDown);
 
         // Set Box colliders
-        m_LeftCollider.transform.position = (m_WorldLeftDown + m_WorldLeftUp) / 2f;
+        m_LeftCollider.transform.position = (m_WorldLeftDown + m_WorldLeftUp) / 2f + new Vector3(-1, 0, 0);
         m_LeftCollider.transform.localScale = new Vector3(2, 2, m_LeftBorderSize);
 
-        m_RightCollider.transform.position = (m_WorldRightDown + m_WorldRightUp) / 2f;
+        m_RightCollider.transform.position = (m_WorldRightDown + m_WorldRightUp) / 2f + new Vector3(1, 0, 0);
         m_RightCollider.transform.localScale = new Vector3(2, 2, m_RightBorderSize);
 
-        m_UpCollider.transform.position = (m_WorldLeftUp + m_WorldRightUp) / 2f;
+        m_UpCollider.transform.position = (m_WorldLeftUp + m_WorldRightUp) / 2f + new Vector3(0, 0, 1);
         m_UpCollider.transform.localScale = new Vector3(m_UpBorderSize, 2, 2);
 
-        m_DownCollider.transform.position = (m_WorldLeftDown + m_WorldRightDown) / 2f;
+        m_DownCollider.transform.position = (m_WorldLeftDown + m_WorldRightDown) / 2f + new Vector3(0, 0, -1);
         m_DownCollider.transform.localScale = new Vector3(m_DownBorderSize, 2, 2);
 
         // Set Box Triggers
-        m_LeftTrigger.transform.position = (m_WorldLeftDown + m_WorldLeftUp) / 2f + new Vector3(-2, 0, 0);
+        m_LeftTrigger.transform.position = (m_WorldLeftDown + m_WorldLeftUp) / 2f + new Vector3(-3, 0, 0);
         m_LeftTrigger.transform.localScale = new Vector3(2, 2, m_LeftBorderSize * 2f);
 
-        m_RightTrigger.transform.position = (m_WorldRightDown + m_WorldRightUp) / 2f + new Vector3(2, 0, 0);
+        m_RightTrigger.transform.position = (m_WorldRightDown + m_WorldRightUp) / 2f + new Vector3(3, 0, 0);
         m_RightTrigger.transform.localScale = new Vector3(2, 2, m_RightBorderSize * 2f);
 
-        m_UpTrigger.transform.position = (m_WorldLeftUp + m_WorldRightUp) / 2f + new Vector3(0, 0, 2);
+        m_UpTrigger.transform.position = (m_WorldLeftUp + m_WorldRightUp) / 2f + new Vector3(0, 0, 3);
         m_UpTrigger.transform.localScale = new Vector3(m_UpBorderSize * 2f, 2, 2);
 
-        m_DownTrigger.transform.position = (m_WorldLeftDown + m_WorldRightDown) / 2f + new Vector3(0, 0, -2);
+        m_DownTrigger.transform.position = (m_WorldLeftDown + m_WorldRightDown) / 2f + new Vector3(0, 0, -3);
         m_DownTrigger.transform.localScale = new Vector3(m_DownBorderSize * 2f, 2f, 2);
     }
 }

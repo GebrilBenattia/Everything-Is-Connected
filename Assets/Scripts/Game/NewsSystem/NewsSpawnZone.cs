@@ -47,6 +47,14 @@ public class NewsSpawnZone : MonoBehaviour
         if (_Other.CompareTag("NewsObject")) --m_NewsCount;
     }
 
+    public void Init(Vector3 _Position, Vector3 _Size)
+    {
+        m_AreaSize = _Size;
+        transform.position = _Position;
+        m_BoxCollider.center = Vector3.zero;
+        m_BoxCollider.size = m_AreaSize;
+    }
+
     // Editor Functions
 #if UNITY_EDITOR
 

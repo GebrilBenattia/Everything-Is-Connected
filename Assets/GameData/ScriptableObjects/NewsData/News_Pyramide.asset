@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08749aa253fcd26499f6747b7d546cac, type: 3}
   m_Name: News_Pyramide
   m_EditorClassIdentifier: 
+  m_GenerateNewGUUID: 0
   name: ASTROLOGIE
   sprite: {fileID: 21300000, guid: 0029726d32d0c9e4fb1443f7f5595d2d, type: 3}
   theme: 4

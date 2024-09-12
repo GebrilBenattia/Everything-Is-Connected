@@ -21,10 +21,19 @@ public class NewsData : ScriptableObject
 
     // ######################################### VARIABLES ########################################
 
+#if UNITY_EDITOR
+
+    // Debug Settings
+    [Header("Deabug Settings")]
+    [SerializeField] private bool m_GenerateNewGUUID;
+
+#endif
+
     // Private Variables
     private string m_Guid;
 
     // Public Variables
+    [Header("News Data Settings")]
     public string name;
     public Sprite sprite;
     public Theme theme;
@@ -57,9 +66,10 @@ public class NewsData : ScriptableObject
     private void OnValidate()
     {
         // Check if current guid is empty / null
-        if (String.IsNullOrEmpty(m_Guid)) {
+        if (m_GenerateNewGUUID || String.IsNullOrEmpty(m_Guid)) {
 
             // Generate new guid
+            m_GenerateNewGUUID = false;
             m_Guid = Guid.NewGuid().ToString();
             UnityEditor.EditorUtility.SetDirty(this);
         }

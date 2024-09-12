@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08749aa253fcd26499f6747b7d546cac, type: 3}
   m_Name: News_B
   m_EditorClassIdentifier: 
+  m_GenerateNewGUUID: 0
   name: B
   sprite: {fileID: 21300000, guid: 4d918013c78933f43a0968ad865e19f8, type: 3}
+  theme: 0
