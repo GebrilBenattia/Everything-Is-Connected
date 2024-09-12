@@ -12,6 +12,7 @@ public class WebMaker : MonoBehaviour
     [SerializeField] private float m_NewsMoveRange;
     [SerializeField] private float m_ClickCheckDelay;
     [SerializeField] private LayerMask m_NewsObjectLayer;
+    [SerializeField] private GameObject m_SparklingSilkPrefab;
     private Camera m_Camera;
     private System.Action m_DoAction;
     private GameObject m_SelectedNode;
@@ -114,9 +115,12 @@ public class WebMaker : MonoBehaviour
                     segment.GetComponentInChildren<WebSegment>().webIndex = m_WebsCreated;
                     if (i == m_SegmentsToSpawn)
                     {
+                        //Instantiate(m_SparklingSilkPrefab, m_StartPoint.transform).GetComponent<SparklingSilk>().m_OtherPos.transform.position = m_EndPoint.transform.position;
                         ClearValues();
                     }
                 }
+
+                
 
                 foreach (GameObject news in m_CurrentNodes)
                 {
