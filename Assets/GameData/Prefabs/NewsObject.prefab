@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7231548073715378485}
   - component: {fileID: 621559510190971421}
   - component: {fileID: 1303543992563421443}
+  - component: {fileID: 6300749390298110442}
   m_Layer: 6
   m_Name: NewsObject
   m_TagString: NewsObject
@@ -82,7 +83,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1303543992563421443
 MonoBehaviour:
@@ -106,6 +107,37 @@ MonoBehaviour:
   m_ConnectionTime: 0
   m_PressTimeToMove: 0.1
   connected: 0
+--- !u!114 &6300749390298110442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371653394246591339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1223820838
+      Data2: 1247858664
+      Data3: 1533372586
+      Data4: 1389930152
+    Path: event:/NEWS/new_spawn
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &3911468011220930423
 GameObject:
   m_ObjectHideFlags: 0
