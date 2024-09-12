@@ -115,7 +115,7 @@ public class WebMaker : MonoBehaviour
                     segment.GetComponentInChildren<WebSegment>().webIndex = m_WebsCreated;
                     if (i == m_SegmentsToSpawn)
                     {
-                        Instantiate(m_SparklingSilkPrefab, m_StartPoint.transform).GetComponent<SparklingSilk>().m_OtherPos.transform.position = m_EndPoint.transform.position;
+                        //Instantiate(m_SparklingSilkPrefab, m_StartPoint.transform).GetComponent<SparklingSilk>().m_OtherPos.transform.position = m_EndPoint.transform.position;
                         ClearValues();
                     }
                 }

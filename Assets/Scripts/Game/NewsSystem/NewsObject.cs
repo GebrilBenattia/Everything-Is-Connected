@@ -12,7 +12,6 @@ public class NewsObject : MonoBehaviour, IClickableObject
         SimpleClick,
         StartMoving
     }
-
     // ######################################### VARIABLES ########################################
 
 #if UNITY_EDITOR
@@ -47,6 +46,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
 
     // Public variables
     public bool connected;
+    public string newsType;
 
     // ######################################### FUNCTIONS ########################################
 
@@ -76,6 +76,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
     {
         m_IsLeftButtonDown = true;
         StartCoroutine(LeftButtonPressUpdate());
+        GameplayManager.Instance.LoadTheme(m_NewsData.name);
     }
 
     public void EventOnLeftButtonUp()

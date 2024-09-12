@@ -13,11 +13,6 @@ public class TextBubble : MonoBehaviour
         small
     }
 
-    public void Hide()
-    {
-
-    }
-
     public void SetNewBubble(TextSizes _Size, string _Text)
     {
         int length = transform.childCount;
@@ -31,6 +26,14 @@ public class TextBubble : MonoBehaviour
                 bubble.GetComponentInChildren<Text>().text = _Text;
             }
             else bubble.SetActive(false);
+        }
+    }
+
+    public void HideAll()
+    {
+        foreach (GameObject _Bubble in Bubbles)
+        {
+            _Bubble.SetActive(false);
         }
     }
 }

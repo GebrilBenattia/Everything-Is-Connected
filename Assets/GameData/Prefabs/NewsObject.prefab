@@ -104,8 +104,9 @@ MonoBehaviour:
   m_NormalResistDampFactor: 2
   m_DragResistDampFactor: 15
   m_ConnectionTime: 0
-  m_PressTimeToMove: 0.1
+  m_PressTimeToMove: 0.5
   connected: 0
+  newsType: 
 --- !u!1 &3911468011220930423
 GameObject:
   m_ObjectHideFlags: 0
