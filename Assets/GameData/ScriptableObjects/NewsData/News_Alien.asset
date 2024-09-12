@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: ALIEN
   sprite: {fileID: 21300000, guid: 62b6babdcbf637e4b8b0d950d3445085, type: 3}
+  theme: 5

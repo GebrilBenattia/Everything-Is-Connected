@@ -39,6 +39,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
     // Private Variables
     private List<NewsObject> m_LinkedNewsObject = new List<NewsObject>();
     private NewsData m_NewsData;
+    public NewsData newsData { get { return m_NewsData; } }
     private Rigidbody m_Rigidbody;
     private Vector3 m_InitPos;
     private bool m_CanMoveToCursor = false;
@@ -102,7 +103,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
     {
         m_IsLeftButtonDown = true;
         StartCoroutine(LeftButtonPressUpdate());
-        GameplayManager.Instance.LoadTheme(m_NewsData.name);
+        //GameplayManager.Instance.LoadTheme(m_NewsData.name);
     }
 
     public void EventOnLeftButtonUp()

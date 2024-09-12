@@ -28,7 +28,9 @@ public class GameplayManager : MonoBehaviour
     // SmartBomb variables
     [SerializeField] private int m_BubbleAmountBeforeSmartBomb;
     private int m_BubbleAmount;
+    [SerializeField] private int m_DamageForBubble;
 
+    public NewsLinkData newsLinkData;
     // ######################################### FUNCTIONS ########################################
 
     private void Awake()
@@ -36,7 +38,7 @@ public class GameplayManager : MonoBehaviour
         m_Instance = this;
     }
 
-    public void LoadTheme(string _ThemeToLoad)
+    /*public void LoadTheme(string _ThemeToLoad)
     {
         m_loadedThemes.Add(_ThemeToLoad);
         if (m_loadedThemes.Count == MAX_THEMES)
@@ -45,22 +47,27 @@ public class GameplayManager : MonoBehaviour
             CreateBubble(m_loadedThemes[0], m_loadedThemes[1]);           
             m_loadedThemes.Clear();
         }
-    }
+    }*/
 
-    private void CreateBubble(string _Theme1, string _Theme2)
+    public void CheckNewsLink(string _Theme1, string _Theme2, float _Damage)
     {
-        
-        if (m_BubbleAmount == m_BubbleAmountBeforeSmartBomb)
+        string conspiracy = newsConspiracyHolder.GetRandomHoax(_Theme1, _Theme2);
+        if (_Damage >= m_DamageForBubble)
         {
-            SmartBomb();
-            m_BubbleAmount = 0;
-            UIManager.instance.ResetBubbles();
-        }      
-        else
-        {
-            string conspiracy = newsConspiracyHolder.GetRandomHoax(_Theme1, _Theme2);
-            UIManager.instance.UpdateBubbles(m_BubbleAmount - 1, conspiracy);
+            m_BubbleAmount++;
+            if (m_BubbleAmount == m_BubbleAmountBeforeSmartBomb)
+            {
+                SmartBomb();
+                m_BubbleAmount = 0;
+                UIManager.instance.ResetBubbles();
+            }
+            else
+            {
+                UIManager.instance.UpdateBubbles(m_BubbleAmount - 1, conspiracy);
+            }
         }
+        else UIManager.instance.StartHeadlines(conspiracy);
+        
         Debug.Log(m_BubbleAmount);
     }
 

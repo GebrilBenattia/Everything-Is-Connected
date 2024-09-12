@@ -79,7 +79,6 @@ public class SpiderController : MonoBehaviour
     {
         if (m_LinkDataList.Count == 0) m_TargetNewsObject = _LinkData.linkNewsNodes.startNode;
         m_LinkDataList.Add(_LinkData);
-
         m_Animator.enabled = true;
     }
 
@@ -105,7 +104,6 @@ public class SpiderController : MonoBehaviour
 
         // The spider reach the current target -> change target
         else {
-
             // If was firstNode, change target to endNode
             if (m_LinkDataList[0].linkNewsNodes.startNode == m_TargetNewsObject) {
 
@@ -113,11 +111,12 @@ public class SpiderController : MonoBehaviour
                 m_TargetNewsObject.EventOnLink(m_LinkDataList[0].linkNewsNodes.endNode);
                 m_TargetNewsObject = m_LinkDataList[0].linkNewsNodes.endNode;
             }
-
+            
             // Else change target to next linkData or set target to null
             else {
                 m_LinkDataList[0].webLine.SetEndPoint(m_LinkDataList[0].linkNewsNodes.endNode.transform);
                 m_TargetNewsObject.EventOnLink(m_LinkDataList[0].linkNewsNodes.startNode);
+                GameplayManager.Instance.CheckNewsLink(NewsData.ThemeToString(m_LinkDataList[0].linkNewsNodes.startNode.newsData.theme), NewsData.ThemeToString(m_LinkDataList[0].linkNewsNodes.endNode.newsData.theme),m_LinkDataList[0].webLine.damage);
                 m_LinkDataList.RemoveAt(0);
                 m_TargetNewsObject = m_LinkDataList.Count > 0 ? m_LinkDataList[0].linkNewsNodes.startNode : null;
 

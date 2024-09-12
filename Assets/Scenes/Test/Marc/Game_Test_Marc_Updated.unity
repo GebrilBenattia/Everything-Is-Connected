@@ -203,6 +203,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4904511809958384236}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &90195188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3735414338434090589, guid: 0bf8258bed0bd0e4da0bde014b53f8f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 577911017}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96cbdd286b5036047b7fb7ac77517123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +381,8 @@ MonoBehaviour:
   life: 4
   newsConspiracyHolder: {fileID: 730427786}
   m_BubbleAmountBeforeSmartBomb: 4
+  m_DamageForBubble: 1
+  newsLinkData: {fileID: 11400000, guid: 1d12e26361e62ff4c8b1ae0938d91d4e, type: 2}
 --- !u!1 &355568009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,6 +1263,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8229644710449909429, guid: 0bf8258bed0bd0e4da0bde014b53f8f5,
+        type: 3}
+      propertyPath: m_Headline
+      value: 
+      objectReference: {fileID: 90195188}
     - target: {fileID: 8574096819644247964, guid: 0bf8258bed0bd0e4da0bde014b53f8f5,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1560,12 +1579,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0a9949a06ee3cf640a99965f97bd813d, type: 3}
+  m_Sprite: {fileID: 1026593325, guid: b0b71b6521bf77a49bdfc5adc2061c02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8, y: 8}
+  m_Size: {x: 10.432819, y: 11.139999}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3089,6 +3108,8 @@ MonoBehaviour:
   m_WebsParent: {fileID: 1134986105}
   m_WebPrefab: {fileID: 8476653123853843081, guid: fdc2a2e0d3f1eae4fad1ecbe43eb7bd9,
     type: 3}
+  m_MaxWebLineSelection: 3
+  m_MaxWebLines: 5
 --- !u!1 &1666968047
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,6 +3120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1666968048}
   - component: {fileID: 1666968049}
+  - component: {fileID: 1666968050}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -3137,6 +3159,28 @@ MonoBehaviour:
   m_Speed: 6
   m_AngularSpeed: 6
   m_DetectionRadius: 0.5
+  m_Animator: {fileID: 1666968050}
+--- !u!95 &1666968050
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666968047}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2bd403b366288314689b721ba321b152, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1690265914
 GameObject:
   m_ObjectHideFlags: 0

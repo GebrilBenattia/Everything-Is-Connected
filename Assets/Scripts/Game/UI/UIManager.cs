@@ -7,8 +7,10 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_LifeBar;
     [SerializeField] private GameObject m_TextContainer;
+    [SerializeField] private HeadLine m_Headline;
     private int testCounter = 0;
 
+    
     static public UIManager instance;
 
     // Start is called before the first frame update
@@ -29,12 +31,16 @@ public class UIManager : MonoBehaviour
 
     public void ResetBubbles()
     {
-        Debug.Log("RESETTING");
         int length = m_TextContainer.transform.childCount;
         for (int i = 0; i < length; i++)
         {
            m_TextContainer.transform.GetChild(i).GetComponent<TextBubble>().HideAll();
         }
+    }
+
+    public void StartHeadlines(string _Text)
+    {
+        m_Headline.SetModeScroll(_Text);
     }
 
     public void UpdateBubbles(int _Index, string _Text)

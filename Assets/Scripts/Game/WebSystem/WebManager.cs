@@ -94,7 +94,6 @@ public class WebManager : MonoBehaviour
 
         // Set end Node
         else {
-
             // Check if can create the link and add to nodes list
             m_CurrentLinkNewsNodes.endNode = _NewsObject;
             if (!AreAlreadyLinked(m_CurrentLinkNewsNodes) && !AreSameNodes(m_CurrentLinkNewsNodes)) AddNewLinkData();
@@ -104,9 +103,13 @@ public class WebManager : MonoBehaviour
 
     private void AddNewLinkData()
     {
+        /*Debug.Log(m_CurrentLinkNewsNodes.startNode.newsData.name);
+        Debug.Log(m_CurrentLinkNewsNodes.endNode.newsData.name);*/
+        float damage = GameplayManager.Instance.newsLinkData.Get(m_CurrentLinkNewsNodes.startNode.newsData.guid, m_CurrentLinkNewsNodes.endNode.newsData.guid);
+
         // Instantiate new web line
         WebLine webLineInst = Instantiate(m_WebPrefab, Vector3.zero, Quaternion.identity, m_WebsParent).GetComponent<WebLine>();
-        webLineInst.Init(m_CurrentLinkNewsNodes.startNode.transform, m_CurrentLinkNewsNodes.startNode.transform, 1);
+        webLineInst.Init(m_CurrentLinkNewsNodes.startNode.transform, m_CurrentLinkNewsNodes.startNode.transform, damage);
 
         // Add new Link Data
         LinkData newLinkData = new LinkData {
@@ -114,7 +117,7 @@ public class WebManager : MonoBehaviour
             webLine = webLineInst
         };
         m_LinkDataList.Add(newLinkData);
-
+        
         // Start link news with spider
         m_SpiderController.LinkNews(newLinkData);
     }
