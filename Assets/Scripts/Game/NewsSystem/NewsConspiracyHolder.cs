@@ -25,14 +25,6 @@ public class NewsConspiracyHolder : MonoBehaviour
     void Start()
     {
         LoadConspiracies();
-
-        if (theoryHolder != null && theoryHolder.conspiracyTheoryArray != null)
-        {
-            foreach (var conspiracy in theoryHolder.conspiracyTheoryArray)
-            {
-                Debug.Log(conspiracy.theme1 + " - " + conspiracy.theme2 + " : " + conspiracy.hoax1 + "\n /////// " + conspiracy.hoax2);
-            }
-        }
     }
 
     private void LoadConspiracies()
@@ -40,9 +32,30 @@ public class NewsConspiracyHolder : MonoBehaviour
         theoryHolder = JSONLoader.LOADJSON<ConspiracyTheoryHolder>("ConspiracyTheories");
     }
 
+    // Function to get a random hoax for a given pair of themes
+    public string GetRandomHoax(string _Theme1, string _Theme2)
+    {
+        if (theoryHolder == null || theoryHolder.conspiracyTheoryArray == null) 
+            return null;
+
+        foreach (var conspiracy in theoryHolder.conspiracyTheoryArray)
+        {
+            // Check if the themes match (ignoring order)
+            if ((conspiracy.theme1 == _Theme1 && conspiracy.theme2 == _Theme2) || (conspiracy.theme1 == _Theme2 && conspiracy.theme2 == _Theme1))
+            {
+                // Randomly choose between hoax1 and hoax2
+                int randomIndex = Random.Range(0, 2);
+                return randomIndex == 0 ? conspiracy.hoax1 : conspiracy.hoax2;
+            }
+        }
+
+        return null; // No matching conspiracy found
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.W))
+            Debug.Log(GetRandomHoax("MAYA", "ASTROLOGIE"));
     }
 }
