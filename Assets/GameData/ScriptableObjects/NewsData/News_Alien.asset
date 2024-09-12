@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08749aa253fcd26499f6747b7d546cac, type: 3}
   m_Name: News_Alien
   m_EditorClassIdentifier: 
+  m_GenerateNewGUUID: 0
   name: ALIEN
   sprite: {fileID: 21300000, guid: 62b6babdcbf637e4b8b0d950d3445085, type: 3}
   theme: 5

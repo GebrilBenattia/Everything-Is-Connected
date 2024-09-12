@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class NewsObject : MonoBehaviour, IClickableObject
@@ -17,6 +18,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
     // Object Settings
     [Header("Object Settings")]
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
+    [SerializeField] private TextMeshPro m_Text;
 
     // Life Settings
     [Header("Life Settings")]
@@ -46,23 +48,28 @@ public class NewsObject : MonoBehaviour, IClickableObject
     private bool m_IsLeftButtonDown = false;
     private float m_CurrentLifeTime;
 
-    // Public variables
-    public bool connected;
-    public string newsType;
-
     // ######################################### FUNCTIONS ########################################
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        Init();
+        ResetValues();
     }
 
-    private void Init()
+    private void ResetValues()
     {
         m_LinkedNewsObject = new List<NewsObject>();
         m_CurrentLifeTime = m_LifeTime;
-        transform.localScale = m_StartLifeScale;
+        transform.localScale = Vector3.zero;
+    }
+
+    public void Init(NewsData _NewsData)
+    {
+        m_NewsData = _NewsData;
+        m_Text.text = NewsData.ThemeToString(m_NewsData.theme);
+        m_InitPos = transform.position;
+        SetSprite();
+        StartCoroutine(SpawnScaleEffect());
     }
 
     private IEnumerator LeftButtonPressUpdate()
@@ -105,6 +112,25 @@ public class NewsObject : MonoBehaviour, IClickableObject
         }
     }
 
+    private IEnumerator SpawnScaleEffect()
+    {
+        // Variables
+        float speed = 4f;
+        float t = 0f;
+
+        // Update scale
+        while (t < 1) {
+
+            transform.localScale = m_StartLifeScale * t;
+            t += Time.deltaTime * speed;
+
+            yield return null;
+        }
+
+        // Set scale to Vector3 One
+        transform.localScale = m_StartLifeScale;
+    }
+
     public void EventOnLeftButtonDown(RaycastHit _HitInfo)
     {
         m_IsLeftButtonDown = true;
@@ -131,35 +157,8 @@ public class NewsObject : MonoBehaviour, IClickableObject
 
     public void Despawn()
     {
-        Init();
+        ResetValues();
         NewsObjectPoolManager.instance.DespawnNewsObject(this);
-    }
-
-    public void Init(NewsData _NewsData)
-    {
-        m_NewsData = _NewsData;
-        m_InitPos = transform.position;
-        SetSprite();
-        StartCoroutine(SpawnScaleEffect());
-    }
-
-    private IEnumerator SpawnScaleEffect()
-    {
-        // Variables
-        float speed = 4f;
-        float t = 0f;
-
-        // Update scale
-        while (t < 1) {
-
-            transform.localScale = Vector3.one * t;
-            t += Time.deltaTime * speed;
-
-            yield return null;
-        }
-
-        // Set scale to Vector3 One
-        transform.localScale = Vector3.one;
     }
 
     private void SetSprite()

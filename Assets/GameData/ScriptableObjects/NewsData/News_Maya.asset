@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08749aa253fcd26499f6747b7d546cac, type: 3}
   m_Name: News_Maya
   m_EditorClassIdentifier: 
+  m_GenerateNewGUUID: 0
   name: MAYA
   sprite: {fileID: 21300000, guid: e408adcb7ac00b54aa9bafae9739e6ae, type: 3}
   theme: 7

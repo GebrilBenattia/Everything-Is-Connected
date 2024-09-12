@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08749aa253fcd26499f6747b7d546cac, type: 3}
   m_Name: News_Religion
   m_EditorClassIdentifier: 
+  m_GenerateNewGUUID: 0
   name: ASTROLOGIE
-  sprite: {fileID: 21300000, guid: 7aab8f4b33f092545935493e968c9de3, type: 3}
+  sprite: {fileID: 21300000, guid: 01d4c001a134d7d4fb7f743b78802132, type: 3}
   theme: 1
