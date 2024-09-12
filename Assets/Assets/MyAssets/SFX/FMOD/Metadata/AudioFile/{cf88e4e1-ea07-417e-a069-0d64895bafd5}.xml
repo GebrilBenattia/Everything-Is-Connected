@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{cf88e4e1-ea07-417e-a069-0d64895bafd5}">
+		<property name="assetPath">
+			<value>Assets_SD/footsteps_spider.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{97dfb5e3-5fa1-444a-8bfb-c71d6f2a38e6}</destination>
+		</relationship>
+	</object>
+</objects>
