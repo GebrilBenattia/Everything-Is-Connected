@@ -131,32 +131,32 @@ public class WebMaker : MonoBehaviour
         }
     }
 
-    private void SetModeNewsMove()
-    {
-        m_LastNewsPos = m_SelectedNode.GetComponent<NewsObject>().initialPos;
-        m_DoAction = DoActionNewsMove;
-    }
+    //private void SetModeNewsMove()
+    //{
+    //    m_LastNewsPos = m_SelectedNode.GetComponent<NewsObject>().initialPos;
+    //    m_DoAction = DoActionNewsMove;
+    //}
 
-    private void DoActionNewsMove()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            m_LastNewsPos = Vector3.zero;
-            SetModeDefault();
-            return;
-        }
-        Ray lRay = m_Camera.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(lRay, out RaycastHit hitInfo, m_RayDistance);        
-        Vector3 mousePos = hitInfo.point;
-        float ClampedX = Mathf.Clamp(mousePos.x, m_LastNewsPos.x - m_NewsMoveRange, m_LastNewsPos.x + m_NewsMoveRange);
-        float ClampedZ = Mathf.Clamp(mousePos.z, m_LastNewsPos.z - m_NewsMoveRange, m_LastNewsPos.z + m_NewsMoveRange);
-        Debug.Log(ClampedX);
-        Debug.Log(ClampedZ);
-        Vector3 velocity = new Vector3(ClampedX, m_SelectedNode.transform.position.y, ClampedZ);
+    //private void DoActionNewsMove()
+    //{
+    //    if (Input.GetMouseButtonUp(0))
+    //    {
+    //        m_LastNewsPos = Vector3.zero;
+    //        SetModeDefault();
+    //        return;
+    //    }
+    //    Ray lRay = m_Camera.ScreenPointToRay(Input.mousePosition);
+    //    Physics.Raycast(lRay, out RaycastHit hitInfo, m_RayDistance);        
+    //    Vector3 mousePos = hitInfo.point;
+    //    float ClampedX = Mathf.Clamp(mousePos.x, m_LastNewsPos.x - m_NewsMoveRange, m_LastNewsPos.x + m_NewsMoveRange);
+    //    float ClampedZ = Mathf.Clamp(mousePos.z, m_LastNewsPos.z - m_NewsMoveRange, m_LastNewsPos.z + m_NewsMoveRange);
+    //    Debug.Log(ClampedX);
+    //    Debug.Log(ClampedZ);
+    //    Vector3 velocity = new Vector3(ClampedX, m_SelectedNode.transform.position.y, ClampedZ);
 
-        Debug.Log(velocity.x);
-        m_SelectedNode.transform.position = velocity;
-    }
+    //    Debug.Log(velocity.x);
+    //    m_SelectedNode.transform.position = velocity;
+    //}
 
     //Check for NewsObject with raycast
     private bool CheckForNode()

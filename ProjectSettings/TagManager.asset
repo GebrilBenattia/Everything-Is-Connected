@@ -8,6 +8,7 @@ TagManager:
   - WebSegment
   - NewsObject
   - Enemy
+  - WebLine
   layers:
   - Default
   - TransparentFX
@@ -16,10 +17,10 @@ TagManager:
   - Water
   - UI
   - NewsObject
-  - WebSegment
-  - 
-  - 
-  - 
+  - WalkableGround
+  - BorderMap
+  - Enemy
+  - WebLine
   - 
   - 
   - 

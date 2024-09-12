@@ -28,7 +28,7 @@ public class CursorInteraction : MonoBehaviour
 
                 // Call Event On Click
                 if (hitInfo.collider.gameObject.TryGetComponent(out IClickableObject clickableObject)) {
-                    clickableObject.EventOnClick();
+                    clickableObject.EventOnLeftButtonDown(hitInfo);
                     m_LastClickableObject = clickableObject;
                 }
             }
@@ -39,7 +39,7 @@ public class CursorInteraction : MonoBehaviour
 
             // Call Event On Release
             if (m_LastClickableObject != null) {
-                m_LastClickableObject.EventOnClickRelease();
+                m_LastClickableObject.EventOnLeftButtonUp();
                 m_LastClickableObject = null;
             }
         }

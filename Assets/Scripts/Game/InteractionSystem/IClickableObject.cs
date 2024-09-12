@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IClickableObject
 {
-    public void EventOnClick();
-    public void EventOnClickRelease();
+    public void EventOnLeftButtonDown(RaycastHit _HitInfo);
+    public void EventOnLeftButtonUp();
 }

@@ -52,10 +52,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 183
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -73,10 +73,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 183
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -104,8 +104,8 @@ MonoBehaviour:
   m_NormalResistDampFactor: 2
   m_DragResistDampFactor: 15
   m_ConnectionTime: 0
+  m_PressTimeToMove: 0.1
   connected: 0
-  initialPos: {x: 0, y: 0, z: 0}
 --- !u!1 &3911468011220930423
 GameObject:
   m_ObjectHideFlags: 0

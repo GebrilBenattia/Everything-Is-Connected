@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6e47ae71cba11434bb049f5c5d0212d1
+guid: ccea72a0f396a70488ca8cc097fd8e7e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,18 +108,106 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Spritesheet_Fly_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1417.5
+        height: 1386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d28f5b6da937c4a9b3453aebe66b64
+      internalID: 812749292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Fly_1
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 0
+        width: 1417.5
+        height: 1386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5c6fe671645e6447a8895ac609ad30a
+      internalID: -1772689195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Fly_2
+      rect:
+        serializedVersion: 2
+        x: 2834
+        y: 0
+        width: 1417.5
+        height: 1386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50e147c6ade35de4983ba7cb77d92d09
+      internalID: 606486825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Fly_3
+      rect:
+        serializedVersion: 2
+        x: 4251
+        y: 0
+        width: 1417.5
+        height: 1386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82563757cc3aa0942bedc54201c4f307
+      internalID: -1857224290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 52ee0e763cdcc884da37abebe4900179
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spritesheet_Fly_0: 812749292
+      Spritesheet_Fly_1: -1772689195
+      Spritesheet_Fly_2: 606486825
+      Spritesheet_Fly_3: -1857224290
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -27,12 +27,12 @@ public class WebSegment : MonoBehaviour, IClickableObject
         
     }
 
-    public void EventOnClick()
+    public void EventOnLeftButtonDown(RaycastHit _HitInfo)
     {
        
     }
 
-    public void EventOnClickRelease()
+    public void EventOnLeftButtonUp()
     {
         if (m_Count == m_ClicksToDelete-1)
         {
