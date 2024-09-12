@@ -50,7 +50,7 @@ public class NewsLinkData : ScriptableObject
         return value;
     }
 
-    // Editor Functions
+    // Editor Functionsx
 #if UNITY_EDITOR
 
     private void OnValidate()
