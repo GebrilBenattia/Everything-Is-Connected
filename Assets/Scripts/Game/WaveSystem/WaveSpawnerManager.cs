@@ -47,7 +47,11 @@ public class WaveSpawnerManager : MonoBehaviour
 
     // Spawner Settings
     [Header("Spawner Settings")]
-    [SerializeField] private SpawnData[] m_SpawnDataList;
+    [SerializeField] private float m_DefaultYPos;
+    [SerializeField] private SpawnData m_LeftBorderSpawn = new SpawnData();
+    [SerializeField] private SpawnData m_RightBorderSpawn = new SpawnData();
+    [SerializeField] private SpawnData m_UpBorderSpawn = new SpawnData();
+    [SerializeField] private SpawnData m_DownBorderSpawn = new SpawnData();
 
     // Start is called before the first frame update
     void Awake()
@@ -55,12 +59,43 @@ public class WaveSpawnerManager : MonoBehaviour
         m_Instance = this;
     }
 
+    private void Start()
+    {
+        // Left Border
+        m_LeftBorderSpawn.minPos = GameBorderManager.instance.worldLeftDown + Vector3.up * m_DefaultYPos;
+        m_LeftBorderSpawn.maxPos = GameBorderManager.instance.worldLeftUp + Vector3.up * m_DefaultYPos;
+
+        // Right Border
+        m_RightBorderSpawn.minPos = GameBorderManager.instance.worldRightDown + Vector3.up * m_DefaultYPos;
+        m_RightBorderSpawn.maxPos = GameBorderManager.instance.worldRightUp + Vector3.up * m_DefaultYPos;
+
+        // Up Border
+        m_UpBorderSpawn.minPos = GameBorderManager.instance.worldLeftUp + Vector3.up * m_DefaultYPos;
+        m_UpBorderSpawn.maxPos = GameBorderManager.instance.worldRightUp + Vector3.up * m_DefaultYPos;
+
+        // Down Border
+        m_DownBorderSpawn.minPos = GameBorderManager.instance.worldLeftDown + Vector3.up * m_DefaultYPos;
+        m_DownBorderSpawn.maxPos = GameBorderManager.instance.worldRightDown + Vector3.up * m_DefaultYPos;
+    }
+
+    private SpawnData GetSpawnDataFromIndex(int _Index)
+    {
+        switch(_Index) {
+            case 0: return m_LeftBorderSpawn;
+            case 1: return m_RightBorderSpawn;
+            case 2: return m_UpBorderSpawn;
+            case 3: return m_DownBorderSpawn;
+            default: return m_LeftBorderSpawn;
+        }
+    }
+
     public void SpawnEnemy(GameObject _Prefab)
     {
         // Init Variables
-        int spawnDataIndex = Random.Range(0, m_SpawnDataList.Length);
-        Vector3 position = m_SpawnDataList[spawnDataIndex].GetRandomPos();
-        Quaternion rotation = m_SpawnDataList[spawnDataIndex].baseRotation;
+        int spawnDataIndex = Random.Range(0, 4);
+        SpawnData spawnData = GetSpawnDataFromIndex(spawnDataIndex);
+        Vector3 position = spawnData.GetRandomPos();
+        Quaternion rotation = spawnData.baseRotation;
 
         // Spawn enemy
         EnemyPoolManager.instance.SpawnEnemy(_Prefab, position, rotation);
@@ -75,24 +110,29 @@ public class WaveSpawnerManager : MonoBehaviour
         // Loop on each spawn data 
         if (m_ShowSpawnDataGizmos) {
 
-            for (int i = 0; i < m_SpawnDataList.Length; ++i) {
-
-                // Set Color
-                Gizmos.color = m_SpawnDataList[i].gizmosColor;
-
-                // Draw Spheres
-                Gizmos.DrawSphere(m_SpawnDataList[i].minPos, 0.15f);
-                Gizmos.DrawSphere(m_SpawnDataList[i].maxPos, 0.15f);
-
-                // Set Color
-                Gizmos.color = Color.yellow;
-
-                // Draw rotation lines
-                float length = 0.3f;
-                Gizmos.DrawLine(m_SpawnDataList[i].minPos, m_SpawnDataList[i].minPos + m_SpawnDataList[i].baseRotation * Vector3.forward * length);
-                Gizmos.DrawLine(m_SpawnDataList[i].maxPos, m_SpawnDataList[i].maxPos + m_SpawnDataList[i].baseRotation * Vector3.forward * length);
-            }
+            DrawSpawnDataGizmos(m_LeftBorderSpawn);
+            DrawSpawnDataGizmos(m_RightBorderSpawn);
+            DrawSpawnDataGizmos(m_UpBorderSpawn);
+            DrawSpawnDataGizmos(m_DownBorderSpawn);
         }
+    }
+
+    private void DrawSpawnDataGizmos(SpawnData _SpawnData)
+    {
+        // Set Color
+        Gizmos.color = _SpawnData.gizmosColor;
+
+        // Draw Spheres
+        Gizmos.DrawSphere(_SpawnData.minPos, 0.15f);
+        Gizmos.DrawSphere(_SpawnData.maxPos, 0.15f);
+
+        // Set Color
+        Gizmos.color = Color.yellow;
+
+        // Draw rotation lines
+        float length = 0.3f;
+        Gizmos.DrawLine(_SpawnData.minPos, _SpawnData.minPos + _SpawnData.baseRotation * Vector3.forward * length);
+        Gizmos.DrawLine(_SpawnData.maxPos, _SpawnData.maxPos + _SpawnData.baseRotation * Vector3.forward * length);
     }
 
 #endif

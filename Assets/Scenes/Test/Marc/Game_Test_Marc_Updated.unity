@@ -1568,7 +1568,7 @@ SpriteRenderer:
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &813371386
@@ -3089,6 +3089,8 @@ MonoBehaviour:
   m_WebsParent: {fileID: 1134986105}
   m_WebPrefab: {fileID: 8476653123853843081, guid: fdc2a2e0d3f1eae4fad1ecbe43eb7bd9,
     type: 3}
+  m_MaxWebLineSelection: 0
+  m_MaxWebLines: 0
 --- !u!1 &1666968047
 GameObject:
   m_ObjectHideFlags: 0
@@ -3137,6 +3139,7 @@ MonoBehaviour:
   m_Speed: 6
   m_AngularSpeed: 6
   m_DetectionRadius: 0.5
+  m_Animator: {fileID: 0}
 --- !u!1 &1690265914
 GameObject:
   m_ObjectHideFlags: 0
