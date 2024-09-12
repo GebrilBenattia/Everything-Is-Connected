@@ -55,7 +55,6 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider _Other)
     {
-        Debug.Log("TEST");
         if (_Other.CompareTag("WebLine") && _Other.TryGetComponent(out WebLine webLine))
             EventOnWebCollision(webLine);
         else if (_Other.CompareTag("MapBorder") && Vector3.Distance(transform.position, _initialPos) >= 0.1f)

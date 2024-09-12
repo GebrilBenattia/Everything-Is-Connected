@@ -19,7 +19,40 @@ public class SpiderController : MonoBehaviour
     private bool m_MoveToTarget = false;
     private Vector3 m_TargetPos;
 
+    // ###################################### GETTER / SETTER #####################################
+
+    public NewsObject targetNewsObject
+    { get { return m_TargetNewsObject; } }
+
+    public WebManager.LinkData currentLinkData
+    { get { return m_LinkDataList.Count == 0 ? new WebManager.LinkData() : m_LinkDataList[0]; } }
+
+    public int currentLinkCount
+    {  get { return m_LinkDataList.Count;} }
+
     // ######################################### FUNCTIONS ########################################
+
+    public bool AreAlreadyLinked(WebManager.LinkData _LinkData)
+    {
+        return !m_LinkDataList.Contains(_LinkData);
+    }
+
+    public void RemoveAllLinkFromNewsObject(NewsObject _NewsObject)
+    {
+        // Loop on each link data 
+        for (int i = 0; i < m_LinkDataList.Count;) {
+
+            // Remove news node element if contain _NewsObject
+            if (m_LinkDataList[i].linkNewsNodes.startNode == _NewsObject ||
+                m_LinkDataList[i].linkNewsNodes.endNode == _NewsObject)
+                m_LinkDataList.RemoveAt(i);
+            else ++i;
+        }
+
+        // Update m_TargetNewsObject value
+        if (m_LinkDataList.Count == 0) m_TargetNewsObject = null;
+        else if (m_TargetNewsObject == _NewsObject) m_TargetNewsObject = m_LinkDataList[0].linkNewsNodes.startNode;
+    }
 
     public void SetTargetPos(Vector3 _TargetPos)
     {
@@ -58,13 +91,16 @@ public class SpiderController : MonoBehaviour
 
             // If was firstNode, change target to endNode
             if (m_LinkDataList[0].linkNewsNodes.startNode == m_TargetNewsObject) {
-                m_TargetNewsObject = m_LinkDataList[0].linkNewsNodes.endNode;
+
                 m_LinkDataList[0].webLine.SetEndPoint(transform);
+                m_TargetNewsObject.EventOnLink(m_LinkDataList[0].linkNewsNodes.endNode);
+                m_TargetNewsObject = m_LinkDataList[0].linkNewsNodes.endNode;
             }
 
             // Else change target to next linkData or set target to null
             else {
                 m_LinkDataList[0].webLine.SetEndPoint(m_LinkDataList[0].linkNewsNodes.endNode.transform);
+                m_TargetNewsObject.EventOnLink(m_LinkDataList[0].linkNewsNodes.startNode);
                 m_LinkDataList.RemoveAt(0);
                 m_TargetNewsObject = m_LinkDataList.Count > 0 ? m_LinkDataList[0].linkNewsNodes.startNode : null;
             }

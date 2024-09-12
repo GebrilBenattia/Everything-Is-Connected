@@ -120,7 +120,7 @@ public class WebMaker : MonoBehaviour
 
                 foreach (GameObject news in m_CurrentNodes)
                 {
-                    news.GetComponent<NewsObject>().OnConneCtion();
+                    //news.GetComponent<NewsObject>().OnConneCtion();
                 }
             }
             SetModeDefault();

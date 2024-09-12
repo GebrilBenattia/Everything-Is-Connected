@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ public class WebManager : MonoBehaviour
     [Header("Web Settings")]
     [SerializeField] private Transform m_WebsParent;
     [SerializeField] private GameObject m_WebPrefab;
+    [SerializeField] private int m_MaxWeblinSelection;
 
     // Private Variables
     private List<LinkData> m_LinkDataList = new List<LinkData>();
@@ -54,7 +56,7 @@ public class WebManager : MonoBehaviour
         m_Instance = this;
     }
 
-    public void DeselectNewsNode()
+    public void DeselectNewsNodes()
     {
         m_CurrentLinkNewsNodes = new LinkNewsNodes();
     }
@@ -83,6 +85,7 @@ public class WebManager : MonoBehaviour
     {
         // Set spider targetPos
         m_SpiderController.SetTargetPos(_NewsObject.transform.position);
+        if (m_SpiderController.currentLinkCount > m_MaxWeblinSelection) return;
 
         // Set start Node
         if (m_CurrentLinkNewsNodes.startNode == null) m_CurrentLinkNewsNodes.startNode = _NewsObject;
@@ -112,5 +115,34 @@ public class WebManager : MonoBehaviour
 
         // Start link news with spider
         m_SpiderController.LinkNews(newLinkData);
+    }
+
+    public void CompletelyUnlink(NewsObject _NewsObject)
+    {
+        // If Current link news satrt node is _NewsObject -> Deselect news nodes
+        if (m_CurrentLinkNewsNodes.startNode == _NewsObject) DeselectNewsNodes();
+
+        // Remove all link from the newsObject in spider
+        spiderController.RemoveAllLinkFromNewsObject(_NewsObject);
+
+        // Loop on each link data
+        for (int i = 0; i <  m_LinkDataList.Count;) {
+
+            // Check if the News Object is in the current link Data
+            if (m_LinkDataList[i].linkNewsNodes.startNode == _NewsObject ||
+                m_LinkDataList[i].linkNewsNodes.endNode == _NewsObject) {
+
+                // Unlink all news objects
+                m_LinkDataList[i].linkNewsNodes.startNode.EventOnUnlink(m_LinkDataList[i].linkNewsNodes.endNode);
+                m_LinkDataList[i].linkNewsNodes.endNode.EventOnUnlink(m_LinkDataList[i].linkNewsNodes.startNode);
+                
+                // Destroy web line
+                m_LinkDataList[i].webLine.DestroyLine();
+
+                // Remove current link data
+                m_LinkDataList.RemoveAt(i);
+            }
+            else ++i;
+        }
     }
 }

@@ -1111,61 +1111,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &848986217
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 848986218}
-  - component: {fileID: 848986219}
-  m_Layer: 0
-  m_Name: WebMaker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &848986218
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848986217}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0234487, y: 2.316088, z: -1.6075712}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1058627953}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &848986219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848986217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5e2698207b1c464892db6654fd740a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RayDistance: 500
-  m_TagToLink: NewsObject
-  m_StringSegmentToSpawn: {fileID: 1708542337685951658, guid: 3cdef3ad513132e478239e10c55e2452,
-    type: 3}
-  m_segmentLength: 0.95
-  m_SegmentSpawnDelay: 0.1
-  m_NewsMoveRange: 0.95
-  m_ClickCheckDelay: 0.3
-  m_NewsObjectLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &873283748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,7 +1444,6 @@ Transform:
   m_Children:
   - {fileID: 349398176}
   - {fileID: 355568010}
-  - {fileID: 848986218}
   - {fileID: 1662166025}
   - {fileID: 950689552}
   - {fileID: 1082963932}
@@ -2467,6 +2411,7 @@ MonoBehaviour:
   m_WebsParent: {fileID: 1134986105}
   m_WebPrefab: {fileID: 8476653123853843081, guid: fdc2a2e0d3f1eae4fad1ecbe43eb7bd9,
     type: 3}
+  m_MaxWeblinSelection: 3
 --- !u!1 &1666968047
 GameObject:
   m_ObjectHideFlags: 0

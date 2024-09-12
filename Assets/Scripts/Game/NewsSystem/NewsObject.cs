@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class NewsObject : MonoBehaviour, IClickableObject
 {
-    // ########################################### ENUMS ##########################################
-
-    private enum InteractionType
-    {
-        None,
-        SimpleClick,
-        StartMoving
-    }
-
     // ######################################### VARIABLES ########################################
 
 #if UNITY_EDITOR
@@ -26,24 +17,33 @@ public class NewsObject : MonoBehaviour, IClickableObject
     // Object Settings
     [Header("Object Settings")]
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
+
+    // Life Settings
+    [Header("Life Settings")]
+    [SerializeField] private float m_LifeTime;
+    [SerializeField] private Vector3 m_StartLifeScale;
+    [SerializeField] private Vector3 m_EndLifeScale;
+
+    // Movements Settings
+    [Header("Movements Settings")]
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_AttractiveSpeed;
     [SerializeField] private float m_MoveRadius;
     [SerializeField] private float m_NormalResistDampFactor;
     [SerializeField] private float m_DragResistDampFactor;
-    [SerializeField] private float m_ConnectionTime;
 
     // Interaction Settings
     [Header("Interaction Settings")]
     [SerializeField] private float m_PressTimeToMove;
 
     // Private Variables
+    private List<NewsObject> m_LinkedNewsObject = new List<NewsObject>();
     private NewsData m_NewsData;
     private Rigidbody m_Rigidbody;
     private Vector3 m_InitPos;
     private bool m_CanMoveToCursor = false;
     private bool m_IsLeftButtonDown = false;
-    private InteractionType m_InteractionType = InteractionType.None;
+    private float m_CurrentLifeTime;
 
     // Public variables
     public bool connected;
@@ -53,6 +53,8 @@ public class NewsObject : MonoBehaviour, IClickableObject
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        m_CurrentLifeTime = m_LifeTime;
+        transform.localScale = m_StartLifeScale;
     }
 
     private IEnumerator LeftButtonPressUpdate()
@@ -72,6 +74,29 @@ public class NewsObject : MonoBehaviour, IClickableObject
         else WebManager.instance.AddNewsObjectAsLinkNode(this);
     }
 
+    private IEnumerator UpdateLifeTime()
+    {
+        // Update Life Time
+        while (m_LinkedNewsObject.Count >= 1 && m_CurrentLifeTime > 0) {
+
+            // Update Current life time
+            m_CurrentLifeTime -= Time.deltaTime;
+
+            // Update scale
+            float t = m_CurrentLifeTime / m_LifeTime;
+            transform.localScale = Vector3.Lerp(m_EndLifeScale, m_StartLifeScale, t);
+            yield return null;
+        }
+
+        // Check current life time
+        if (m_CurrentLifeTime <= 0) {
+
+            // Completely Unlink the newsObject
+            WebManager.instance.CompletelyUnlink(this);
+            Despawn();
+        }
+    }
+
     public void EventOnLeftButtonDown(RaycastHit _HitInfo)
     {
         m_IsLeftButtonDown = true;
@@ -84,15 +109,20 @@ public class NewsObject : MonoBehaviour, IClickableObject
         m_IsLeftButtonDown = false;
     }
 
-    public void OnConneCtion()
+    public void EventOnLink(NewsObject _NewsObject)
     {
-        connected = true;
-        Invoke(nameof(Disconnect), m_ConnectionTime);
+        m_LinkedNewsObject.Add(_NewsObject);
+        if (m_LinkedNewsObject.Count == 1) StartCoroutine(UpdateLifeTime());
     }
 
-    private void Disconnect()
+    public void EventOnUnlink(NewsObject _NewsObject)
     {
-        connected = false;
+        m_LinkedNewsObject.Remove(_NewsObject);
+    }
+
+    public void Despawn()
+    {
+        NewsObjectPoolManager.instance.DespawnNewsObject(this);
     }
 
     public void Init(NewsData _NewsData)
@@ -164,6 +194,11 @@ public class NewsObject : MonoBehaviour, IClickableObject
     }
 
 #if UNITY_EDITOR
+
+    private void OnValidate()
+    {
+        transform.localScale = m_StartLifeScale;
+    }
 
     private void OnDrawGizmos()
     {
