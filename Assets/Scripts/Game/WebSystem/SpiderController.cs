@@ -43,6 +43,12 @@ public class SpiderController : MonoBehaviour
         return !m_LinkDataList.Contains(_LinkData);
     }
 
+    public void StopCurrentLink()
+    {
+        if (m_LinkDataList.Count > 0) m_LinkDataList.RemoveAt(0);
+        if (m_LinkDataList.Count == 0) m_TargetNewsObject = null;
+    }
+
     public void RemoveAllLinkFromNewsObject(NewsObject _NewsObject)
     {
         // Loop on each link data 

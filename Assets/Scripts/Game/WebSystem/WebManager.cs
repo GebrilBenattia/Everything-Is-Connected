@@ -38,7 +38,8 @@ public class WebManager : MonoBehaviour
     [Header("Web Settings")]
     [SerializeField] private Transform m_WebsParent;
     [SerializeField] private GameObject m_WebPrefab;
-    [SerializeField] private int m_MaxWeblinSelection;
+    [SerializeField] private int m_MaxWebLineSelection;
+    [SerializeField] private int m_MaxWebLines;
 
     // Private Variables
     private List<LinkData> m_LinkDataList = new List<LinkData>();
@@ -85,7 +86,8 @@ public class WebManager : MonoBehaviour
     {
         // Set spider targetPos
         m_SpiderController.SetTargetPos(_NewsObject.transform.position);
-        if (m_SpiderController.currentLinkCount > m_MaxWeblinSelection) return;
+        if (m_SpiderController.currentLinkCount >= m_MaxWebLineSelection) return;
+        if (m_LinkDataList.Count >= m_MaxWebLines) return;
 
         // Set start Node
         if (m_CurrentLinkNewsNodes.startNode == null) m_CurrentLinkNewsNodes.startNode = _NewsObject;
@@ -143,6 +145,32 @@ public class WebManager : MonoBehaviour
                 m_LinkDataList.RemoveAt(i);
             }
             else ++i;
+        }
+    }
+
+    public void BreakWebLine(WebLine _WebLine)
+    {
+        // Loop on each link data
+        for (int i = 0; i < m_LinkDataList.Count; ++i) {
+
+            // Check if the News Object is in the current link Data
+            if (m_LinkDataList[i].webLine == _WebLine) {
+
+                // Unlink all news objects
+                m_LinkDataList[i].linkNewsNodes.startNode.EventOnUnlink(m_LinkDataList[i].linkNewsNodes.endNode);
+                m_LinkDataList[i].linkNewsNodes.endNode.EventOnUnlink(m_LinkDataList[i].linkNewsNodes.startNode);
+
+                // Destroy web line
+                m_LinkDataList[i].webLine.DestroyLine();
+
+                // Remove current link data
+                m_LinkDataList.RemoveAt(i);
+
+                if (m_SpiderController.currentLinkData.webLine == _WebLine)
+                    m_SpiderController.StopCurrentLink();
+
+                break;
+            }
         }
     }
 }

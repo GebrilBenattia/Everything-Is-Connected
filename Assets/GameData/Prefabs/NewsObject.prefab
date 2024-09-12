@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowMoveRadius: 0
   m_SpriteRenderer: {fileID: 5657386157260384419}
-  m_LifeTime: 5
+  m_LifeTime: 20
   m_StartLifeScale: {x: 1, y: 1, z: 1}
   m_EndLifeScale: {x: 0.5, y: 0.5, z: 0.5}
   m_MoveSpeed: 10

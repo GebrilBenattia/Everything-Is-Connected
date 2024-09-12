@@ -1,9 +1,24 @@
 using System;
 using UnityEngine;
+using UnityEngine.Android;
 
 [CreateAssetMenu(fileName = "new NewsData", menuName = "ScriptableObjects/NewsData")]
 public class NewsData : ScriptableObject
 {
+    // ########################################### ENUMS ##########################################
+
+    public enum Theme
+    {
+        ASTROLOGY,
+        RELIGION,
+        NASA,
+        EINSTEIN,
+        PYRAMID,
+        ALIEN,
+        CLIMATE,
+        MAYA
+    }
+
     // ######################################### VARIABLES ########################################
 
     // Private Variables
@@ -12,6 +27,7 @@ public class NewsData : ScriptableObject
     // Public Variables
     public string name;
     public Sprite sprite;
+    public Theme theme;
 
     // ###################################### GETTER / SETTER #####################################
 
@@ -19,6 +35,21 @@ public class NewsData : ScriptableObject
     { get { return m_Guid; } }
 
     // ######################################### FUNCTIONS ########################################
+
+    public static string ThemeToString(Theme _Theme)
+    {
+        switch (_Theme) {
+            case Theme.ASTROLOGY:   return "ASTROLOGIE";
+            case Theme.RELIGION:    return "RELIGION";
+            case Theme.NASA:        return "NASA";
+            case Theme.EINSTEIN:    return "EINSTEIN";
+            case Theme.PYRAMID:     return "PYRAMIDE";
+            case Theme.ALIEN:       return "ALIEN";
+            case Theme.CLIMATE:     return "CLIMAT";
+            case Theme.MAYA:        return "MAYA";
+            default:                return string.Empty;
+        }
+    }
 
     // Editor Functions
 #if UNITY_EDITOR
