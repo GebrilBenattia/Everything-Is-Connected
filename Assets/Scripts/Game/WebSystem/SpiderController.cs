@@ -45,6 +45,7 @@ public class SpiderController : MonoBehaviour
 
     public void StopCurrentLink()
     {
+        if (m_TargetNewsObject != null) m_TargetNewsObject.EventOnUnselect();
         if (m_LinkDataList.Count > 0) m_LinkDataList.RemoveAt(0);
         if (m_LinkDataList.Count == 0) m_TargetNewsObject = null;
     }
@@ -56,8 +57,11 @@ public class SpiderController : MonoBehaviour
 
             // Remove news node element if contain _NewsObject
             if (m_LinkDataList[i].linkNewsNodes.startNode == _NewsObject ||
-                m_LinkDataList[i].linkNewsNodes.endNode == _NewsObject)
+                m_LinkDataList[i].linkNewsNodes.endNode == _NewsObject) {
+                m_LinkDataList[i].linkNewsNodes.startNode.EventOnUnselect();
+                m_LinkDataList[i].linkNewsNodes.endNode.EventOnUnselect();
                 m_LinkDataList.RemoveAt(i);
+            }
             else ++i;
         }
 
@@ -103,8 +107,9 @@ public class SpiderController : MonoBehaviour
             UpdateMoveTo(m_TargetNewsObject.transform.position);
 
         // The spider reach the current target -> change target
-        else if (m_TargetNewsObject != null && m_LinkDataList.Count > 0)
-        {
+        else if (m_TargetNewsObject != null && m_LinkDataList.Count > 0) {
+
+            m_TargetNewsObject.EventOnUnselect();
 
             // If was firstNode, change target to endNode
             if (m_LinkDataList[0].linkNewsNodes.startNode == m_TargetNewsObject) {

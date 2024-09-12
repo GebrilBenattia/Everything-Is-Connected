@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class NewsObject : MonoBehaviour, IClickableObject
 {
@@ -19,6 +20,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
     [Header("Object Settings")]
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private TextMeshPro m_Text;
+    [SerializeField] private VisualEffect m_VFX;
 
     // Life Settings
     [Header("Life Settings")]
@@ -61,6 +63,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
         m_LinkedNewsObject = new List<NewsObject>();
         m_CurrentLifeTime = m_LifeTime;
         transform.localScale = Vector3.zero;
+        m_VFX.transform.localScale = Vector3.zero;
     }
 
     public void Init(NewsData _NewsData)
@@ -153,6 +156,16 @@ public class NewsObject : MonoBehaviour, IClickableObject
     public void EventOnUnlink(NewsObject _NewsObject)
     {
         m_LinkedNewsObject.Remove(_NewsObject);
+    }
+
+    public void EventOnSelected()
+    {
+        m_VFX.transform.localScale = Vector3.one;
+    }
+
+    public void EventOnUnselect()
+    {
+        m_VFX.transform.localScale = Vector3.zero;
     }
 
     public void Despawn()

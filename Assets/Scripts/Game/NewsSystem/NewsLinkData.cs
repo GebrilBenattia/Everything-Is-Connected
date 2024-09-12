@@ -8,9 +8,6 @@ public class NewsLinkData : ScriptableObject
 {
     // ########################################## STRUCTS #########################################
 
-    // Editor Structs
-#if UNITY_EDITOR
-
     [System.Serializable]
     private struct NewsLinkElementData
     {
@@ -20,18 +17,11 @@ public class NewsLinkData : ScriptableObject
         public string _Text;
     }
 
-#endif
-
     // ######################################### VARIABLES ########################################
 
-    // Editor Variables
-#if UNITY_EDITOR
-
-    [SerializeField] private NewsLinkElementData[] compatibleNewsList;
-
-#endif
 
     // Private Variables
+    [SerializeField] private NewsLinkElementData[] compatibleNewsList;
     private Dictionary<Tuple<string, string>, float> m_CompatibleNewsDictionary = new Dictionary<Tuple<string, string>, float>();
 
     // ###################################### GETTER / SETTER #####################################
@@ -40,6 +30,11 @@ public class NewsLinkData : ScriptableObject
     { get { return m_CompatibleNewsDictionary; } }
 
     // ######################################### FUNCTIONS ########################################
+
+    private void Awake()
+    {
+        InitDictionary();
+    }
 
     public float Get(string _GuidA, string _GuidB)
     {
@@ -50,16 +45,14 @@ public class NewsLinkData : ScriptableObject
         return value;
     }
 
-    // Editor Functionsx
-#if UNITY_EDITOR
-
-    private void OnValidate()
+    private void InitDictionary()
     {
         // Clear dictionnary
         m_CompatibleNewsDictionary.Clear();
 
         // Loop on compatible News List
-        for (int i = 0; i < compatibleNewsList.Length; i++) {
+        for (int i = 0; i < compatibleNewsList.Length; i++)
+        {
 
             // Variables
             var tuple = Tuple.Create(compatibleNewsList[i].newsDataA.guid, compatibleNewsList[i].newsDataB.guid);
@@ -70,5 +63,9 @@ public class NewsLinkData : ScriptableObject
         }
     }
 
-#endif
+    // Editor Functionsx
+    private void OnValidate()
+    {
+        InitDictionary();
+    }
 }
