@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3869279285070777582}
   - component: {fileID: 6356426366420733728}
   - component: {fileID: 2122060938387038418}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071059, y: -0, z: -0.0000021755695, w: 0.7071078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3673275890235351102}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1043519197, guid: 4736c3b94f3e29a4cb13a0fc5eb6dd49, type: 3}
+  m_Sprite: {fileID: 2003817271, guid: f90693d11bc4167438a554938fde9cc6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 3103841773840793298}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cb6cb805362b95d4b81ea43567f06e81, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4472136bc4901fa4a9167ec9fab72d64, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3673275890235351102}
   - component: {fileID: 4717131391319678982}
   - component: {fileID: 7542311176535809270}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Enemy_Beetle
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 7575019849801484101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: -12.55, y: 0.2, z: 5.98}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

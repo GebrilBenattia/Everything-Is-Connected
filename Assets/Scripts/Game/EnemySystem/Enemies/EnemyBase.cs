@@ -33,7 +33,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (_life <= 0) Death();
     }
 
-    protected abstract void EventOnWebCollision(WebSegment _WebSegment);
+    protected abstract void EventOnWebCollision(WebLine _WebLine);
     protected abstract void EventOnDeath();
 
     protected virtual void EventOnBorderReach()
@@ -55,8 +55,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider _Other)
     {
-        if (_Other.CompareTag("WebSegment") && _Other.TryGetComponent(out WebSegment webSegment))
-            EventOnWebCollision(webSegment);
+        Debug.Log("TEST");
+        if (_Other.CompareTag("WebLine") && _Other.TryGetComponent(out WebLine webLine))
+            EventOnWebCollision(webLine);
         else if (_Other.CompareTag("MapBorder") && Vector3.Distance(transform.position, _initialPos) >= 0.1f)
             EventOnBorderReach();
     }
