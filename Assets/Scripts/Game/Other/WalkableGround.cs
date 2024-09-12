@@ -9,7 +9,7 @@ public class WalkableGround : MonoBehaviour, IClickableObject
     public void EventOnLeftButtonDown(RaycastHit _HitInfo)
     {
         WebManager.instance.spiderController.SetTargetPos(_HitInfo.point);
-        WebManager.instance.DeselectNewsNode();
+        WebManager.instance.DeselectNewsNodes();
     }
 
     public void EventOnLeftButtonUp()

@@ -174,5 +174,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _life: 1
-  _speed: 3
+  _speed: 0.5
   _damage: 0

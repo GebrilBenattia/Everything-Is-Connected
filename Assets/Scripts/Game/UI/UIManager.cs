@@ -7,21 +7,49 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_LifeBar;
     [SerializeField] private GameObject m_TextContainer;
-    private int testCounter = 4;
+    [SerializeField] private HeadLine m_Headline;
+    private int testCounter = 0;
+
+    
+    static public UIManager instance;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (instance != null)
+        {
+            Debug.Log("Instance already exists, destroying the last one added");
+            return;
+        }
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateLife(GameObject _Container, int _Index)
     {
-        if (Input.GetMouseButtonDown(1)) UpdateContainers(m_TextContainer, testCounter--);
+        _Container.transform.GetChild(_Index).GetComponent<Image>().enabled = false;
     }
 
-    public void UpdateContainers(GameObject _Container, int _Life)
+    public void ResetBubbles()
     {
-         _Container.transform.GetChild(_Life).GetComponent<Image>().enabled = false;
+        int length = m_TextContainer.transform.childCount;
+        for (int i = 0; i < length; i++)
+        {
+           m_TextContainer.transform.GetChild(i).GetComponent<TextBubble>().HideAll();
+        }
+    }
+
+    public void StartHeadlines(string _Text)
+    {
+        m_Headline.SetModeScroll(_Text);
+    }
+
+    public void UpdateBubbles(int _Index, string _Text)
+    {
+        m_TextContainer.transform.GetChild(_Index).GetComponent<TextBubble>().SetNewBubble(TextBubble.TextSizes.small, _Text);
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this) instance = null;
     }
 }

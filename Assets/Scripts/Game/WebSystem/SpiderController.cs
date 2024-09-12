@@ -12,6 +12,7 @@ public class SpiderController : MonoBehaviour
     [SerializeField] private float m_Speed;
     [SerializeField] private float m_AngularSpeed;
     [SerializeField] private float m_DetectionRadius;
+    [SerializeField] private Animator m_Animator;
 
     // Private Variables
     private List<WebManager.LinkData> m_LinkDataList = new List<WebManager.LinkData>();
@@ -19,18 +20,66 @@ public class SpiderController : MonoBehaviour
     private bool m_MoveToTarget = false;
     private Vector3 m_TargetPos;
 
+    // ###################################### GETTER / SETTER #####################################
+
+    public NewsObject targetNewsObject
+    { get { return m_TargetNewsObject; } }
+
+    public WebManager.LinkData currentLinkData
+    { get { return m_LinkDataList.Count == 0 ? new WebManager.LinkData() : m_LinkDataList[0]; } }
+
+    public int currentLinkCount
+    {  get { return m_LinkDataList.Count;} }
+
     // ######################################### FUNCTIONS ########################################
+
+    private void Awake()
+    {
+        m_Animator.enabled = false;
+    }
+
+    public bool AreAlreadyLinked(WebManager.LinkData _LinkData)
+    {
+        return !m_LinkDataList.Contains(_LinkData);
+    }
+
+    public void StopCurrentLink()
+    {
+        if (m_LinkDataList.Count > 0) m_LinkDataList.RemoveAt(0);
+        if (m_LinkDataList.Count == 0) m_TargetNewsObject = null;
+    }
+
+    public void RemoveAllLinkFromNewsObject(NewsObject _NewsObject)
+    {
+        // Loop on each link data 
+        for (int i = 0; i < m_LinkDataList.Count;) {
+
+            // Remove news node element if contain _NewsObject
+            if (m_LinkDataList[i].linkNewsNodes.startNode == _NewsObject ||
+                m_LinkDataList[i].linkNewsNodes.endNode == _NewsObject)
+                m_LinkDataList.RemoveAt(i);
+            else ++i;
+        }
+
+        // Update m_TargetNewsObject value
+        if (m_LinkDataList.Count == 0) m_TargetNewsObject = null;
+        else if (m_TargetNewsObject == _NewsObject) m_TargetNewsObject = m_LinkDataList[0].linkNewsNodes.startNode;
+
+        if (m_TargetNewsObject == null) m_Animator.enabled = false;
+    }
 
     public void SetTargetPos(Vector3 _TargetPos)
     {
         m_MoveToTarget = true;
         m_TargetPos = _TargetPos;
+        m_Animator.enabled = true;
     }
 
     public void LinkNews(WebManager.LinkData _LinkData)
     {
         if (m_LinkDataList.Count == 0) m_TargetNewsObject = _LinkData.linkNewsNodes.startNode;
         m_LinkDataList.Add(_LinkData);
+        m_Animator.enabled = true;
     }
 
     private void UpdateMoveTo(Vector3 _TargetPos)
@@ -54,19 +103,26 @@ public class SpiderController : MonoBehaviour
             UpdateMoveTo(m_TargetNewsObject.transform.position);
 
         // The spider reach the current target -> change target
-        else {
+        else if (m_TargetNewsObject != null && m_LinkDataList.Count > 0)
+        {
 
             // If was firstNode, change target to endNode
             if (m_LinkDataList[0].linkNewsNodes.startNode == m_TargetNewsObject) {
-                m_TargetNewsObject = m_LinkDataList[0].linkNewsNodes.endNode;
-                m_LinkDataList[0].webLine.SetEndPoint(transform);
-            }
 
+                m_LinkDataList[0].webLine.SetEndPoint(transform);
+                m_TargetNewsObject.EventOnLink(m_LinkDataList[0].linkNewsNodes.endNode);
+                m_TargetNewsObject = m_LinkDataList[0].linkNewsNodes.endNode;
+            }
+            
             // Else change target to next linkData or set target to null
             else {
                 m_LinkDataList[0].webLine.SetEndPoint(m_LinkDataList[0].linkNewsNodes.endNode.transform);
+                m_TargetNewsObject.EventOnLink(m_LinkDataList[0].linkNewsNodes.startNode);
+                GameplayManager.Instance.CheckNewsLink(NewsData.ThemeToString(m_LinkDataList[0].linkNewsNodes.startNode.newsData.theme), NewsData.ThemeToString(m_LinkDataList[0].linkNewsNodes.endNode.newsData.theme),m_LinkDataList[0].webLine.damage);
                 m_LinkDataList.RemoveAt(0);
                 m_TargetNewsObject = m_LinkDataList.Count > 0 ? m_LinkDataList[0].linkNewsNodes.startNode : null;
+
+                if (m_TargetNewsObject == null) m_Animator.enabled = false;
             }
         }
     }
@@ -78,7 +134,10 @@ public class SpiderController : MonoBehaviour
             UpdateMoveTo(m_TargetPos);
 
         // The spider reach the current target -> stop to move
-        else m_MoveToTarget = false;
+        else {
+            m_Animator.enabled = false;
+            m_MoveToTarget = false;
+        }
     }
 
     private void Update()

@@ -47,6 +47,11 @@ public class WebLine : MonoBehaviour
         m_VFX.SetActive(true);
     }
 
+    public void DestroyLine()
+    {
+        Destroy(gameObject);
+    }
+
     private void Update()
     {
         // Update Web Line Pos

@@ -8,7 +8,7 @@ public class EnemyBeetle : EnemyBase
 
     protected override void EventOnWebCollision(WebLine _WebLine)
     {
-        // TODO: Destroy web segment
+        WebManager.instance.BreakWebLine(_WebLine);
     }
 
     protected override void EventOnDeath()

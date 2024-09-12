@@ -17,6 +17,7 @@ public class NewsLinkData : ScriptableObject
         public NewsData newsDataA;
         public NewsData newsDataB;
         public float damage;
+        public string _Text;
     }
 
 #endif
