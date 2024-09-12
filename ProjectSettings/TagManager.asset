@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MapBorder
+  - WebSegment
+  - NewsObject
+  - Enemy
+  - WebLine
   layers:
   - Default
   - TransparentFX
@@ -11,11 +16,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - NewsObject
+  - WalkableGround
+  - BorderMap
+  - Enemy
+  - WebLine
   - 
   - 
   - 

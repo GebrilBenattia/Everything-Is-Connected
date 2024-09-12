@@ -6,9 +6,9 @@ public class EnemyFly : EnemyBase
 {
     // ######################################### FUNCTIONS ########################################
 
-    protected override void EventOnWebCollision(WebSegment _WebSegment)
+    protected override void EventOnWebCollision(WebLine _WebLine)
     {
-        TakeDamage(_WebSegment.damage);
+        TakeDamage(_WebLine.damage);
     }
 
     protected override void EventOnDeath()
