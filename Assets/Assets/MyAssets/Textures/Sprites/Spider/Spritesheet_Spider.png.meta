@@ -110,169 +110,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet_araignee_0
+      name: Spritesheet_Spider_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1421.5
-        width: 1418
-        height: 1421.5
+        x: 253
+        y: 1491
+        width: 1043
+        height: 1114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27082b70c3bf3b2429f97d40ecc0a524
-      internalID: 1315940402
+      spriteID: a5e068f9db39ac14899b763d29f917e0
+      internalID: 1026593325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_araignee_1
+      name: Spritesheet_Spider_1
       rect:
         serializedVersion: 2
-        x: 1418
-        y: 1421.5
-        width: 1418
-        height: 1421.5
+        x: 1670
+        y: 1484
+        width: 1039
+        height: 1115
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dfa7ab846ce1fc4ebdb9f22b3f32573
-      internalID: -46937116
+      spriteID: 7857cceddc516f94fb8347333fdee034
+      internalID: -1686024226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_araignee_2
+      name: Spritesheet_Spider_2
       rect:
         serializedVersion: 2
-        x: 2836
-        y: 1421.5
-        width: 1418
-        height: 1421.5
+        x: 3087
+        y: 1491
+        width: 1038
+        height: 1115
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2c5c3e8ed10c6648bdeefefdfba70a0
-      internalID: 14258925
+      spriteID: 0c94fd3f4f73e224799e125ffe88aeaf
+      internalID: -2076630024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_araignee_3
+      name: Spritesheet_Spider_3
       rect:
         serializedVersion: 2
-        x: 4254
-        y: 1421.5
-        width: 1418
-        height: 1421.5
+        x: 4513
+        y: 1498
+        width: 1021
+        height: 1104
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dd9c6317cdc9e34fab38765cdb07a69
-      internalID: -629907276
+      spriteID: c036c0f699013f449b0c4f8229791a67
+      internalID: 48484746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_araignee_4
+      name: Spritesheet_Spider_5
       rect:
         serializedVersion: 2
-        x: 5672
-        y: 1421.5
-        width: 1418
-        height: 1421.5
+        x: 5927
+        y: 1482
+        width: 1026
+        height: 1131
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f10ca0d058dcb204b9f9344ed9c35cf2
-      internalID: -1696616100
+      spriteID: cbfb00b9b09bf844f97f01b5d6c3b18b
+      internalID: -1483576679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_araignee_5
+      name: Spritesheet_Spider_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0.5
-        width: 1418
-        height: 1421.5
+        x: 262
+        y: 79
+        width: 1021
+        height: 1107
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9766e2b087e332459db51e4aec4981d
-      internalID: 568007897
+      spriteID: b16efe0f5ed102542a9215a75349c35c
+      internalID: -1324805595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_araignee_6
+      name: Spritesheet_Spider_8
       rect:
         serializedVersion: 2
-        x: 1418
-        y: 0.5
-        width: 1418
-        height: 1421.5
+        x: 1670
+        y: 73
+        width: 1035
+        height: 1116
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b8028bdf3d02cf49b368da1c5c7bcf2
-      internalID: -851724709
+      spriteID: ddfbc3344217c754094f1327b5aeb303
+      internalID: -501565938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spritesheet_araignee_7
+      name: Spritesheet_Spider_9
       rect:
         serializedVersion: 2
-        x: 2836
-        y: 0.5
-        width: 1418
-        height: 1421.5
+        x: 3086
+        y: 68
+        width: 1039
+        height: 1114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24ff94bb2a7baa843ab7fff78491ca13
-      internalID: -691372745
+      spriteID: 606687244da32c14c9023ee3906b1665
+      internalID: -859408897
       vertices: []
       indices: 
       edges: []
@@ -288,14 +288,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spritesheet_araignee_0: 1315940402
-      spritesheet_araignee_1: -46937116
-      spritesheet_araignee_2: 14258925
-      spritesheet_araignee_3: -629907276
-      spritesheet_araignee_4: -1696616100
-      spritesheet_araignee_5: 568007897
-      spritesheet_araignee_6: -851724709
-      spritesheet_araignee_7: -691372745
+      Spritesheet_Spider_0: 1026593325
+      Spritesheet_Spider_1: -1686024226
+      Spritesheet_Spider_2: -2076630024
+      Spritesheet_Spider_3: 48484746
+      Spritesheet_Spider_4: -1863857062
+      Spritesheet_Spider_5: -1483576679
+      Spritesheet_Spider_6: -1324805595
+      Spritesheet_Spider_7: -878015262
+      Spritesheet_Spider_8: -501565938
+      Spritesheet_Spider_9: -859408897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

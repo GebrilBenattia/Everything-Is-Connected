@@ -12,6 +12,7 @@ public class SpiderController : MonoBehaviour
     [SerializeField] private float m_Speed;
     [SerializeField] private float m_AngularSpeed;
     [SerializeField] private float m_DetectionRadius;
+    [SerializeField] private Animator m_Animator;
 
     // Private Variables
     private List<WebManager.LinkData> m_LinkDataList = new List<WebManager.LinkData>();
@@ -31,6 +32,11 @@ public class SpiderController : MonoBehaviour
     {  get { return m_LinkDataList.Count;} }
 
     // ######################################### FUNCTIONS ########################################
+
+    private void Awake()
+    {
+        m_Animator.enabled = false;
+    }
 
     public bool AreAlreadyLinked(WebManager.LinkData _LinkData)
     {
@@ -52,18 +58,23 @@ public class SpiderController : MonoBehaviour
         // Update m_TargetNewsObject value
         if (m_LinkDataList.Count == 0) m_TargetNewsObject = null;
         else if (m_TargetNewsObject == _NewsObject) m_TargetNewsObject = m_LinkDataList[0].linkNewsNodes.startNode;
+
+        if (m_TargetNewsObject == null) m_Animator.enabled = false;
     }
 
     public void SetTargetPos(Vector3 _TargetPos)
     {
         m_MoveToTarget = true;
         m_TargetPos = _TargetPos;
+        m_Animator.enabled = true;
     }
 
     public void LinkNews(WebManager.LinkData _LinkData)
     {
         if (m_LinkDataList.Count == 0) m_TargetNewsObject = _LinkData.linkNewsNodes.startNode;
         m_LinkDataList.Add(_LinkData);
+
+        m_Animator.enabled = true;
     }
 
     private void UpdateMoveTo(Vector3 _TargetPos)
@@ -103,6 +114,8 @@ public class SpiderController : MonoBehaviour
                 m_TargetNewsObject.EventOnLink(m_LinkDataList[0].linkNewsNodes.startNode);
                 m_LinkDataList.RemoveAt(0);
                 m_TargetNewsObject = m_LinkDataList.Count > 0 ? m_LinkDataList[0].linkNewsNodes.startNode : null;
+
+                if (m_TargetNewsObject == null) m_Animator.enabled = false;
             }
         }
     }
@@ -114,7 +127,10 @@ public class SpiderController : MonoBehaviour
             UpdateMoveTo(m_TargetPos);
 
         // The spider reach the current target -> stop to move
-        else m_MoveToTarget = false;
+        else {
+            m_Animator.enabled = false;
+            m_MoveToTarget = false;
+        }
     }
 
     private void Update()
