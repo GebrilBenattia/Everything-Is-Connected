@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EnemyFirfly : EnemyBase
 {
@@ -14,6 +15,7 @@ public class EnemyFirfly : EnemyBase
 
     protected override void EventOnWebCollision(WebLine _WebLine)
     {
+        _webTrappedEffect.Play();
         TakeDamage(_WebLine.damage);
     }
 

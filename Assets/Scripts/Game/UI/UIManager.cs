@@ -24,9 +24,9 @@ public class UIManager : MonoBehaviour
         instance = this;
     }
 
-    public void UpdateLife(GameObject _Container, int _Index)
+    public void UpdateLife(int _Index)
     {
-        _Container.transform.GetChild(_Index).GetComponent<Image>().enabled = false;
+        m_LifeBar.transform.GetChild(_Index).GetComponent<Image>().enabled = false;
     }
 
     public void ResetBubbles()

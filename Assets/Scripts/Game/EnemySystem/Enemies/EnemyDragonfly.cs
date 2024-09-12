@@ -15,6 +15,7 @@ public class EnemyDragonfly : EnemyBase
 
     protected override void EventOnWebCollision(WebLine _WebLine)
     {
+        _webTrappedEffect.Play();
         if (_WebLine.damage > m_MaxDmgImmunityAmount) TakeDamage(_WebLine.damage);
     }
 

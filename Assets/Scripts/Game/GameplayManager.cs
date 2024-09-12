@@ -67,8 +67,6 @@ public class GameplayManager : MonoBehaviour
             }
         }
         else UIManager.instance.StartHeadlines(conspiracy);
-        
-        Debug.Log(m_BubbleAmount);
     }
 
     private void SmartBomb()

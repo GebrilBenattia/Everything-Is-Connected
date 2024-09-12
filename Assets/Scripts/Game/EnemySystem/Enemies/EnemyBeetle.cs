@@ -8,6 +8,7 @@ public class EnemyBeetle : EnemyBase
 
     protected override void EventOnWebCollision(WebLine _WebLine)
     {
+        _webTrappedEffect.Play();
         WebManager.instance.BreakWebLine(_WebLine);
     }
 
