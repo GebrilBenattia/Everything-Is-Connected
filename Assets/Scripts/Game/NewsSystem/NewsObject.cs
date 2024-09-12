@@ -37,7 +37,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
     [SerializeField] private float m_PressTimeToMove;
 
     // Private Variables
-    private List<NewsObject> m_LinkedNewsObject = new List<NewsObject>();
+    private List<NewsObject> m_LinkedNewsObject;
     private NewsData m_NewsData;
     private Rigidbody m_Rigidbody;
     private Vector3 m_InitPos;
@@ -53,6 +53,12 @@ public class NewsObject : MonoBehaviour, IClickableObject
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        Init();
+    }
+
+    private void Init()
+    {
+        m_LinkedNewsObject = new List<NewsObject>();
         m_CurrentLifeTime = m_LifeTime;
         transform.localScale = m_StartLifeScale;
     }
@@ -122,6 +128,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
 
     public void Despawn()
     {
+        Init();
         NewsObjectPoolManager.instance.DespawnNewsObject(this);
     }
 

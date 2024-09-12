@@ -35,7 +35,6 @@ public class NewsSpawnManager : MonoBehaviour
 
     // Private Variables
     private float m_CurrentSpawnCooldown;
-    private int m_TotalNewsObjectCount = 0;
 
     // ###################################### GETTER / SETTER #####################################
 
@@ -57,7 +56,7 @@ public class NewsSpawnManager : MonoBehaviour
 
         // Calculate Spawn Rates
         for (int i = 0; i < spawnRates.Length; ++i) {
-            spawnRates[i] = m_TotalNewsObjectCount == 0 ? 1f : 1f / (1 + m_SpawnZoneList[i].newsCount);
+            spawnRates[i] = NewsObjectPoolManager.instance.activePoolCount == 0 ? 1f : 1f / (1 + m_SpawnZoneList[i].newsCount);
         }
 
         // Normalize Spawn Rates
@@ -105,13 +104,11 @@ public class NewsSpawnManager : MonoBehaviour
         // Instantiate random newsObject
         int randNewsDataIndex = Random.Range(0, m_NewsDataList.Length);
         NewsObjectPoolManager.instance.SpawnNewsObject(m_NewsDataList[randNewsDataIndex], new Vector3(posX, m_PosY, posZ));
-
-        m_TotalNewsObjectCount++;
     }
 
     private void Update()
     {
-        if (m_TotalNewsObjectCount >= m_MaxNewsCount) return;
+        if (NewsObjectPoolManager.instance.activePoolCount >= m_MaxNewsCount) return;
 
         if (m_CurrentSpawnCooldown > 0) m_CurrentSpawnCooldown -= Time.deltaTime;
         else {

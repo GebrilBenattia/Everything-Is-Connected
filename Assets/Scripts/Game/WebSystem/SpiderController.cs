@@ -104,7 +104,8 @@ public class SpiderController : MonoBehaviour
             UpdateMoveTo(m_TargetNewsObject.transform.position);
 
         // The spider reach the current target -> change target
-        else {
+        else if (m_TargetNewsObject != null && m_LinkDataList.Count > 0)
+        {
 
             // If was firstNode, change target to endNode
             if (m_LinkDataList[0].linkNewsNodes.startNode == m_TargetNewsObject) {

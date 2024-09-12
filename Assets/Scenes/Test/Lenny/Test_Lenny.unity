@@ -2328,7 +2328,7 @@ MonoBehaviour:
   m_WebPrefab: {fileID: 8476653123853843081, guid: fdc2a2e0d3f1eae4fad1ecbe43eb7bd9,
     type: 3}
   m_MaxWebLineSelection: 3
-  m_MaxWebLines: 2
+  m_MaxWebLines: 6
 --- !u!1 &1666968047
 GameObject:
   m_ObjectHideFlags: 0
