@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class NewsObject : MonoBehaviour, IClickableObject
 {
+    // ########################################### ENUMS ##########################################
+
+    private enum InteractionType
+    {
+        None,
+        SimpleClick,
+        StartMoving
+    }
+
     // ######################################### VARIABLES ########################################
 
 #if UNITY_EDITOR
@@ -24,15 +33,20 @@ public class NewsObject : MonoBehaviour, IClickableObject
     [SerializeField] private float m_DragResistDampFactor;
     [SerializeField] private float m_ConnectionTime;
 
+    // Interaction Settings
+    [Header("Interaction Settings")]
+    [SerializeField] private float m_PressTimeToMove;
+
     // Private Variables
     private NewsData m_NewsData;
     private Rigidbody m_Rigidbody;
     private Vector3 m_InitPos;
-    private bool m_IsSelected = false;
+    private bool m_CanMoveToCursor = false;
+    private bool m_IsLeftButtonDown = false;
+    private InteractionType m_InteractionType = InteractionType.None;
 
     // Public variables
     public bool connected;
-    public Vector3 initialPos;
 
     // ######################################### FUNCTIONS ########################################
 
@@ -41,14 +55,33 @@ public class NewsObject : MonoBehaviour, IClickableObject
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void EventOnClick()
+    private IEnumerator LeftButtonPressUpdate()
     {
-        m_IsSelected = true;
+        // Variables
+        float pressTime = 0f;
+
+        // Update press time
+        while (m_IsLeftButtonDown && pressTime < m_PressTimeToMove) {
+            pressTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // If press time exceed min press time to move: start moving
+        if (m_IsLeftButtonDown && pressTime >= m_PressTimeToMove) m_CanMoveToCursor = true;
+        // Else add newsObject as link node
+        else WebManager.instance.AddNewsObjectAsLinkNode(this);
     }
 
-    public void EventOnClickRelease()
+    public void EventOnLeftButtonDown(RaycastHit _HitInfo)
     {
-        m_IsSelected = false;
+        m_IsLeftButtonDown = true;
+        StartCoroutine(LeftButtonPressUpdate());
+    }
+
+    public void EventOnLeftButtonUp()
+    {
+        m_CanMoveToCursor = false;
+        m_IsLeftButtonDown = false;
     }
 
     public void OnConneCtion()
@@ -113,7 +146,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
         if (Vector3.Distance(transform.position, m_InitPos) >= m_MoveRadius) {
 
             // Change resist damping factor
-            if (!m_IsSelected) m_Rigidbody.drag = m_DragResistDampFactor;
+            if (!m_CanMoveToCursor) m_Rigidbody.drag = m_DragResistDampFactor;
 
             // Update velocity to recenter the newsObject
             Vector3 direction = m_InitPos - transform.position;
@@ -126,7 +159,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
 
     private void FixedUpdate()
     {
-        if (m_IsSelected) MoveToCursor();
+        if (m_CanMoveToCursor) MoveToCursor();
         MovementsLimit();
     }
 

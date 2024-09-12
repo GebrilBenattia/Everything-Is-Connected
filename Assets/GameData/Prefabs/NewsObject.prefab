@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7231548073715378485}
   - component: {fileID: 621559510190971421}
   - component: {fileID: 1303543992563421443}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: NewsObject
   m_TagString: NewsObject
   m_Icon: {fileID: 0}
@@ -52,10 +52,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 183
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -73,10 +73,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 183
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -103,6 +103,9 @@ MonoBehaviour:
   m_MoveRadius: 2
   m_NormalResistDampFactor: 2
   m_DragResistDampFactor: 15
+  m_ConnectionTime: 0
+  m_PressTimeToMove: 0.1
+  connected: 0
 --- !u!1 &3911468011220930423
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +117,7 @@ GameObject:
   - component: {fileID: 7438534299509854044}
   - component: {fileID: 4611657888875646421}
   - component: {fileID: 2655367205892430671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7878375754110912775}
   - component: {fileID: 5657386157260384419}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

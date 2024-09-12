@@ -6,7 +6,7 @@ public class EnemyBeetle : EnemyBase
 {
     // ######################################### FUNCTIONS ########################################
 
-    protected override void EventOnWebCollision(WebSegment _WebSegment)
+    protected override void EventOnWebCollision(WebLine _WebLine)
     {
         // TODO: Destroy web segment
     }
