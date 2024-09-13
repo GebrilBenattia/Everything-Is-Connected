@@ -61,21 +61,24 @@ public class WaveSpawnerManager : MonoBehaviour
 
     private void Start()
     {
+        float spawnPadding = 2f;
+        float cornerPadding = 4f;
+
         // Left Border
-        m_LeftBorderSpawn.minPos = GameBorderManager.instance.worldLeftDown + Vector3.up * m_DefaultYPos;
-        m_LeftBorderSpawn.maxPos = GameBorderManager.instance.worldLeftUp + Vector3.up * m_DefaultYPos;
+        m_LeftBorderSpawn.minPos = GameBorderManager.instance.worldLeftDown + Vector3.up * m_DefaultYPos - new Vector3(spawnPadding, 0, -cornerPadding);
+        m_LeftBorderSpawn.maxPos = GameBorderManager.instance.worldLeftUp + Vector3.up * m_DefaultYPos - new Vector3(spawnPadding, 0, cornerPadding);
 
         // Right Border
-        m_RightBorderSpawn.minPos = GameBorderManager.instance.worldRightDown + Vector3.up * m_DefaultYPos;
-        m_RightBorderSpawn.maxPos = GameBorderManager.instance.worldRightUp + Vector3.up * m_DefaultYPos;
+        m_RightBorderSpawn.minPos = GameBorderManager.instance.worldRightDown + Vector3.up * m_DefaultYPos + new Vector3(spawnPadding, 0, cornerPadding);
+        m_RightBorderSpawn.maxPos = GameBorderManager.instance.worldRightUp + Vector3.up * m_DefaultYPos + new Vector3(spawnPadding, 0, -cornerPadding);
 
         // Up Border
-        m_UpBorderSpawn.minPos = GameBorderManager.instance.worldLeftUp + Vector3.up * m_DefaultYPos;
-        m_UpBorderSpawn.maxPos = GameBorderManager.instance.worldRightUp + Vector3.up * m_DefaultYPos;
+        m_UpBorderSpawn.minPos = GameBorderManager.instance.worldLeftUp + Vector3.up * m_DefaultYPos + new Vector3(cornerPadding, 0, spawnPadding);
+        m_UpBorderSpawn.maxPos = GameBorderManager.instance.worldRightUp + Vector3.up * m_DefaultYPos + new Vector3(-cornerPadding, 0, spawnPadding);
 
         // Down Border
-        m_DownBorderSpawn.minPos = GameBorderManager.instance.worldLeftDown + Vector3.up * m_DefaultYPos;
-        m_DownBorderSpawn.maxPos = GameBorderManager.instance.worldRightDown + Vector3.up * m_DefaultYPos;
+        m_DownBorderSpawn.minPos = GameBorderManager.instance.worldLeftDown + Vector3.up * m_DefaultYPos - new Vector3(-cornerPadding, 0, spawnPadding);
+        m_DownBorderSpawn.maxPos = GameBorderManager.instance.worldRightDown + Vector3.up * m_DefaultYPos - new Vector3(cornerPadding, 0, spawnPadding);
     }
 
     private SpawnData GetSpawnDataFromIndex(int _Index)

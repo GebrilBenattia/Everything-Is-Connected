@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,10 @@ public class GameplayManager : MonoBehaviour
 
     // Game Settings
     [Header("Game Settings")]
-    [SerializeField] public float life;
+    [SerializeField] private float m_MaxLife;
+
+    // Public Variables
+    [NonSerialized] public float life;
 
     // Conspiracy system objects
     [SerializeField] public NewsConspiracyHolder newsConspiracyHolder;
@@ -31,11 +35,18 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private int m_DamageForBubble;
 
     public NewsLinkData newsLinkData;
+
+    // ###################################### GETTER / SETTER #####################################
+
+    public float maxLife
+    { get { return m_MaxLife; } }
+
     // ######################################### FUNCTIONS ########################################
 
     private void Awake()
     {
         m_Instance = this;
+        life = m_MaxLife;
     }
 
     /*public void LoadTheme(string _ThemeToLoad)

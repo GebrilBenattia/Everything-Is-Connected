@@ -67,9 +67,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6f6e4ec73501346bc6c11e457aae7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnWaitTime: 5
   _life: 1
   _speed: 1
   _damage: 1
+  m_PreventSpriteOffset: 2.5
+  m_PreventSpritePrefab: {fileID: 1921602552245730592, guid: 994c03cfa75bf4544868c37fdd926bd3,
+    type: 3}
   _webTrappedEffect: {fileID: 6952205141572182942, guid: 37c78d6730b89184d9f792f11a73b092,
     type: 3}
 --- !u!1 &2497563759298906937

@@ -173,9 +173,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c2f21b55b45184b9dba0d77a091d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnWaitTime: 5
   _life: 1
   _speed: 2
   _damage: 1
+  m_PreventSpriteOffset: 2.5
+  m_PreventSpritePrefab: {fileID: 1921602552245730592, guid: 72a4723a3a3080c459a7a00842d7c0e0,
+    type: 3}
   _webTrappedEffect: {fileID: 6952205141572182942, guid: 37c78d6730b89184d9f792f11a73b092,
     type: 3}
   m_MaxDmgImmunityAmount: 3

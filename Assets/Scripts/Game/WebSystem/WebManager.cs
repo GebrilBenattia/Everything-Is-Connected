@@ -59,6 +59,7 @@ public class WebManager : MonoBehaviour
 
     public void DeselectNewsNodes()
     {
+        if (m_CurrentLinkNewsNodes.startNode != null) m_CurrentLinkNewsNodes.startNode.EventOnUnselect();
         m_CurrentLinkNewsNodes = new LinkNewsNodes();
     }
 
@@ -89,14 +90,25 @@ public class WebManager : MonoBehaviour
         if (m_SpiderController.currentLinkCount >= m_MaxWebLineSelection) return;
         if (m_LinkDataList.Count >= m_MaxWebLines) return;
 
+
         // Set start Node
-        if (m_CurrentLinkNewsNodes.startNode == null) m_CurrentLinkNewsNodes.startNode = _NewsObject;
+        if (m_CurrentLinkNewsNodes.startNode == null) {
+            m_CurrentLinkNewsNodes.startNode = _NewsObject;
+            _NewsObject.EventOnSelected();
+        }
 
         // Set end Node
         else {
             // Check if can create the link and add to nodes list
             m_CurrentLinkNewsNodes.endNode = _NewsObject;
-            if (!AreAlreadyLinked(m_CurrentLinkNewsNodes) && !AreSameNodes(m_CurrentLinkNewsNodes)) AddNewLinkData();
+            if (!AreAlreadyLinked(m_CurrentLinkNewsNodes) && !AreSameNodes(m_CurrentLinkNewsNodes)) {
+                _NewsObject.EventOnSelected();
+                AddNewLinkData();
+            }
+            else {
+                m_CurrentLinkNewsNodes.startNode.EventOnUnselect();
+                m_CurrentLinkNewsNodes.endNode.EventOnUnselect();
+            }
             m_CurrentLinkNewsNodes = new LinkNewsNodes();
         }
     }

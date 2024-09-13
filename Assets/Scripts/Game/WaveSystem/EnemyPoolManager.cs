@@ -61,10 +61,11 @@ public class EnemyPoolManager : MonoBehaviour
             m_InactivePool.RemoveAt(0);
             m_ActivePool.Add(enemy);
 
-            // Init newsObject
+            // Init enemy
             enemy.gameObject.SetActive(true);
             enemy.transform.position = _Pos;
             enemy.transform.rotation = _Rotation;
+            enemy.Init();
             return enemy;
         }
 
