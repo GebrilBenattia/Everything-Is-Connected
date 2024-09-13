@@ -27,7 +27,6 @@ public class GameOverMenu : MonoBehaviour
     void Start()
     {
         emitter = GetComponent<StudioEventEmitter>();
-        emitter.Stop();
         emitter.Play();
     }
 
@@ -55,6 +54,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void OnQuitClicked()
     {
+        emitter.Stop();
         RuntimeManager.PlayOneShot(clickedSound);
         quitButton.GetComponent<Image>().sprite = quitButtonClicked;
         OnQuitButtonUnHovered();
@@ -65,7 +65,7 @@ public class GameOverMenu : MonoBehaviour
     }
     public void OnQuitButtonUnHovered()
     {
-        quitButton.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        //quitButton.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         //quitButton.GetComponent<Image>().color = new Vector4(quitButton.GetComponent<Image>().color.r, quitButton.GetComponent<Image>().color.g, quitButton.GetComponent<Image>().color.b, 255f);
     }
 

@@ -1636,7 +1636,7 @@ MonoBehaviour:
       Data4: 1138458077
     Path: event:/MUSIC/level_loop
   Event: 
-  PlayEvent: 1
+  PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
