@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlayButtonUnHovered()
     {
-        playButton.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        playButton.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         //playButton.GetComponent<Image>().color = new Vector4(playButton.GetComponent<Image>().color.r, playButton.GetComponent<Image>().color.g, playButton.GetComponent<Image>().color.b, 255f);
     }
 
