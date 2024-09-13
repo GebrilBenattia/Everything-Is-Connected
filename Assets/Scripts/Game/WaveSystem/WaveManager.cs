@@ -93,6 +93,7 @@ public class WaveManager : MonoBehaviour
 
     private void InitWave()
     {
+        UIManager.instance.PlayWaveWarning();
         m_WaveIsInitialized = true;
         m_CurrentTokenCount = m_MaxTokenCount;
         m_SpawnCooldown = Random.Range(m_MinSpawnInterval, m_MaxSpawnInterval);

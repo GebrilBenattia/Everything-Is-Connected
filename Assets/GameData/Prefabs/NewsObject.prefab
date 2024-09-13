@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7231548073715378485}
   - component: {fileID: 621559510190971421}
   - component: {fileID: 1303543992563421443}
+  - component: {fileID: 6300749390298110442}
   m_Layer: 6
   m_Name: NewsObject
   m_TagString: NewsObject
@@ -83,7 +84,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1303543992563421443
 MonoBehaviour:

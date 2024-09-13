@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject m_LifeBar;
     [SerializeField] private GameObject m_TextContainer;
     [SerializeField] private HeadLine m_Headline;
+    [SerializeField] private GameObject m_WaveAnnouncement;
     private int testCounter = 0;
 
     
@@ -22,6 +23,12 @@ public class UIManager : MonoBehaviour
             return;
         }
         instance = this;
+    }
+
+    public void PlayWaveWarning()
+    {
+        m_WaveAnnouncement.SetActive(false);
+        m_WaveAnnouncement.SetActive(true);
     }
 
     public void UpdateLife(int _Index)
@@ -45,7 +52,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateBubbles(int _Index, string _Text)
     {
-        m_TextContainer.transform.GetChild(_Index).GetComponent<TextBubble>().SetNewBubble(TextBubble.TextSizes.small, _Text);
+        m_TextContainer.transform.GetChild(_Index).GetComponent<TextBubble>().SetNewBubble(TextBubble.TextSizes.big, _Text);
     }
 
     private void OnDestroy()
