@@ -13,7 +13,7 @@ public class DamageZone : MonoBehaviour
     [SerializeField] private float m_DamageAmount;
     [SerializeField] private float m_ZoneRadius;
     [SerializeField] private LayerMask m_LayerMask;
-    [SerializeField] private VisualEffect m_Explosion;
+
     // Private Variables
     private EnemyBase m_EnemySource;
     private float m_DamageIntervalCooldown;
@@ -25,12 +25,6 @@ public class DamageZone : MonoBehaviour
         m_EnemySource = _EnemySource;
         DealZoneDamage();
         Invoke(nameof(Despawn), m_DespawnTime);
-    }
-
-    private void Start()
-    {
-        Debug.Log("created");
-        m_Explosion.Play();
     }
 
     private void DealZoneDamage()

@@ -60,6 +60,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected void DealPlayerDamage()
     {
         GameplayManager.Instance.life -= _damage;
+        GameplayManager.Instance.life = Mathf.Clamp(GameplayManager.Instance.life, 0f, GameplayManager.Instance.maxLife);
         UIManager.instance.UpdateLife((int)GameplayManager.Instance.life);
     }
 
