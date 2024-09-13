@@ -463,9 +463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theoryHolder:
     conspiracyTheoryArray: []
-  waveprefab: {fileID: 7221210638363249950, guid: fa59a44f6f4dff44a91160ae6109f2a7,
-    type: 3}
-  canvas: {fileID: 918111135}
 --- !u!4 &1116885680
 Transform:
   m_ObjectHideFlags: 0
@@ -518,8 +515,6 @@ MonoBehaviour:
   m_MinSpawnInterval: 0
   m_MaxSpawnInterval: 0
   m_EnemyWaveDataList: []
-  waveprefab: {fileID: 0}
-  canvas: {fileID: 0}
 --- !u!4 &1458161884
 Transform:
   m_ObjectHideFlags: 0

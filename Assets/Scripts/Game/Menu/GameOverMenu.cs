@@ -32,7 +32,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void OnRestartButtonUnHovered()
     {
-        //restartButton.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        restartButton.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         //restartButton.GetComponent<Image>().color = new Vector4(restartButton.GetComponent<Image>().color.r, restartButton.GetComponent<Image>().color.g, restartButton.GetComponent<Image>().color.b, 255f);
     }
 
@@ -40,7 +40,7 @@ public class GameOverMenu : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(hoveredSound);
         //restartButton.GetComponent<Image>().color = new Vector4(restartButton.GetComponent<Image>().color.r, restartButton.GetComponent<Image>().color.g, restartButton.GetComponent<Image>().color.b, 0f);
-        //restartButton.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        restartButton.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void OnRestartClicked()
@@ -65,7 +65,7 @@ public class GameOverMenu : MonoBehaviour
     }
     public void OnQuitButtonUnHovered()
     {
-        //quitButton.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        quitButton.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         //quitButton.GetComponent<Image>().color = new Vector4(quitButton.GetComponent<Image>().color.r, quitButton.GetComponent<Image>().color.g, quitButton.GetComponent<Image>().color.b, 255f);
     }
 
@@ -73,7 +73,7 @@ public class GameOverMenu : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(hoveredSound);
         //quitButton.GetComponent<Image>().color = new Vector4(quitButton.GetComponent<Image>().color.r, quitButton.GetComponent<Image>().color.g, quitButton.GetComponent<Image>().color.b, 0f);
-        //quitButton.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        quitButton.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     // Update is called once per frame
