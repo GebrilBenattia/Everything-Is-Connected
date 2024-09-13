@@ -17,7 +17,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected Vector3 _initialPos;
 
     // VFX variables
-    [SerializeField] protected VisualEffect _webTrappedEffect; 
+    [SerializeField] protected GameObject _webTrappedEffect; 
 
     // ######################################### FUNCTIONS ########################################
 

@@ -8,7 +8,7 @@ public class EnemyFly : EnemyBase
 
     protected override void EventOnWebCollision(WebLine _WebLine)
     {
-        _webTrappedEffect.Play();
+        Instantiate(_webTrappedEffect, transform.position, Quaternion.identity);
         TakeDamage(_WebLine.damage);
     }
 
