@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GenerateNewGUUID: 0
   name: MAYA
-  sprite: {fileID: 21300000, guid: e408adcb7ac00b54aa9bafae9739e6ae, type: 3}
+  sprite: {fileID: 21300000, guid: 1ff4fe3b14f4e4d43a74fa66b6d5bf5c, type: 3}
   theme: 7

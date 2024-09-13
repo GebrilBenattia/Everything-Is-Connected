@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GenerateNewGUUID: 0
   name: ASTROLOGIE
-  sprite: {fileID: 21300000, guid: 7aab8f4b33f092545935493e968c9de3, type: 3}
+  sprite: {fileID: 21300000, guid: b8ab69ed3ab802e40b56203fe7bb28f3, type: 3}
   theme: 0

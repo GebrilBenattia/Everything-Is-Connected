@@ -19,7 +19,10 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] private float m_PreventSpriteOffset;
     [SerializeField] private GameObject m_PreventSpritePrefab;
 
+    // VFX Settings
+    [Header("VFX Settings")]
     [SerializeField] protected GameObject _webTrappedEffect;
+    [SerializeField] private GameObject m_DeathPrefab;
 
     // Protected Variables
     protected Vector3 _initialPos;
@@ -39,7 +42,7 @@ public abstract class EnemyBase : MonoBehaviour
         _isDead = false;
         Invoke(nameof(SpawnEnemy), _spawnWaitTime);
         EnemyPreventSprite enemyPreventSprite = Instantiate(m_PreventSpritePrefab, transform.position + transform.forward * m_PreventSpriteOffset + new Vector3(0, 0.01f, 0), transform.rotation).GetComponent<EnemyPreventSprite>();
-        enemyPreventSprite.Init(_spawnWaitTime);
+        enemyPreventSprite.Init(_spawnWaitTime * 0.9f * 1f / _speed);
     }
 
     private void SpawnEnemy()
@@ -67,6 +70,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected void Death()
     {
         _isDead = true;
+        Instantiate(m_DeathPrefab, transform.position, transform.rotation);
         EventOnDeath();
         EnemyPoolManager.instance.DespawnEnemy(this);
     }

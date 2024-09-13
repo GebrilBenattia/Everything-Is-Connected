@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GenerateNewGUUID: 0
   name: NASA
-  sprite: {fileID: 21300000, guid: fc170ecf380fb494ebc5a3eaaac1dda3, type: 3}
+  sprite: {fileID: 21300000, guid: aa62bc74aa53d28499824a4bd24c7941, type: 3}
   theme: 2

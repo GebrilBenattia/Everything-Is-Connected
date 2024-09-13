@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GenerateNewGUUID: 0
   name: ALIEN
-  sprite: {fileID: 21300000, guid: 62b6babdcbf637e4b8b0d950d3445085, type: 3}
+  sprite: {fileID: 21300000, guid: a07506376c1c716469f166737edfaa9f, type: 3}
   theme: 5

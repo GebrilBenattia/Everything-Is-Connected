@@ -2326,7 +2326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b8db8e8e9326484693438a3d1619378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CursorTexture: {fileID: 2800000, guid: 33b6272cdc0877a42a087bc889592459, type: 3}
+  m_CursorTexture: {fileID: 2800000, guid: 981411f7a5684954d9d69036832f0143, type: 3}
   m_CursorOffset: {x: 13, y: 24}
 --- !u!1 &1061630798
 GameObject:
