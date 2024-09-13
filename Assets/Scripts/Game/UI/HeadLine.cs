@@ -42,7 +42,7 @@ public class HeadLine : MonoBehaviour
             m_ScrollingText.transform.position = new Vector3(_StartPosX, m_ScrollingText.transform.position.y, m_ScrollingText.transform.position.z);
             SetModeVoid();
         }
-        m_ScrollingText.transform.position += Vector3.left * m_ScrollSpeed;
+        m_ScrollingText.transform.position += Vector3.left * 5;
     }
 
     // Start is called before the first frame update

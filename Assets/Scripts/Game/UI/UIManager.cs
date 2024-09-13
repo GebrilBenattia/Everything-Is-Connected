@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateBubbles(int _Index, string _Text)
     {
-        m_TextContainer.transform.GetChild(_Index).GetComponent<TextBubble>().SetNewBubble(TextBubble.TextSizes.small, _Text);
+        m_TextContainer.transform.GetChild(_Index).GetComponent<TextBubble>().SetNewBubble(TextBubble.TextSizes.big, _Text);
     }
 
     private void OnDestroy()

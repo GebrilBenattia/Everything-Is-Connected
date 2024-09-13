@@ -63,9 +63,9 @@ MonoBehaviour:
   m_InactiveHeadline: {fileID: 839870535609949770}
   m_ActiveHeadline: {fileID: 5270772611640771542}
   m_ScrollingText: {fileID: 4311622582400409641}
-  m_ScrollSpeed: 1
-  _StartPosX: 205.2801
-  _EndPosX: -205.2801
+  m_ScrollSpeed: 5
+  _StartPosX: 4007
+  _EndPosX: -4007
 --- !u!1 &4311622582400409641
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,8 +100,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1920, y: 0}
-  m_SizeDelta: {x: 1920, y: 100}
+  m_AnchoredPosition: {x: 3047, y: 0}
+  m_SizeDelta: {x: 4158, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4255836042470321461
 CanvasRenderer:
@@ -144,7 +144,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: NewText
 --- !u!1 &5235658887924277762
 GameObject:
   m_ObjectHideFlags: 0
