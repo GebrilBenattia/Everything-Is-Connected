@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public abstract class EnemyBase : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public abstract class EnemyBase : MonoBehaviour
     // Protected Variables
     protected Vector3 _initialPos;
     protected bool _isDead = false;
+
+    // VFX variables
+    [SerializeField] protected GameObject _webTrappedEffect; 
 
     // ######################################### FUNCTIONS ########################################
 
@@ -56,6 +60,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected void DealPlayerDamage()
     {
         GameplayManager.Instance.life -= _damage;
+        UIManager.instance.UpdateLife((int)GameplayManager.Instance.life);
     }
 
     private void OnTriggerEnter(Collider _Other)

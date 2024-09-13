@@ -70,6 +70,8 @@ MonoBehaviour:
   _life: 1
   _speed: 1
   _damage: 1
+  _webTrappedEffect: {fileID: 6952205141572182942, guid: 37c78d6730b89184d9f792f11a73b092,
+    type: 3}
 --- !u!1 &2497563759298906937
 GameObject:
   m_ObjectHideFlags: 0

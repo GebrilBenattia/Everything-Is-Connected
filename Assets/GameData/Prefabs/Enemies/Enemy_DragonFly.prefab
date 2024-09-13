@@ -176,4 +176,6 @@ MonoBehaviour:
   _life: 1
   _speed: 2
   _damage: 1
+  _webTrappedEffect: {fileID: 6952205141572182942, guid: 37c78d6730b89184d9f792f11a73b092,
+    type: 3}
   m_MaxDmgImmunityAmount: 3
