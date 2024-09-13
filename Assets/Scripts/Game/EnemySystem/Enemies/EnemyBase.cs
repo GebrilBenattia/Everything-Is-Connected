@@ -9,16 +9,22 @@ public abstract class EnemyBase : MonoBehaviour
 
     // Enemy Settings
     [Header("Enemy Settings")]
+    [SerializeField] protected float _spawnWaitTime;
     [SerializeField] protected float _life;
     [SerializeField] protected float _speed;
     [SerializeField] protected float _damage;
 
+    // Object References
+    [Header("Prevent Sprite Settings")]
+    [SerializeField] private float m_PreventSpriteOffset;
+    [SerializeField] private GameObject m_PreventSpritePrefab;
+
+    [SerializeField] protected GameObject _webTrappedEffect;
+
     // Protected Variables
     protected Vector3 _initialPos;
     protected bool _isDead = false;
-
-    // VFX variables
-    [SerializeField] protected GameObject _webTrappedEffect; 
+    protected bool _isSpawned = false;
 
     // ######################################### FUNCTIONS ########################################
 
@@ -31,11 +37,19 @@ public abstract class EnemyBase : MonoBehaviour
     {
         _initialPos = transform.position;
         _isDead = false;
+        Invoke(nameof(SpawnEnemy), _spawnWaitTime);
+        EnemyPreventSprite enemyPreventSprite = Instantiate(m_PreventSpritePrefab, transform.position + transform.forward * m_PreventSpriteOffset + new Vector3(0, 0.01f, 0), transform.rotation).GetComponent<EnemyPreventSprite>();
+        enemyPreventSprite.Init(_spawnWaitTime);
+    }
+
+    private void SpawnEnemy()
+    {
+        _isSpawned = true;
     }
 
     public void TakeDamage(float _DamageAmount)
     {
-        if (_isDead) return;
+        if (_isDead || !_isSpawned) return;
 
         _life -= _DamageAmount;
         if (_life <= 0) Death();
@@ -79,6 +93,6 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void Update()
     {
-        UpdateMovements();
+        if (!_isDead && _isSpawned) UpdateMovements();
     }
 }
