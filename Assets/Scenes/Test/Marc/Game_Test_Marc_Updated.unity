@@ -723,7 +723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 961739752}
-  life: 4
+  m_MaxLife: 0
   newsConspiracyHolder: {fileID: 730427786}
   m_BubbleAmountBeforeSmartBomb: 4
   m_DamageForBubble: 1
