@@ -1379,8 +1379,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugLog: 0
   m_TimeBetweenWaves: 5
-  m_MaxTokenCount: 10
-  m_MaxActiveEnemies: 4
+  m_MaxTokenCount: 100
+  m_MaxActiveEnemies: 10
   m_DifficultyIncrement: 1
   m_MinSpawnInterval: 0.2
   m_MaxSpawnInterval: 3

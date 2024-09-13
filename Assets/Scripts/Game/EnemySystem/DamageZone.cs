@@ -7,20 +7,23 @@ public class DamageZone : MonoBehaviour
     // ######################################### VARIABLES ########################################
 
     // Zone Damage Settings
-    [SerializeField] private int m_MaxDamageCycleCount;
-    [SerializeField] private float m_DamageInterval;
+    [Header("Zone Damage Settings")]
+    [SerializeField] private float m_DespawnTime;
     [SerializeField] private float m_DamageAmount;
     [SerializeField] private float m_ZoneRadius;
     [SerializeField] private LayerMask m_LayerMask;
 
     // Private Variables
+    private EnemyBase m_EnemySource;
     private float m_DamageIntervalCooldown;
 
     // ######################################### FUNCTIONS ########################################
 
-    private void Awake()
+    public void Init(EnemyBase _EnemySource)
     {
-        m_DamageIntervalCooldown = m_DamageInterval;
+        m_EnemySource = _EnemySource;
+        DealZoneDamage();
+        Invoke(nameof(Despawn), m_DespawnTime);
     }
 
     private void DealZoneDamage()
@@ -33,24 +36,14 @@ public class DamageZone : MonoBehaviour
 
             // If is enemy: take damage
             if (hitColliders[i].gameObject.TryGetComponent(out EnemyBase enemy)) {
-                enemy.TakeDamage(m_DamageAmount);
+                if (m_EnemySource != enemy) enemy.TakeDamage(m_DamageAmount);
             }
         }
-
-        --m_MaxDamageCycleCount;
     }
 
-    private void Update()
+    private void Despawn()
     {
-        if (m_MaxDamageCycleCount == 0) Destroy(gameObject);
-
-        // Update damage interval cooldown
-        if (m_DamageIntervalCooldown > 0) m_DamageIntervalCooldown -= Time.deltaTime;
-        // Deal damage
-        else {
-            m_DamageIntervalCooldown += m_DamageInterval;
-            DealZoneDamage();
-        }
+        Destroy(gameObject);
     }
 
 #if UNITY_EDITOR

@@ -19,6 +19,7 @@ public class EnemyFirfly : EnemyBase
 
     protected override void EventOnDeath()
     {
-        Instantiate(m_DamageZonePrefab, transform.position, Quaternion.identity);
+        DamageZone damageZone = Instantiate(m_DamageZonePrefab, transform.position, Quaternion.identity).GetComponent<DamageZone>();
+        damageZone.Init(this);
     }
 }

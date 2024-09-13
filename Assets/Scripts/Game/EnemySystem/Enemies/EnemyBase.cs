@@ -14,6 +14,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     // Protected Variables
     protected Vector3 _initialPos;
+    protected bool _isDead = false;
 
     // ######################################### FUNCTIONS ########################################
 
@@ -25,10 +26,13 @@ public abstract class EnemyBase : MonoBehaviour
     public void Init()
     {
         _initialPos = transform.position;
+        _isDead = false;
     }
 
     public void TakeDamage(float _DamageAmount)
     {
+        if (_isDead) return;
+
         _life -= _DamageAmount;
         if (_life <= 0) Death();
     }
@@ -44,6 +48,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void Death()
     {
+        _isDead = true;
         EventOnDeath();
         EnemyPoolManager.instance.DespawnEnemy(this);
     }
