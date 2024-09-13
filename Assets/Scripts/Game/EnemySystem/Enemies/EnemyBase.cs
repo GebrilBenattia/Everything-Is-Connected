@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,6 +80,8 @@ public abstract class EnemyBase : MonoBehaviour
     {
         GameplayManager.Instance.life -= _damage;
         GameplayManager.Instance.life = Mathf.Clamp(GameplayManager.Instance.life, 0f, GameplayManager.Instance.maxLife);
+        GameplayManager.Instance.PLayDamageSound();
+        if (GameplayManager.Instance.life == 0) GameplayManager.Instance.GameOver();
         UIManager.instance.UpdateLife((int)GameplayManager.Instance.life);
     }
 

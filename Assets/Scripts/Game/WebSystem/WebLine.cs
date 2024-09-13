@@ -11,6 +11,10 @@ public class WebLine : MonoBehaviour
     [SerializeField] private GameObject m_VFX;
     [SerializeField] private Transform m_VFXEndPoint;
 
+    // VFX Settings
+    [Header("VFX Settings")]
+    [SerializeField] private GameObject m_SFXDestroy;
+
     // Damage Settings
     [Header("Collision Settings")]
     [SerializeField] private float m_Thickness;
@@ -49,6 +53,7 @@ public class WebLine : MonoBehaviour
 
     public void DestroyLine()
     {
+        Instantiate(m_SFXDestroy);
         Destroy(gameObject);
     }
 

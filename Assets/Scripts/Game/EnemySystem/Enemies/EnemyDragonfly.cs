@@ -16,7 +16,7 @@ public class EnemyDragonfly : EnemyBase
     protected override void EventOnWebCollision(WebLine _WebLine)
     {
         Instantiate(_webTrappedEffect, transform.position, Quaternion.identity);
-        if (_WebLine.damage > m_MaxDmgImmunityAmount) TakeDamage(_WebLine.damage);
+        TakeDamage(_WebLine.damage);
     }
 
     protected override void EventOnDeath()

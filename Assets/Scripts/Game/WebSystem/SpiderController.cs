@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class SpiderController : MonoBehaviour
     private NewsObject m_TargetNewsObject = null;
     private bool m_MoveToTarget = false;
     private Vector3 m_TargetPos;
+    private StudioEventEmitter m_EventEmitter;
 
     // ###################################### GETTER / SETTER #####################################
 
@@ -36,6 +38,7 @@ public class SpiderController : MonoBehaviour
     private void Awake()
     {
         m_Animator.enabled = false;
+        m_EventEmitter = GetComponent<StudioEventEmitter>();
     }
 
     public bool AreAlreadyLinked(WebManager.LinkData _LinkData)
@@ -77,6 +80,7 @@ public class SpiderController : MonoBehaviour
         m_MoveToTarget = true;
         m_TargetPos = _TargetPos;
         m_Animator.enabled = true;
+        m_EventEmitter.Play();
     }
 
     public void LinkNews(WebManager.LinkData _LinkData)
@@ -84,6 +88,7 @@ public class SpiderController : MonoBehaviour
         if (m_LinkDataList.Count == 0) m_TargetNewsObject = _LinkData.linkNewsNodes.startNode;
         m_LinkDataList.Add(_LinkData);
         m_Animator.enabled = true;
+        m_EventEmitter.Play();
     }
 
     private void UpdateMoveTo(Vector3 _TargetPos)
@@ -127,7 +132,10 @@ public class SpiderController : MonoBehaviour
                 m_LinkDataList.RemoveAt(0);
                 m_TargetNewsObject = m_LinkDataList.Count > 0 ? m_LinkDataList[0].linkNewsNodes.startNode : null;
 
-                if (m_TargetNewsObject == null) m_Animator.enabled = false;
+                if (m_TargetNewsObject == null) {
+                    m_Animator.enabled = false;
+                    m_EventEmitter.Stop();
+                }
             }
         }
     }
@@ -141,6 +149,7 @@ public class SpiderController : MonoBehaviour
         // The spider reach the current target -> stop to move
         else {
             m_Animator.enabled = false;
+            m_EventEmitter.Stop();
             m_MoveToTarget = false;
         }
     }

@@ -97,6 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_VFX: {fileID: 6151495201560535759}
   m_VFXEndPoint: {fileID: 6151495201729237956}
+  m_SFXDestroy: {fileID: 6816932090266978957, guid: e1c1fe019a40ae94da8390fabfb45609,
+    type: 3}
   m_Thickness: 0.3
 --- !u!1001 &693858574391407257
 PrefabInstance:

@@ -49,6 +49,7 @@ public class GameOverMenu : MonoBehaviour
         RuntimeManager.PlayOneShot(clickedSound);
         restartButton.GetComponent<Image>().sprite = restartButtonClicked;
         OnRestartButtonUnHovered();
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Game");
     }
 

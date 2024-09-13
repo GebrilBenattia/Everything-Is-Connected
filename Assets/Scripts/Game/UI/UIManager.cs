@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private HeadLine m_Headline;
     [SerializeField] private GameObject m_WaveAnnouncement;
     private int testCounter = 0;
+
+    [SerializeField] private StudioEventEmitter m_SFX;
 
     
     static public UIManager instance;
@@ -52,6 +55,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateBubbles(int _Index, string _Text)
     {
+        m_SFX.Play();
         m_TextContainer.transform.GetChild(_Index).GetComponent<TextBubble>().SetNewBubble(TextBubble.TextSizes.big, _Text);
     }
 

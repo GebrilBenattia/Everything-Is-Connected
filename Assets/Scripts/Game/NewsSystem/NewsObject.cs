@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -49,12 +50,14 @@ public class NewsObject : MonoBehaviour, IClickableObject
     private bool m_CanMoveToCursor = false;
     private bool m_IsLeftButtonDown = false;
     private float m_CurrentLifeTime;
+    private StudioEventEmitter m_EventEmitter;
 
     // ######################################### FUNCTIONS ########################################
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        m_EventEmitter = GetComponent<StudioEventEmitter>();
         ResetValues();
     }
 
@@ -71,6 +74,7 @@ public class NewsObject : MonoBehaviour, IClickableObject
         m_NewsData = _NewsData;
         m_Text.text = NewsData.ThemeToString(m_NewsData.theme);
         m_InitPos = transform.position;
+        m_EventEmitter.Play();
         SetSprite();
         StartCoroutine(SpawnScaleEffect());
     }

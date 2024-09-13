@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,12 @@ public class EnemyDeath : MonoBehaviour
     [SerializeField] private VisualEffect m_DeathEffect;
     [SerializeField] private Texture2D[] m_DeathEffectTextures;
 
+    // Private Variables
+    private StudioEventEmitter m_EventEmitter;
+
     private void Awake()
     {
+        m_EventEmitter = GetComponent<StudioEventEmitter>();
         StartCoroutine(DeathEffect());
     }
 
@@ -27,6 +32,9 @@ public class EnemyDeath : MonoBehaviour
         // Choose random texture for particles
         int textureIndex = Random.Range(0, m_DeathEffectTextures.Length);
         m_DeathEffect.SetTexture("mainTex", m_DeathEffectTextures[textureIndex]);
+
+        // Play sound
+        m_EventEmitter.Play();
 
         // Play particles
         m_DeathEffect.gameObject.SetActive(true);

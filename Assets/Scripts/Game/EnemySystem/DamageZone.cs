@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,12 +18,19 @@ public class DamageZone : MonoBehaviour
     // Private Variables
     private EnemyBase m_EnemySource;
     private float m_DamageIntervalCooldown;
+    private StudioEventEmitter m_BurstSFX;
 
     // ######################################### FUNCTIONS ########################################
+
+    private void Awake()
+    {
+        m_BurstSFX = GetComponent<StudioEventEmitter>();   
+    }
 
     public void Init(EnemyBase _EnemySource)
     {
         m_EnemySource = _EnemySource;
+        m_BurstSFX.Play();
         DealZoneDamage();
         Invoke(nameof(Despawn), m_DespawnTime);
     }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4996653912402526036}
   - component: {fileID: 4241020626017321373}
+  - component: {fileID: 6124774323020209134}
   m_Layer: 0
   m_Name: DeadDragonfly
   m_TagString: Untagged
@@ -55,6 +56,37 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 5fe39ac1a7c6b174f87f34dcf7bb5c44, type: 3}
   - {fileID: 2800000, guid: e955fd88f9e8ba148a19d41bea8f99b4, type: 3}
   - {fileID: 2800000, guid: 78002c846c76bc84b9994125bc4e2ee8, type: 3}
+--- !u!114 &6124774323020209134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853288787197129230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2050223014
+      Data2: 1172339800
+      Data3: 565036468
+      Data4: -798295669
+    Path: event:/ENNEMIES/ennemies
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &4770932584925449796
 GameObject:
   m_ObjectHideFlags: 0

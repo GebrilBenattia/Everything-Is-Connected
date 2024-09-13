@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ public class GameplayManager : MonoBehaviour
     // Object References
     [Header("Object References")]
     [SerializeField] public Camera camera;
+    [SerializeField] private GameObject m_GameOverMenu;
 
     // Game Settings
     [Header("Game Settings")]
@@ -35,6 +37,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private int m_DamageForBubble;
 
     public NewsLinkData newsLinkData;
+    private StudioEventEmitter m_EventEmitter;
 
     // ###################################### GETTER / SETTER #####################################
 
@@ -47,18 +50,19 @@ public class GameplayManager : MonoBehaviour
     {
         m_Instance = this;
         life = m_MaxLife;
+        m_EventEmitter = GetComponent<StudioEventEmitter>();
     }
 
-    /*public void LoadTheme(string _ThemeToLoad)
+    public void PLayDamageSound()
     {
-        m_loadedThemes.Add(_ThemeToLoad);
-        if (m_loadedThemes.Count == MAX_THEMES)
-        {
-            m_BubbleAmount++;
-            CreateBubble(m_loadedThemes[0], m_loadedThemes[1]);           
-            m_loadedThemes.Clear();
-        }
-    }*/
+        m_EventEmitter.Play();
+    }
+
+    public void GameOver()
+    {
+        m_GameOverMenu.SetActive(true);
+        //Time.timeScale = 0f;
+    }
 
     public void CheckNewsLink(string _Theme1, string _Theme2, float _Damage)
     {
