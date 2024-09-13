@@ -20,11 +20,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Sprite quitButtonHovered;
     [SerializeField] private Sprite quitButtonClicked;
 
+    [SerializeField] private EventReference hoveredSound;
+    [SerializeField] private EventReference clickedSound;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //FMODUnity.RuntimeManager.PlayOneShot("event:/MUSIC/ui_loop");
         emitter = GetComponent<StudioEventEmitter>();
         emitter.Play();
     }
@@ -32,17 +34,19 @@ public class MainMenu : MonoBehaviour
     public void OnPlayButtonUnHovered()
     {
         playButton.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-        playButton.GetComponent<Image>().color = new Vector4(playButton.GetComponent<Image>().color.r, playButton.GetComponent<Image>().color.g, playButton.GetComponent<Image>().color.b, 255f);
+        //playButton.GetComponent<Image>().color = new Vector4(playButton.GetComponent<Image>().color.r, playButton.GetComponent<Image>().color.g, playButton.GetComponent<Image>().color.b, 255f);
     }
 
     public void OnPlayButtonHovered()
     {
-        playButton.GetComponent<Image>().color = new Vector4(playButton.GetComponent<Image>().color.r, playButton.GetComponent<Image>().color.g, playButton.GetComponent<Image>().color.b, 0f);
-        playButton.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        RuntimeManager.PlayOneShot(hoveredSound);
+        //playButton.GetComponent<Image>().color = new Vector4(playButton.GetComponent<Image>().color.r, playButton.GetComponent<Image>().color.g, playButton.GetComponent<Image>().color.b, 0f);
+        playButton.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void OnPlayClicked()
     {
+        RuntimeManager.PlayOneShot(clickedSound);
         playButton.GetComponent<Image>().sprite = playButtonClicked;
         OnPlayButtonUnHovered();
         emitter.Stop();
@@ -51,9 +55,9 @@ public class MainMenu : MonoBehaviour
 
     public void OnQuitClicked()
     {
+        RuntimeManager.PlayOneShot(clickedSound);
         quitButton.GetComponent<Image>().sprite = quitButtonClicked;
         OnQuitButtonUnHovered();
-        emitter.Stop();
         Application.Quit();
 #if DEBUG
         Debug.Log("Quitting");
@@ -61,14 +65,15 @@ public class MainMenu : MonoBehaviour
     }
     public void OnQuitButtonUnHovered()
     {
-        quitButton.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-        quitButton.GetComponent<Image>().color = new Vector4(quitButton.GetComponent<Image>().color.r, quitButton.GetComponent<Image>().color.g, quitButton.GetComponent<Image>().color.b, 255f);
+        quitButton.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        //quitButton.GetComponent<Image>().color = new Vector4(quitButton.GetComponent<Image>().color.r, quitButton.GetComponent<Image>().color.g, quitButton.GetComponent<Image>().color.b, 255f);
     }
 
     public void OnQuitButtonHovered()
     {
-        quitButton.GetComponent<Image>().color = new Vector4(quitButton.GetComponent<Image>().color.r, quitButton.GetComponent<Image>().color.g, quitButton.GetComponent<Image>().color.b, 0f);
-        quitButton.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        RuntimeManager.PlayOneShot(hoveredSound);
+        //quitButton.GetComponent<Image>().color = new Vector4(quitButton.GetComponent<Image>().color.r, quitButton.GetComponent<Image>().color.g, quitButton.GetComponent<Image>().color.b, 0f);
+        quitButton.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     // Update is called once per frame

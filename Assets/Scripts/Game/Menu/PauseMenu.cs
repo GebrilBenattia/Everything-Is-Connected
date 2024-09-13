@@ -54,6 +54,6 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        Debug.Log(Time.timeScale);
+        //Debug.Log(Time.timeScale);
     }
 }
